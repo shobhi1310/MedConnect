@@ -3,4 +3,18 @@
     <string name="title_activity_sign_up">SignUp</string>
     <string name="tab_text_1">For Customer</string>
     <string name="tab_text_2">For Shop Owner</string>
+    <string name="title_activity_medicine_details">MedicineDetails</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="medicine_name">Crocin Advance Tablet</string>
+    <string name="medicine_weight">500mg</string>
+    <string name="mfg_name">Glaxosmithkline Consumer Healthcare Ltd</string>
+    <string name="tablets">15 Tablets in a Strip</string>
 </resources>
