@@ -15,12 +15,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/background"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
@@ -38,31 +40,31 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabUnboundedRipple="false"
-            app:tabTextColor="@color/cardview_dark_background">
+            app:tabTextColor="@color/black"
+            app:tabTextAppearance="@style/TabTextItems"
+            app:tabUnboundedRipple="false">
 
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/tab_text_1"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:icon="@drawable/baseline_person_black_18dp"/>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@mipmap/baseline_person_black_18dp"
+                android:text="@string/tab_text_1" />
 
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/tab_text_2"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:icon="@drawable/baseline_storefront_black_18dp"/>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@mipmap/baseline_storefront_black_18dp"
+                android:text="@string/tab_text_2" />
 
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        app:srcCompat="@android:drawable/ic_dialog_email" />-->
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fab"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom|end"-->
+    <!--        android:layout_margin="@dimen/fab_margin"-->
+    <!--        app:srcCompat="@android:drawable/ic_dialog_email" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
