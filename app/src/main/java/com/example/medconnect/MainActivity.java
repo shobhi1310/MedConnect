@@ -35,28 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         //searchBar functionality
-        Toolbar toolbar =  (Toolbar)(findViewById(R.id.searchBar));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Search medicine");
-        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+//        Toolbar toolbar =  (Toolbar)(findViewById(R.id.searchBar));
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("Search medicine");
+//        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 //
 //        searchView = (MaterialSearchView)findViewById(R.id.search);
 
 
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
 
-    }
-//
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        return super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.search_items,menu);
-        MenuItem menuItem = menu.findItem(R.id.search_item);
-        searchView.setMenuItem(menuItem);
-        return true;
-    }
 
 
 
