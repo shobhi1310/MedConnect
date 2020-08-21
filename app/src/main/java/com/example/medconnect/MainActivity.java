@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_booking_history);
+        setContentView(R.layout.activity_book_medicine);
 //        Button signup = (Button)findViewById(R.id.signup);
 //        Button medicine = (Button)findViewById(R.id.medicine_details);
 //        signup.setOnClickListener(new View.OnClickListener() {
