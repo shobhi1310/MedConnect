@@ -12,14 +12,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button test = (Button)findViewById(R.id.test);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CustomerHomePage.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_customer_booking_history);
+//        Button signup = (Button)findViewById(R.id.signup);
+//        Button medicine = (Button)findViewById(R.id.medicine_details);
+//        signup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, SignUp.class);
+//                startActivity(intent);
+//            }
+//        });
+//        medicine.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, MedicineDetails.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
