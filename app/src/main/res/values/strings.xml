@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MedConnect</string>
+    <string name="profile">profile</string>
+    <string name="home">Home</string>
+    <string name="booking_history">booking history</string>
+    <string name="search_medicine">search medicine</string>
+    <string name="logout">logout</string>
+    <string name="contact_us">contact us</string>
+    <string name="current_booking">current_booking</string>
+    <string name="Profile">Profile</string>
+    <string name="Home">Home</string>
+    <string name="Logout">Logout</string>
+    <string name="Contact_us">Contact us</string>
+    <string name="search">Search...</string>
 </resources>
