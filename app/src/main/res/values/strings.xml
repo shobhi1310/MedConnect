@@ -17,4 +17,12 @@
     <string name="medicine_weight">500mg</string>
     <string name="mfg_name">Glaxosmithkline Consumer Healthcare Ltd</string>
     <string name="tablets">15 Tablets in a Strip</string>
+    <string name="disclaimer_details">
+        the views, information, or opinions expressed during [the] series are solely
+        those of the individuals involved and do not necessarily represent those of
+        Vanderbilt University Medical Center and its employees.
+    </string>
+    <string name="time_range">Choose your booking time range.</string>
+    <string name="book_now">Book Now</string>
+    <string name="disclaimer">Disclaimer</string>
 </resources>

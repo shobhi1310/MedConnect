@@ -7,62 +7,136 @@
     tools:context=".BookMedicine">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book Now"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="627dp" />
+        android:id="@+id/book_button"
+        android:layout_width="107dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="33dp"
+        android:background="@drawable/background"
+        android:text="@string/book_now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Disclaimer"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="498dp" />
+        android:layout_width="353dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/disclaimer_details"
+        app:layout_constraintBottom_toTopOf="@+id/book_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <SeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="173dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="62dp"
         android:max="10"
         android:progress="3"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="369dp" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="214dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginBottom="31dp"
+        android:text="@string/time_range"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="68dp" >
+        android:id="@+id/cardView2"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="236dp"
-            android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E6E2E2">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="171dp"
-                android:layout_height="108dp"
-                app:srcCompat="@drawable/paracetamol" />
+                android:id="@+id/medicine_image"
+                android:layout_width="317dp"
+                android:layout_height="183dp"
+                app:srcCompat="@drawable/crocin_advance_500mg_tablet_15_s_0"
+                tools:layout_editor_absoluteX="13dp"
+                tools:layout_editor_absoluteY="14dp" />
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="82dp"
-                android:text="Paracetamol" />
-        </LinearLayout>
+                android:id="@+id/mfg_name"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:scrollHorizontally="false"
+                android:text="@string/mfg_name"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <TextView
+                android:id="@+id/tablets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/tablets"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintTop_toBottomOf="@+id/mfg_name"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/medicine_name"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:scrollHorizontally="false"
+                android:text="@string/medicine_name"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="209dp" />
+
+            <TextView
+                android:id="@+id/medicine_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/medicine_weight"
+                android:textColor="#131313"
+                android:textSize="16dp"
+                tools:layout_editor_absoluteX="306dp"
+                tools:layout_editor_absoluteY="209dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose time frame"
-        tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="331dp" />
+        android:text="@string/disclaimer"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintVertical_bias="0.581" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
