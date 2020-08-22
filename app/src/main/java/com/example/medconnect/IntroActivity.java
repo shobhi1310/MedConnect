@@ -2,23 +2,16 @@ package com.example.medconnect;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
-import com.example.medconnect.ui.main.CustomerFragment;
 import com.example.medconnect.ui.main.Intro1Fragment;
 import com.example.medconnect.ui.main.Intro2Fragment;
+import com.example.medconnect.ui.main.LoginSigninFragment;
 import com.example.medconnect.ui.main.SectionsPagerAdapter;
-import com.example.medconnect.ui.main.ShopOwnerFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -53,6 +46,7 @@ public class IntroActivity extends AppCompatActivity {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Intro1Fragment(), "1");
         adapter.addFragment(new Intro2Fragment(), "2");
+        adapter.addFragment(new LoginSigninFragment(), "3");
         viewPager.setAdapter(adapter);
     }
 

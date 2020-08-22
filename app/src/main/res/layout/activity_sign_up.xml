@@ -26,7 +26,7 @@
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
+            android:text="Sign Up"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
         <ImageView
@@ -39,7 +39,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="78dp"
             app:tabTextColor="@color/black"
             app:tabTextAppearance="@style/TabTextItems"
             app:tabUnboundedRipple="false">

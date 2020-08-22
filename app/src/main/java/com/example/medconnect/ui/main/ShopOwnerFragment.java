@@ -1,5 +1,6 @@
 package com.example.medconnect.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.medconnect.GetStartedActivity;
 import com.example.medconnect.R;
 
 import androidx.annotation.NonNull;
@@ -54,6 +56,9 @@ public class ShopOwnerFragment extends Fragment {
                 License = license.getText().toString();
 
                 Toast.makeText(getActivity(), ShopName + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                startActivity(intent);
+
             }
         });
 

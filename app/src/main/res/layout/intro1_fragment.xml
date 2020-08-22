@@ -9,36 +9,6 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/intro_description1"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:scrollHorizontally="false"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intro_title1"
-        app:layout_constraintVertical_bias="0.050000012" />
-
-    <ImageView
-        android:id="@+id/intro_img1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/intro_title1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.57" />
-
-    <TextView
         android:id="@+id/intro_title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +23,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-<!--        <Button-->
+    <TextView
+        android:id="@+id/intro_description1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:scrollHorizontally="false"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intro_title1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/intro_img1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/intro_title1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <!--        <Button-->
 <!--            android:id="@+id/next1"-->
 <!--            android:drawableRight="@drawable/ic_baseline_arrow_forward_24"-->
 <!--            android:background="@color/white"-->
