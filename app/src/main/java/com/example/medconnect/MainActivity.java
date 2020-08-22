@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ShopOwnerHome.class);
+                Intent intent = new Intent(view.getContext(), GoogleMapPage.class);
 
                 startActivity(intent);
             }
