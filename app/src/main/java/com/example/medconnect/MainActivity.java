@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     private void filter(String s){
         ArrayList<MedicineItem> filteredList = new ArrayList<>();
         for(MedicineItem medItem:this.medicineList){
-            if(medItem.getText1().toLowerCase().contains(s.toLowerCase())){
+            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
                 filteredList.add(medItem);
             }
         }
@@ -137,23 +137,28 @@ public class MainActivity extends AppCompatActivity {
         this.medicineList = new ArrayList<>();
 
 
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"Medicine Name","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"paranormal","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"crocin","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"crocin advance","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"ointment","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"sddsds","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"sdsffsddffd","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"jlinkkj","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"dsvdssdvss","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"efwfdssfsdf","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"wqeewe","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"ferferfe","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"chiggi","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"shubs","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"tapish","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"mir","description"));
-        this.medicineList.add(new MedicineItem(R.drawable.medicine_icon,"rohit","description"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Chiggi","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("shubs","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("tapish","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("mir","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Rohit","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("dwlknlsk","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("rohfekrbkhe","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("hvdzhzbfd","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("jvsdnkjbkjbfv","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("lvnkjdbkdfhbv","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("vfndfjvdfv","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("fvbdkjfvbjkb","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
+
+
+//
 
 
 
@@ -172,4 +177,6 @@ public class MainActivity extends AppCompatActivity {
         this.mRecyclerView.setAdapter(this.mRecyclerViewAdapter);
 
     }
+
+
 }

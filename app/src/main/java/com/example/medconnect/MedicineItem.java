@@ -1,28 +1,41 @@
 package com.example.medconnect;
 
 public class MedicineItem {
-    private int imageR;
-    private String text1;
-    private String text2;
+//    private int imageR;
+    private String medicineName;
+    private String manufacturer;
+    private boolean status;
+    private String weight;
 
-    public MedicineItem(int imageR,String text1,String text2){
-        this.imageR = imageR;
-        this.text1 = text1;
-        this.text2 = text2;
+    public MedicineItem(String medicineName,String manufacturer,boolean status,String weight){
+//        this.imageR = imageR;
+        this.medicineName = medicineName;
+        this.manufacturer=manufacturer;
+        this.status=status;
+        this.weight=weight;
     }
 
 
     //getter methods
-    public int getImageR(){
-        return this.imageR;
+//    public int getImageR(){
+//        return this.imageR;
+//    }
+
+    public String getMedicineName(){
+        return this.medicineName;
     }
 
-    public String getText1(){
-        return this.text1;
+    public String getManufacturer(){
+        return this.manufacturer;
     }
 
-    public String gettext2(){
-        return this.text2;
+    public String getWeight(){
+        return this.weight;
+    }
+
+
+    public boolean getStatus(){
+        return this.status;
     }
 
 }

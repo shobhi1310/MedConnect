@@ -4,38 +4,85 @@ package com.example.medconnect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medicineHolder> {
+public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medicineHolder> implements Filterable {
     private ArrayList<MedicineItem> mList;
+    private ArrayList<MedicineItem> copymList;
 
+
+    public medicineAdapter(ArrayList<MedicineItem> list){
+        this.mList = list;
+        //here we are doing deep copy instead of shallow copy
+        this.copymList = new ArrayList<>(list);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return smartFilter;
+    }
+
+    private Filter smartFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<MedicineItem> filteredList = new ArrayList<>();
+
+            if(constraint==null || constraint.length()==0){
+                filteredList.addAll(copymList);
+            }else{
+                String filteredString = constraint.toString().toLowerCase().trim();
+
+                for(MedicineItem medItem:copymList){
+                    if(medItem.getMedicineName().toString().toLowerCase().contains(filteredString)){
+                        filteredList.add(medItem);
+                    }
+                }
+
+            }
+            FilterResults endResult = new FilterResults();
+            endResult.values = filteredList;
+            return endResult;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mList.clear();
+            mList.addAll((ArrayList)(results.values));
+            notifyDataSetChanged();
+        }
+    };
 
 
     public static class medicineHolder extends RecyclerView.ViewHolder{
 
         public ImageView mImageView;
-        public TextView text1;
-        public TextView text2;
+        public TextView medicineName;
+        public TextView manufacturer;
+        public TextView status;
+        public TextView weight;
 
         public medicineHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.mImageView = itemView.findViewById(R.id.imageView1);
-            this.text1 = itemView.findViewById(R.id.textView1);
-            this.text2 = itemView.findViewById(R.id.textView2);
-
+//            this.mImageView = itemView.findViewById(R.id.imageView1);
+            this.medicineName = itemView.findViewById(R.id.medicine);
+            this.manufacturer = itemView.findViewById(R.id.manufacturer);
+            this.status = itemView.findViewById(R.id.status);
+            this.weight = itemView.findViewById(R.id.strength);
         }
     }
 
-    public medicineAdapter(ArrayList<MedicineItem> list){
-        this.mList = list;
-    }
+
 
     @NonNull
     @Override
@@ -50,10 +97,17 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
     public void onBindViewHolder(@NonNull medicineHolder holder, int position) {
         MedicineItem currItem = this.mList.get(position);
 
-        holder.mImageView.setImageResource(currItem.getImageR());
+//        holder.mImageView.setImageResource(currItem.getImageR());
 
-        holder.text1.setText(currItem.getText1());
-        holder.text2.setText(currItem.gettext2());
+        holder.medicineName.setText(currItem.getMedicineName());
+        holder.manufacturer.setText(currItem.getManufacturer());
+//        holder.status.setB(currItem.getStatus());
+        if(currItem.getStatus()==true){
+            holder.status.setText("Available");
+        }else{
+            holder.status.setText("Unavailable");
+        }
+        holder.weight.setText(currItem.getWeight());
 
     }
 
