@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".successLayover"></activity>
+        <activity android:name=".ShopKeeperProfile"></activity>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
         <activity android:name=".MainActivity">
             <intent-filter>
