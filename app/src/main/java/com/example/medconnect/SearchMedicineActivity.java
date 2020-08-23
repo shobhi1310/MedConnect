@@ -1,14 +1,11 @@
 package com.example.medconnect;
 
-import android.graphics.Color;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -20,7 +17,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class SearchMedicineActivity extends BaseActivity {
 
 
     MaterialSearchView searchView;
@@ -31,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState, R.layout.activity_search_medicine);
 
         //sideNavbar functionality
         final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);

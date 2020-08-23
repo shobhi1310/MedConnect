@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,13 +47,16 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     intent = new Intent(this, CustomerProfile.class);
                     break;
                 case R.id.Home:
-                    intent = new Intent(this,CustomerHomePage.class);
+                    intent = new Intent(this, CustomerHomePage.class);
                     break;
                 case R.id.BookingHistory:
                     break;
                 case R.id.searchMedicine:
+                    intent = new Intent(this, SearchMedicineActivity.class);
                     break;
                 case R.id.logout:
+                    Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(this, LoginActivity.class);
                     break;
                 case R.id.contact:
                     break;
