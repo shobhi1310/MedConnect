@@ -24,6 +24,7 @@
         <activity android:name=".ShopOwnerHome" />
 
         <activity android:name=".CustomerHomePage" />
+        <activity android:name=".CustomerBookingHistory" />
 
         <activity android:name=".GoogleMapPage" />
         <activity

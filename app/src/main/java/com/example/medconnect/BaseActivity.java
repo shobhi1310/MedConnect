@@ -49,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     intent = new Intent(this,CustomerHomePage.class);
                     break;
                 case R.id.BookingHistory:
+                    intent=new Intent(this,CustomerBookingHistory.class);
                     break;
                 case R.id.searchMedicine:
                     break;
