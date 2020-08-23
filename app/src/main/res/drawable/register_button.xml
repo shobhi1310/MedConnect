@@ -9,5 +9,11 @@
 
     <corners
         android:radius="22dp" />
+        <!-- android:angle="-45"
+        android:startColor="#C33764"
+        android:endColor="#1D2671" />
+
+    <corners
+        android:radius="18dp" /> -->
 
 </shape>

@@ -17,4 +17,16 @@
     <string name="medicine_weight">500mg</string>
     <string name="mfg_name">Glaxosmithkline Consumer Healthcare Ltd</string>
     <string name="tablets">15 Tablets in a Strip</string>
+    <string name="profile">profile</string>
+    <string name="home">Home</string>
+    <string name="booking_history">booking history</string>
+    <string name="search_medicine">search medicine</string>
+    <string name="logout">logout</string>
+    <string name="contact_us">contact us</string>
+    <string name="current_booking">current_booking</string>
+    <string name="Profile">Profile</string>
+    <string name="Home">Home</string>
+    <string name="Logout">Logout</string>
+    <string name="Contact_us">Contact us</string>
+    <string name="search">Search...</string>
 </resources>

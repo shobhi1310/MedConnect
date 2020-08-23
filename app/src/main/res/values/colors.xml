@@ -14,4 +14,14 @@
     <color name="tab_indicator_grey">#c0c0c0</color>
     <color name="intro_description_color">#656565</color>
 
+    <color name="red">#e65212</color>
+    <color name="purple">#9d8eed</color>
+    <!-- <color name="white">#f5f7f6</color>
+    <color name="black">#1b1c1b</color> -->
+    <color name="blue">#4f9dc4</color>
+    <color name="brown">#8a533e</color>
+    <!-- <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">@color/white</color> -->
+    <!-- <color name="background">#9C27B0</color> -->
 </resources>
