@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,10 +17,9 @@ import android.widget.FrameLayout;
 import com.google.android.material.navigation.NavigationView;
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    protected final void onCreate(Bundle savedInstanceState, int layoutId) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layoutId);
+//        setContentView(layoutId);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
@@ -44,6 +44,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             switch (id) {
                 case R.id.menuProfile:
                     intent = new Intent(this, CustomerProfile.class);
+                    break;
+                case R.id.Home:
+                    intent = new Intent(this,CustomerHomePage.class);
+                    break;
+                case R.id.BookingHistory:
+                    break;
+                case R.id.searchMedicine:
+                    break;
+                case R.id.logout:
+                    break;
+                case R.id.contact:
                     break;
             }
             startActivity(intent);
