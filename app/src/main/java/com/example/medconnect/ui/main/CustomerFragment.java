@@ -49,6 +49,7 @@ public class CustomerFragment extends Fragment {
 
                 Toast.makeText(getActivity(), Name + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                intent.putExtra("customer",true);
                 startActivity(intent);
 
             }

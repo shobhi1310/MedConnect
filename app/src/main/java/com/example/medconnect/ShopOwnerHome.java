@@ -1,10 +1,13 @@
 package com.example.medconnect;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
+import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,7 +25,16 @@ public class ShopOwnerHome extends  AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopowner_home_page);
+        getSupportActionBar().hide();
+        //sideNavbar functionality
+        final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
 
+        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
         createExampleList();
         buildRecyclerView();
     }
