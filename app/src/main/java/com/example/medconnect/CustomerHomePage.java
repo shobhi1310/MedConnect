@@ -16,32 +16,23 @@ import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class CustomerHomePage extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CustomerHomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home_page);
-//        getSupportActionBar().hide();
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-        //sideNavbar functionality
-//        DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_app_bar_open_drawer_description,R.string.nav_app_bar_navigate_up_description);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-//        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                drawerLayout.openDrawer(GravityCompat.START);
-//
-//            }
-//        });
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer,
+                toolbar,
+                R.string.nav_open_drawer,
+                R.string.nav_close_drawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
@@ -59,5 +50,15 @@ public class CustomerHomePage extends BaseActivity implements NavigationView.OnN
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
         drawer.closeDrawer( GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

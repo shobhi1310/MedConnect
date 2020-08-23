@@ -37,4 +37,6 @@
     <string name="time_range">Choose your booking time range.</string>
     <string name="book_now">Book Now</string>
     <string name="disclaimer">Disclaimer</string>
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
 </resources>
