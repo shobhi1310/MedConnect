@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,5 +20,7 @@ public class CustomerProfile extends BaseActivity {
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_profile);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Your Profile");
     }
 }

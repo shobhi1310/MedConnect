@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,7 +23,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
+
         navigationView.setNavigationItemSelectedListener(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
@@ -58,6 +61,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
+//                    finishAffinity();
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     break;
                 case R.id.contact:
                     break;

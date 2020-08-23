@@ -35,6 +35,10 @@ public class ShopOwnerHome extends  BaseActivity1{
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Home");
+
         createExampleList();
         buildRecyclerView();
     }

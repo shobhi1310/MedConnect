@@ -7,7 +7,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+
 import android.widget.Toast;
+
+import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -32,17 +36,8 @@ public class SearchMedicineActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_search_medicine);
 
-        //sideNavbar functionality
-        final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
-
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-
-
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Search Medicine");
 
         /*
 
@@ -185,6 +180,5 @@ public class SearchMedicineActivity extends BaseActivity {
         });
 
     }
-
 
 }
