@@ -30,18 +30,6 @@ public class SearchMedicineActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_search_medicine);
 
-        //sideNavbar functionality
-        final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
-
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-
-
-
         /*
 
             this searching logic is for customers

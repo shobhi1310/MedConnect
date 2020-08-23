@@ -15,16 +15,6 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
 
     private ArrayList<CustomerBookingHistoryCard> ordersList;
 
-
-
-
-
-
-
-
-
-
-
     public static class CustomerBookingHistoryViewHolder extends RecyclerView.ViewHolder{
         public TextView medicine;
         public TextView strength;
