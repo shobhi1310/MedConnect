@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CustomerProfile extends AppCompatActivity {
+public class CustomerProfile extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+    protected final void onCreate(Bundle savedInstanceState) {
+        try {
+            super.onCreate(savedInstanceState, R.layout.activity_customer_profile);
+        }catch (Error e){
+            e.printStackTrace();
+        }
+//        setContentView(R.layout.activity_customer_profile);
     }
 }
