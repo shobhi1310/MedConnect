@@ -35,7 +35,7 @@
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
             android:label="Medicine Details" />

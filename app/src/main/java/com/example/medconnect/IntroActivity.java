@@ -44,9 +44,9 @@ public class IntroActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Intro1Fragment(), "1");
-        adapter.addFragment(new Intro2Fragment(), "2");
-        adapter.addFragment(new LoginSigninFragment(), "3");
+        adapter.addFragment(new Intro1Fragment(), "");
+        adapter.addFragment(new Intro2Fragment(), "");
+        adapter.addFragment(new LoginSigninFragment(), "");
         viewPager.setAdapter(adapter);
     }
 

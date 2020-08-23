@@ -5,12 +5,21 @@
     android:id="@+id/sideNavbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.medconnect.MainActivity">
+    tools:context="com.example.medconnect.SearchMedicineActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include
+            layout="@layout/toolbar_main"
+            android:id="@+id/toolbar" />
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <RelativeLayout
             android:id="@+id/toolBar"
@@ -82,7 +91,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-
         app:menu="@menu/shopowner_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

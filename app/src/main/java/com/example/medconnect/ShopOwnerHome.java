@@ -65,10 +65,6 @@ public class ShopOwnerHome extends  AppCompatActivity{
         mRecyclerView.setAdapter(mAdapter);
 
 
-
-
-
-
         mAdapter.setOnItemClickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {
