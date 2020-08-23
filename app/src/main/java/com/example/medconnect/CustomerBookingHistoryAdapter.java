@@ -32,6 +32,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
         public TextView shopName;
         public TextView shopAddress;
         public TextView shopMobile;
+        public TextView bookingDate;
 
 
 
@@ -44,6 +45,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
             shopName = itemView.findViewById(R.id.shopName);
             shopAddress = itemView.findViewById(R.id.shopAddress);
             shopMobile = itemView.findViewById(R.id.shopMobile);
+            bookingDate=itemView.findViewById(R.id.bookingDate);
 
         }
     }
@@ -69,6 +71,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
         holder.shopName.setText(card.getShopName());
         holder.shopAddress.setText(card.getShopAddress());
         holder.shopMobile.setText(card.getShopMobile());
+        holder.bookingDate.setText(card.getBookingDate());
 
 
     }

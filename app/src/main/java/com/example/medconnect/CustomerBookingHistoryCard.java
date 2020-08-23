@@ -7,16 +7,18 @@ public class CustomerBookingHistoryCard {
     private String shopName;
     private String shopAddress;
     private String shopMobile;
+    private String bookingDate;
 
 
 
-    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile){
+    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile,String bookingDate){
         this.medicine=medicine;
         this.strength=strength;
         this.manufacturer=manufacturer;
         this.shopName=shopName;
         this.shopAddress=shopAddress;
         this.shopMobile=shopMobile;
+        this.bookingDate=bookingDate;
 
 
 
@@ -45,7 +47,7 @@ public class CustomerBookingHistoryCard {
         return shopMobile;
     }
 
-
-
-
+    public String getBookingDate() {
+        return bookingDate;
+    }
 }
