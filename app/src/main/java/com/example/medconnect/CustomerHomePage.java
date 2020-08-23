@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,6 +59,8 @@ public class CustomerHomePage extends BaseActivity {
     public void onSearchMedicine(View view){
         Intent i = new Intent(this,BookMedicine.class);
         startActivity(i);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Home");
     }
 
     @Override

@@ -13,19 +13,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseActivity1 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     protected void onCreate(Bundle savedInstanceState,int layoutId) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
-
         navigationView.setNavigationItemSelectedListener(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
@@ -50,20 +47,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     intent = new Intent(this, CustomerProfile.class);
                     break;
                 case R.id.Home:
-                    intent = new Intent(this, CustomerHomePage.class);
+                    intent = new Intent(this,CustomerHomePage.class);
                     break;
                 case R.id.BookingHistory:
-                    intent=new Intent(this,CustomerBookingHistory.class);
+//                    intent = new Intent (this,Booking)
                     break;
-                case R.id.searchMedicine:
-                    intent = new Intent(this, SearchMedicineActivity.class);
+                case R.id.currentBooking:
+
                     break;
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
-//                    finishAffinity();
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
                     break;
                 case R.id.contact:
                     break;

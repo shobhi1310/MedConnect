@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -29,6 +30,9 @@ public class SearchMedicineActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_search_medicine);
+
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Search Medicine");
 
         /*
 

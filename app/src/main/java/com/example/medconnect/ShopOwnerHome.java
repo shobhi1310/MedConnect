@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ShopOwnerHome extends  AppCompatActivity{
+public class ShopOwnerHome extends  BaseActivity1{
     private RecyclerView mRecyclerView;
     private ShopOwnerHomeAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
@@ -23,9 +23,9 @@ public class ShopOwnerHome extends  AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopowner_home_page);
-        getSupportActionBar().hide();
+        super.onCreate(savedInstanceState, R.layout.activity_shopowner_home_page);
+//        setContentView(R.layout.activity_shopowner_home_page);
+//        getSupportActionBar().hide();
         //sideNavbar functionality
         final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
 
@@ -35,6 +35,10 @@ public class ShopOwnerHome extends  AppCompatActivity{
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Home");
+
         createExampleList();
         buildRecyclerView();
     }
