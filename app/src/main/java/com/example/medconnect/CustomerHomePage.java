@@ -28,7 +28,7 @@ public class CustomerHomePage extends AppCompatActivity {
     }
 
     public void goToProfile(View view){
-        Intent i = new Intent(CustomerHomePage.this, CustomerProfile.class);
-        startActivity(i);
+//        Intent i = new Intent(CustomerHomePage.this, CustomerProfile.class);
+//        startActivity(i);
     }
 }
