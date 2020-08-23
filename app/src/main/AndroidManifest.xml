@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medconnect">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
 
     <application
         android:allowBackup="true"
@@ -13,39 +9,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:label="Sign In"/>
+        <activity android:name=".BaseActivity"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="Sign In" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="@string/map_key"/>
+        <activity android:name=".ShopOwnerHome" />
 
-        <activity android:name=".ShopOwnerHome"/>
-        <activity android:name=".CustomerHomePage"/>
-        <activity android:name=".GoogleMapPage"/>
+        <activity android:name=".CustomerHomePage" />
+
+        <activity android:name=".GoogleMapPage" />
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShopKeeperProfile"/>
+        <activity android:name=".ShopKeeperProfile" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".MedicineDetails"
-            android:label="Medicine Details"/>
-        <activity android:name=".GetStartedActivity"/>
-
-
-
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MedicineDetails"
+            android:label="Medicine Details" />
+        <activity android:name=".GetStartedActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -29,7 +29,7 @@ public class GetStartedActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_get_started);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         introImage = findViewById(R.id.intro_img4);
         title = findViewById(R.id.intro_title4);

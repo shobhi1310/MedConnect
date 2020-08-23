@@ -29,7 +29,7 @@ public class IntroActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_intro);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         tabIndicator = findViewById(R.id.tab_indicator);
 
