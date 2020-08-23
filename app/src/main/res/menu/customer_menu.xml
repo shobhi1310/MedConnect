@@ -4,7 +4,6 @@
 
     <item android:id="@+id/menuProfile"
         android:icon="@drawable/profile"
-        android:onClick="goToProfile"
         android:title="@string/Profile"/>
 
 

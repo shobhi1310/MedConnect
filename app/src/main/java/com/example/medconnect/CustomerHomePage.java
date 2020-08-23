@@ -7,8 +7,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class CustomerHomePage extends AppCompatActivity {
+
+    private Button profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +28,15 @@ public class CustomerHomePage extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-    }
 
-    public void goToProfile(View view){
-        Intent i = new Intent(CustomerHomePage.this, CustomerProfile.class);
-        startActivity(i);
+        profileButton = findViewById(R.id.menuProfile);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CustomerHomePage.this, CustomerProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 }
