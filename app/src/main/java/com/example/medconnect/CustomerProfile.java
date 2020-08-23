@@ -14,54 +14,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class CustomerProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CustomerProfile extends BaseActivity {
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
-        navigationView.setNavigationItemSelectedListener(this);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
-                drawer,
-                toolbar,
-                R.string.nav_open_drawer,
-                R.string.nav_close_drawer);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        try {
-
-            int id = item.getItemId();
-            Fragment fragment = null;
-            Intent intent = null;
-
-            switch (id) {
-                case R.id.menuProfile:
-                    intent = new Intent(this, CustomerProfile.class);
-                    break;
-            }
-            startActivity(intent);
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
-            drawer.closeDrawer(GravityCompat.START);
-        }catch (Error e){
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onCreate(savedInstanceState, R.layout.activity_customer_profile);
     }
 }
