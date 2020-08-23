@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -32,6 +33,14 @@ public class CustomerHomePage extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent();
+//                startActivity(i);
+//            }
+//        });
         createExampleList();
         buildRecyclerView();
     }
@@ -44,6 +53,11 @@ public class CustomerHomePage extends BaseActivity {
 
         mRecyclerView.setLayoutManager(mLayout );
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void onSearchMedicine(View view){
+        Intent i = new Intent(this,BookMedicine.class);
+        startActivity(i);
     }
 
     @Override

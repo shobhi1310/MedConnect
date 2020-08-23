@@ -55,6 +55,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/shopowner_menu" />
+        app:menu="@menu/customer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
