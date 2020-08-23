@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sideNavbar"
-    tools:context="com.example.medconnect.MainActivity">
+   >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

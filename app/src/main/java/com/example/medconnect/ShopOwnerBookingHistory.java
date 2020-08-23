@@ -14,37 +14,39 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomerBookingHistory extends  BaseActivity{
+public class ShopOwnerBookingHistory extends  BaseActivity{
     private RecyclerView mRecyclerView;
-    private CustomerBookingHistoryAdapter mAdapter;
+    private ShopOwnerBookingHistoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
-    private ArrayList<CustomerBookingHistoryCard> orders;
+    private ArrayList<ShopOwnerBookingHistoryCard> orders;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.activity_customer_booking_history);
+        super.onCreate(savedInstanceState, R.layout.activity_shopowner_booking_history);
 
         createExampleList();
         buildRecyclerView();
     }
 
     public void createExampleList() {
-        orders= new ArrayList<CustomerBookingHistoryCard>();
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","12/5/55"));
-        orders.add(new CustomerBookingHistoryCard("Dolo","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","12/5/55"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","12/5/55"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","12/5/55"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","12/5/55"));
+        orders= new ArrayList<ShopOwnerBookingHistoryCard>();
+        orders.add(new ShopOwnerBookingHistoryCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
+        orders.add(new ShopOwnerBookingHistoryCard("Paracetamol","150MG","XYZ","Tapish","99999999999","12/07/20"));
+        orders.add(new ShopOwnerBookingHistoryCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
+        orders.add(new ShopOwnerBookingHistoryCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
+        orders.add(new ShopOwnerBookingHistoryCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
+
+
 
 
     }
 
     public void buildRecyclerView() {
-        mRecyclerView=findViewById(R.id.customerBookingHistoryRecyclerView);
+        mRecyclerView=findViewById(R.id.shopOwnerBookingHistoryRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayout = new LinearLayoutManager(this);
-        mAdapter = new CustomerBookingHistoryAdapter(orders);
+        mAdapter = new ShopOwnerBookingHistoryAdapter(orders);
 
         mRecyclerView.setLayoutManager(mLayout );
         mRecyclerView.setAdapter(mAdapter);
