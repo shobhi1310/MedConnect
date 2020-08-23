@@ -30,6 +30,10 @@
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShopKeeperProfile"></activity>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".successLayover" />
+        <activity android:name=".loginAndSignup" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
