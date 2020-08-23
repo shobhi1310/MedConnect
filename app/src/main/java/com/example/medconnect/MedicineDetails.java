@@ -28,7 +28,8 @@ public class MedicineDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine_details);
-
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Details");
 //        ArrayAdapter<int> adapter = new ArrayAdapter<int>(MedicineDetails.this, android.R.layout.simple_spinner_item, quantity);
 //
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

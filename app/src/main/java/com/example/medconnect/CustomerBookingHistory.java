@@ -25,6 +25,9 @@ public class CustomerBookingHistory extends  BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_booking_history);
 
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Booking History");
+
         createExampleList();
         buildRecyclerView();
     }
