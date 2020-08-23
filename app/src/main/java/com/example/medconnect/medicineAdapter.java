@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medicineHolder> implements Filterable {
     private ArrayList<MedicineItem> mList;
     private ArrayList<MedicineItem> copymList;
-
+    private OnItemCLickListener mListener;
 
     public medicineAdapter(ArrayList<MedicineItem> list){
         this.mList = list;
@@ -63,6 +63,16 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
     };
 
 
+    public interface OnItemCLickListener{
+        void onItemClick(int position);
+    }
+
+
+    public void setOnItemCLickListener(OnItemCLickListener lis){
+        this.mListener=lis;
+    }
+
+
     public static class medicineHolder extends RecyclerView.ViewHolder{
 
         public ImageView mImageView;
@@ -71,7 +81,7 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
         public TextView status;
         public TextView weight;
 
-        public medicineHolder(@NonNull View itemView) {
+        public medicineHolder(@NonNull View itemView, final OnItemCLickListener lis) {
             super(itemView);
 
 //            this.mImageView = itemView.findViewById(R.id.imageView1);
@@ -79,6 +89,17 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
             this.manufacturer = itemView.findViewById(R.id.manufacturer);
             this.status = itemView.findViewById(R.id.status);
             this.weight = itemView.findViewById(R.id.strength);
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if(lis!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            lis.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -89,7 +110,7 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
     public medicineHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //here bug can occur
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview,parent,false);
-        medicineHolder evh = new medicineHolder(v);
+        medicineHolder evh = new medicineHolder(v,this.mListener);
         return evh;
     }
 

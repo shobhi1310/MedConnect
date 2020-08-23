@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MedicineDetails extends AppCompatActivity {
+public class MedicineDetails extends BaseActivity {
 
 //    TextView medicine_name = (TextView)findViewById(R.id.medicine_name);
 //    TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);

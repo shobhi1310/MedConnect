@@ -44,10 +44,10 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
 
             switch (id) {
                 case R.id.menuProfile:
-                    intent = new Intent(this, CustomerProfile.class);
+                    intent = new Intent(this, ShopKeeperProfile.class);
                     break;
                 case R.id.Home:
-                    intent = new Intent(this,CustomerHomePage.class);
+                    intent = new Intent(this,ShopOwnerHome.class);
                     break;
                 case R.id.BookingHistory:
 //                    intent = new Intent (this,Booking)

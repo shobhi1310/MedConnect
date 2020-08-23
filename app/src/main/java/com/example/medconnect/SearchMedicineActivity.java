@@ -1,11 +1,13 @@
 package com.example.medconnect;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -166,11 +168,21 @@ public class SearchMedicineActivity extends BaseActivity {
         this.mRecyclerView.setHasFixedSize(true);
         this.mLayoutManager = new LinearLayoutManager(this);
 
+        this.mRecyclerViewAdapter = new medicineAdapter(this.medicineList);
 
         this.mRecyclerViewAdapter = new medicineAdapter(medicineList);
 
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
         this.mRecyclerView.setAdapter(this.mRecyclerViewAdapter);
+
+        this.mRecyclerViewAdapter.setOnItemCLickListener(new medicineAdapter.OnItemCLickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SearchMedicineActivity.this, MedicineDetails.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
