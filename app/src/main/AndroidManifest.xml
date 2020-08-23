@@ -29,6 +29,7 @@
         android:value="@string/map_key"/>
 
         <activity android:name=".ShopOwnerHome"/>
+        <activity android:name=".CustomerHomePage"/>
         <activity android:name=".GoogleMapPage"/>
         <activity
             android:name=".SignUp"

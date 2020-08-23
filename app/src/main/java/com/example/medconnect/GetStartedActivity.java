@@ -47,12 +47,12 @@ public class GetStartedActivity extends AppCompatActivity {
                 boolean isExistingMember = intent.getBooleanExtra("Login", false);
                 if(isExistingMember == true) {
                     Toast.makeText(getApplicationContext(), "Welcome Back to MedConnect!", Toast.LENGTH_LONG);
+                    Intent intent_1 = new Intent(GetStartedActivity.this, CustomerHomePage.class);
+                    startActivity(intent_1);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Welcome to MedConnect!", Toast.LENGTH_LONG);
                 }
-//                Intent intent = new Intent(getActivity(), );
-//                startActivity(intent);
             }
         });
 
