@@ -44,9 +44,9 @@ public class GetStartedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                boolean isExistingMember = intent.getBooleanExtra("Login", false);
-//                boolean isCustomer = intent.getBooleanExtra("customer",false);
-                if(isExistingMember == true) {
+//                boolean isExistingMember = intent.getBooleanExtra("Login", false);
+                boolean isCustomer = intent.getBooleanExtra("customer",false);
+                if(isCustomer == true) {
                     Toast.makeText(getApplicationContext(), "Welcome Back to MedConnect!", Toast.LENGTH_LONG);
                     Intent intent_1 = new Intent(GetStartedActivity.this, CustomerHomePage.class);
                     startActivity(intent_1);
