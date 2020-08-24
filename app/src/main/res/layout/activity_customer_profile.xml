@@ -34,12 +34,13 @@
             tools:srcCompat="@drawable/default_user" />
 
         <Button
+            android:id="@+id/customer_profile_edit"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginTop="220dp"
             android:background="@drawable/round_button"
             android:bufferType="normal"
-            android:foreground="@drawable/editimg"
+            android:foreground="@drawable/ic_baseline_edit_24"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"

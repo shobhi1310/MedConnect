@@ -11,11 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MedicineDetails extends BaseActivity {
-
+    
     Integer quantity = 0;
 
     @Override
@@ -46,11 +47,12 @@ public class MedicineDetails extends BaseActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                quantity = (int) adapterView.getItemAtPosition(i);
+                quantity = (Integer) adapterView.getItemAtPosition(i);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+        
 
             }
         });
@@ -60,6 +62,19 @@ public class MedicineDetails extends BaseActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MedicineDetails.this,GoogleMapPage.class);
                 startActivity(intent);
+            }
+        });
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(quantity != 0) {
+                    Intent intent = new Intent(MedicineDetails.this, BookMedicine.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please select quantity of product", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

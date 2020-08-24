@@ -53,11 +53,12 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
                     intent = new Intent (this,ShopOwnerBookingHistory.class);
                     break;
                 case R.id.currentBooking:
-
+                    intent = new Intent (this,ShopOwnerCurrentBookings.class);
                     break;
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     break;
                 case R.id.contact:
                     break;
