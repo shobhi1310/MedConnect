@@ -23,7 +23,7 @@
         </activity>
 
         <activity android:name=".ShopOwnerHome" />
-
+        <activity android:name=".BookMedicine" />
         <activity android:name=".CustomerHomePage" android:label="Home" />
         <activity android:name=".CustomerBookingHistory" />
         <activity android:name=".ShopOwnerBookingHistory" />

@@ -16,13 +16,7 @@ import java.util.ArrayList;
 
 public class MedicineDetails extends BaseActivity {
 
-//    TextView medicine_name = (TextView)findViewById(R.id.medicine_name);
-//    TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);
-//    TextView mfg_name = (TextView)findViewById(R.id.mfg_name);
-//    Button book = (Button)findViewById(R.id.book_button);
-
-//    ImageView medicine_image = (ImageView)findViewById(R.id.medicine_image);
-//    Spinner dropdown = (Spinner)findViewById(R.id.spinner);
+//
 //    public static final int[] quantity = {1, 2, 3, 4, 5, 10};
 //    int quantity_booked = 0;
 
@@ -33,7 +27,13 @@ public class MedicineDetails extends BaseActivity {
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Details");
         Button locate=(Button) findViewById(R.id.locateMap);
+        Button book = (Button)findViewById(R.id.book_button);
+//        TextView medicine_name = (TextView)findViewById(R.id.medicine_name);
+//    TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);
+//    TextView mfg_name = (TextView)findViewById(R.id.mfg_name);
 
+//    ImageView medicine_image = (ImageView)findViewById(R.id.medicine_image);
+//    Spinner dropdown = (Spinner)findViewById(R.id.spinner);
 //        ArrayAdapter<int> adapter = new ArrayAdapter<int>(MedicineDetails.this, android.R.layout.simple_spinner_item, quantity);
 //
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -58,7 +58,14 @@ public class MedicineDetails extends BaseActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MedicineDetails.this,GoogleMapPage.class);
                 startActivity(intent);
+            }
+        });
 
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MedicineDetails.this,BookMedicine.class);
+                startActivity(intent);
             }
         });
 
