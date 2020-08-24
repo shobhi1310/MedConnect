@@ -1,6 +1,7 @@
 package com.example.medconnect;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,7 +12,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -24,6 +27,15 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
 
         SupportMapFragment mapFragment=(SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("");
+
+
     }
 
     @Override

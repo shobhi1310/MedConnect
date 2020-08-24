@@ -29,7 +29,11 @@
         <activity android:name=".ShopOwnerBookingHistory" />
         <activity android:name=".SelectShop" />
 
-        <activity android:name=".GoogleMapPage" />
+        <activity android:name=".GoogleMapPage" android:parentActivityName=".MedicineDetails"
+
+            >
+<!--            <meta-data android:name="androidx." android:value=""/>-->
+        </activity>
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
