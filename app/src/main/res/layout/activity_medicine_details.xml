@@ -11,15 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include
-            layout="@layout/toolbar_main"
-            android:id="@+id/toolbar" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
 
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="0dp"
-            android:layout_height="603dp"
-            tools:layout_editor_absoluteY="56dp">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -213,6 +214,17 @@
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/toolbar_main"
+            android:id="@+id/toolbar" />
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
