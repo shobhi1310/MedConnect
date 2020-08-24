@@ -35,13 +35,13 @@ public class CustomerHomePage extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent();
-//                startActivity(i);
-//            }
-//        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CustomerHomePage.this,SearchMedicineActivity.class);
+                startActivity(i);
+            }
+        });
         createExampleList();
         buildRecyclerView();
     }
