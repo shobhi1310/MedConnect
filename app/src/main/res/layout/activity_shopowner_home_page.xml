@@ -8,84 +8,25 @@
     android:id="@+id/sideNavbar"
     tools:context="com.example.medconnect.ShopOwnerHome">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <RelativeLayout
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:background="@color/purple"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:minWidth="40dp"
-                android:minHeight="40dp"
-                android:src="@drawable/hamburger"
-                card_view:tint="@color/white" />
-
-
-            <TextView
-                android:id="@+id/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
-
-
-        </RelativeLayout>
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
+
             android:orientation="vertical"
-            android:padding="10dp"
-            tools:layout_editor_absoluteY="49dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <!--        <Button-->
-            <!--            android:id="@+id/button4"-->
-            <!--            android:layout_width="59dp"-->
-            <!--            android:layout_height="43dp"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:background="?android:attr/actionModeWebSearchDrawable"-->
-            <!--            card_view:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"-->
-            <!--            card_view:layout_constraintHorizontal_bias="1.0"-->
-            <!--            card_view:layout_constraintStart_toStartOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="56dp" />-->
-
-            <!--        <EditText-->
-            <!--            android:id="@+id/editTextTextPersonName2"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:layout_marginEnd="16dp"-->
-            <!--            android:ems="13"-->
-            <!--            android:hint="SEARCH"-->
-            <!--            android:inputType="textPersonName"-->
-            <!--            android:textSize="20dp"-->
-            <!--            card_view:layout_constraintEnd_toEndOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="336dp" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,10 +64,29 @@
                 card_view:layout_constraintVertical_bias="0.293"
                 tools:layout_conversion_absoluteHeight="589dp"
                 tools:layout_conversion_absoluteWidth="392dp" />
-        </LinearLayout>
+            </LinearLayout>
 
 
-    </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <include
+            layout="@layout/toolbar_main"
+            android:id="@+id/toolbar" />
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
     <com.google.android.material.navigation.NavigationView
     android:id="@+id/navigation"
     android:layout_width="wrap_content"

@@ -27,14 +27,6 @@ public class ShopOwnerHome extends  BaseActivity1{
 //        setContentView(R.layout.activity_shopowner_home_page);
 //        getSupportActionBar().hide();
         //sideNavbar functionality
-        final DrawerLayout drawerLayout = findViewById(R.id.sideNavbar);
-
-        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");

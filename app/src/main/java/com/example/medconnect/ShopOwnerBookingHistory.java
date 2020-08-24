@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ShopOwnerBookingHistory extends  BaseActivity{
+public class ShopOwnerBookingHistory extends  BaseActivity1{
     private RecyclerView mRecyclerView;
     private ShopOwnerBookingHistoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;

@@ -50,7 +50,7 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
                     intent = new Intent(this,ShopOwnerHome.class);
                     break;
                 case R.id.BookingHistory:
-//                    intent = new Intent (this,Booking)
+                    intent = new Intent (this,ShopOwnerBookingHistory.class);
                     break;
                 case R.id.currentBooking:
 
