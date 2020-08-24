@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/sideNavbar"
     tools:context=".MedicineDetails">
 
 
@@ -135,42 +136,87 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <FrameLayout
+                        android:id="@+id/content_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="10dp">
+                        card_view:cardElevation="4dp"
+
+                        >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/what_is_que"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/shopAddress"
+                                android:layout_width="300dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginTop="6dp"
-                                android:fontFamily="@font/montserrat"
-                                android:text="What is CROCIN ADVANCE?"
-                                android:textColor="@color/black"
-                                android:textSize="24dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                android:layout_marginTop="4dp"
+                                android:text="Hyderabad"
+                                android:textSize="17sp"
+                                card_view:layout_constraintEnd_toStartOf="@+id/shopDistance"
+                                card_view:layout_constraintHorizontal_bias="0.551"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toBottomOf="@+id/shopName" />
 
                             <TextView
-                                android:id="@+id/what_is_ans"
+                                android:id="@+id/shopName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="#E81123"
-                                android:text="CROCIN ADVANCE contains Paracetamol which belongs to a group of medicines called analgesic and antipyretics"
-                                android:textAlignment="inherit"
-                                android:textColor="#1E1C1C"
-                                android:textSize="14dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/what_is_que" />
+                                android:layout_marginTop="8dp"
+                                android:text="Apollo Pharmacy"
+                                android:textSize="23sp"
+                                card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintHorizontal_bias="0.073"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/shopDistance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="16dp"
+                                android:text="15 km"
+                                android:textSize="17sp"
+                                card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintTop_toBottomOf="@+id/shopName" />
+
+                            <TextView
+                                android:id="@+id/shopMobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:text="9889988998"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintStart_toStartOf="parent"
+                                card_view:layout_constraintTop_toBottomOf="@+id/shopAddress"
+                                card_view:layout_constraintVertical_bias="0.62" />
+
+                            <Button
+                                android:id="@+id/locateMap"
+                                android:layout_width="94dp"
+                                android:layout_height="35dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:background="@drawable/background"
+                                android:text="Locate"
+                                android:textColor="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintHorizontal_bias="1.0"
+                                card_view:layout_constraintStart_toEndOf="@+id/shopMobile"
+                                card_view:layout_constraintTop_toBottomOf="@+id/shopDistance"
+                                card_view:layout_constraintVertical_bias="1.0" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -219,13 +265,6 @@
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
-
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

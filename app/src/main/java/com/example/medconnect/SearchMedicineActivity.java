@@ -174,7 +174,7 @@ public class SearchMedicineActivity extends BaseActivity {
             @Override
             public void onItemClick(int position) {
                 Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(SearchMedicineActivity.this, MedicineDetails.class);
+                Intent intent = new Intent(SearchMedicineActivity.this, SelectShop.class);
                 startActivity(intent);
             }
         });

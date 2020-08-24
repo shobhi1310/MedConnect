@@ -2,6 +2,7 @@ package com.example.medconnect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ public class MedicineDetails extends BaseActivity {
 //    TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);
 //    TextView mfg_name = (TextView)findViewById(R.id.mfg_name);
 //    Button book = (Button)findViewById(R.id.book_button);
+
 //    ImageView medicine_image = (ImageView)findViewById(R.id.medicine_image);
 //    Spinner dropdown = (Spinner)findViewById(R.id.spinner);
 //    public static final int[] quantity = {1, 2, 3, 4, 5, 10};
@@ -26,10 +28,12 @@ public class MedicineDetails extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine_details);
+        super.onCreate(savedInstanceState,R.layout.activity_medicine_details);
+//        setContentView();
         TextView toolbar_title = findViewById(R.id.toolbar_title);
-//        toolbar_title.setText("Details");
+        toolbar_title.setText("Details");
+        Button locate=(Button) findViewById(R.id.locateMap);
+
 //        ArrayAdapter<int> adapter = new ArrayAdapter<int>(MedicineDetails.this, android.R.layout.simple_spinner_item, quantity);
 //
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,6 +53,14 @@ public class MedicineDetails extends BaseActivity {
 //
 //            }
 //        });
+        locate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MedicineDetails.this,GoogleMapPage.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
