@@ -34,6 +34,7 @@
             tools:srcCompat="@drawable/default_user" />
 
         <Button
+            android:id="@+id/customer_profile_edit"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginTop="220dp"
