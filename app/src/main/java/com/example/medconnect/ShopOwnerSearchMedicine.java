@@ -34,7 +34,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.activity_search_medicine);
+        super.onCreate(savedInstanceState, R.layout.activity_shopowner_search_medicine);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");
@@ -165,6 +165,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
             public void onItemClick(int position) {
                 Toast.makeText(ShopOwnerSearchMedicine.this, "clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ShopOwnerSearchMedicine.this, ShopOwnerAddMedicine.class);
+//                intent.putExtra("medicine", medicineList.get(position).getMedicineName());
+//                intent.putExtra("manufacturer", medicineList.get(position).getManufacturer());
+//                intent.putExtra("strength", medicineList.get(position).getWeight());
                 startActivity(intent);
             }
         });

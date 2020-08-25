@@ -49,7 +49,7 @@
             android:label="@string/title_activity_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShopKeeperProfile" />
-        <activity android:name=".ShopOwnerAddMedicine" />
+        <activity android:name=".ShopOwnerAddMedicine" android:parentActivityName=".ShopOwnerSearchMedicine"/>
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
