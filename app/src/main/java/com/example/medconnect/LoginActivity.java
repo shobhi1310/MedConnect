@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,16 +53,22 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"Select either Customer or Shop Owner", Toast.LENGTH_SHORT).show();
                 } else {
                     CustomerOrShopOwner = selectedRadioBtn.getText().toString();
+                    Toast.makeText(LoginActivity.this, CustomerOrShopOwner, Toast.LENGTH_SHORT).show();
                 }
-
-
 
                 // Email and Password Verification -->
 
                 // If verified -->
                 Toast.makeText(getApplicationContext(), (Email + " " + Password), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, GetStartedActivity.class);
-                intent.putExtra("Login", true);
+                boolean isCustomer = false;
+
+                if(CustomerOrShopOwner.equals("CUSTOMER")) {
+                    isCustomer = true;
+                    Log.d("test", "True");
+                }
+
+                intent.putExtra("customer", isCustomer);
                 startActivity(intent);
 
             }
