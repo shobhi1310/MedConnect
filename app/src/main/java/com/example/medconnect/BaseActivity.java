@@ -61,9 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
-//                    finishAffinity();
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
                     break;
                 case R.id.contact:
                     break;

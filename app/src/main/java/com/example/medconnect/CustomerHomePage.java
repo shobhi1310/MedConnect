@@ -34,6 +34,8 @@ public class CustomerHomePage extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Home");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +61,7 @@ public class CustomerHomePage extends BaseActivity {
     public void onSearchMedicine(View view){
         Intent i = new Intent(this,BookMedicine.class);
         startActivity(i);
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Home");
+
     }
 
     @Override

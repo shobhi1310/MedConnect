@@ -27,13 +27,14 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
 
         SupportMapFragment mapFragment=(SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("");
+        toolbar_title.setText("Map");
 
 
     }

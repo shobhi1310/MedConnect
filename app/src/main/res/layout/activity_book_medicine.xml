@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
@@ -165,12 +166,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/customer_menu" >
-    </com.google.android.material.navigation.NavigationView>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigation"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        app:headerLayout="@layout/header"-->
+<!--        app:menu="@menu/customer_menu" >-->
+<!--    </com.google.android.material.navigation.NavigationView>-->
 </androidx.drawerlayout.widget.DrawerLayout>
