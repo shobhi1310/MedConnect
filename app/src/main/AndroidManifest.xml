@@ -30,7 +30,7 @@
         <activity android:name=".ShopOwnerSearchMedicine" />
 
         <activity android:name=".ShopOwnerCurrentBookings" />
-        <activity android:name=".SelectShop" />
+        <activity android:name=".SelectShop" android:parentActivityName=".SearchMedicineActivity" />
         <activity android:name=".CustomerEditProfile"/>
         <activity android:name=".ShopOwnerEditProfile" android:parentActivityName=".ShopKeeperProfile" />
         <activity android:name=".GoogleMapPage" android:parentActivityName=".MedicineDetails"
@@ -56,7 +56,8 @@
         <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
-            android:label="Medicine Details" />
+            android:label="Medicine Details"
+            android:parentActivityName=".SelectShop"/>
         <activity android:name=".GetStartedActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
