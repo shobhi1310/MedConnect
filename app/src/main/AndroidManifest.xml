@@ -35,6 +35,12 @@
             >
 <!--            <meta-data android:name="androidx." android:value=""/>-->
         </activity>
+
+<!--        <activity android:name=".AddMedicineShop" android:parentActivityName=".MedicineDetails"-->
+
+<!--            >-->
+<!--            &lt;!&ndash;            <meta-data android:name="androidx." android:value=""/>&ndash;&gt;-->
+<!--        </activity>-->
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
