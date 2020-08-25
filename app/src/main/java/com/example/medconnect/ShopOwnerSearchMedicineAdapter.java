@@ -16,12 +16,12 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medicineHolder> implements Filterable {
-    private ArrayList<MedicineItem> mList;
-    private ArrayList<MedicineItem> copymList;
+public class ShopOwnerSearchMedicineAdapter extends RecyclerView.Adapter<ShopOwnerSearchMedicineAdapter.ShopOwnerSearchMedicineHolder> implements Filterable {
+    private ArrayList<ShopOwnerSearchMedicineCard> mList;
+    private ArrayList<ShopOwnerSearchMedicineCard> copymList;
     private OnItemCLickListener mListener;
 
-    public medicineAdapter(ArrayList<MedicineItem> list){
+    public ShopOwnerSearchMedicineAdapter(ArrayList<ShopOwnerSearchMedicineCard> list){
         this.mList = list;
         //here we are doing deep copy instead of shallow copy
         this.copymList = new ArrayList<>(list);
@@ -35,14 +35,14 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
     private Filter smartFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<MedicineItem> filteredList = new ArrayList<>();
+            ArrayList<ShopOwnerSearchMedicineCard> filteredList = new ArrayList<>();
 
             if(constraint==null || constraint.length()==0){
                 filteredList.addAll(copymList);
             }else{
                 String filteredString = constraint.toString().toLowerCase().trim();
 
-                for(MedicineItem medItem:copymList){
+                for(ShopOwnerSearchMedicineCard medItem:copymList){
                     if(medItem.getMedicineName().toString().toLowerCase().contains(filteredString)){
                         filteredList.add(medItem);
                     }
@@ -73,7 +73,7 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
     }
 
 
-    public static class medicineHolder extends RecyclerView.ViewHolder{
+    public static class ShopOwnerSearchMedicineHolder extends RecyclerView.ViewHolder{
 
         public ImageView mImageView;
         public TextView medicineName;
@@ -81,7 +81,7 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
         public TextView status;
         public TextView weight;
 
-        public medicineHolder(@NonNull View itemView, final OnItemCLickListener lis) {
+        public ShopOwnerSearchMedicineHolder(@NonNull View itemView, final OnItemCLickListener lis) {
             super(itemView);
 
 //            this.mImageView = itemView.findViewById(R.id.imageView1);
@@ -107,16 +107,16 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
 
     @NonNull
     @Override
-    public medicineHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ShopOwnerSearchMedicineHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //here bug can occur
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview,parent,false);
-        medicineHolder evh = new medicineHolder(v,this.mListener);
+        ShopOwnerSearchMedicineHolder evh = new ShopOwnerSearchMedicineHolder(v,this.mListener);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull medicineHolder holder, int position) {
-        MedicineItem currItem = this.mList.get(position);
+    public void onBindViewHolder(@NonNull ShopOwnerSearchMedicineHolder holder, int position) {
+        ShopOwnerSearchMedicineCard currItem = this.mList.get(position);
 
 //        holder.mImageView.setImageResource(currItem.getImageR());
 
@@ -137,8 +137,8 @@ public class medicineAdapter extends RecyclerView.Adapter<medicineAdapter.medici
         return this.mList.size();
     }
 
-//    @Override
-    public void filterList(ArrayList<MedicineItem> filteredlist){
+    //    @Override
+    public void filterList(ArrayList<ShopOwnerSearchMedicineCard> filteredlist){
         this.mList = filteredlist;
         notifyDataSetChanged();
     }

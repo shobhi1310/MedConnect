@@ -16,23 +16,14 @@
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
 
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="55dp">
-
-<!--                        <EditText-->
-<!--                            android:id="@+id/searchBox"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_margin="16dp"-->
-<!--                            android:background="@color/white"-->
-<!--                            />-->
             <EditText
                 android:id="@+id/searchBox"
                 android:layout_width="match_parent"
@@ -40,19 +31,26 @@
                 android:ems="13"
                 android:hint="SEARCH"
                 android:inputType="textPersonName"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:padding="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/darker_gray"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
                 android:padding="4dp"
-                android:layout_marginTop="60dp"
-                android:scrollbars="vertical" />
-
-
-        </RelativeLayout>
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchBox" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
