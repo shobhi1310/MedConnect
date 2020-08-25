@@ -1,6 +1,11 @@
 package com.example.medconnect;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,8 +15,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
 public class GetStartedActivity extends AppCompatActivity {
 
@@ -19,6 +33,7 @@ public class GetStartedActivity extends AppCompatActivity {
     TextView title;
     TextView description;
     Button getStarted;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +45,7 @@ public class GetStartedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_started);
 
 //        getSupportActionBar().hide();
-
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         introImage = findViewById(R.id.intro_img4);
         title = findViewById(R.id.intro_title4);
         description = findViewById(R.id.intro_description4);
@@ -58,6 +73,69 @@ public class GetStartedActivity extends AppCompatActivity {
                 }
             }
         });
+        fetchLocation();
+    }
+    private void fetchLocation(){
+        if (ContextCompat.checkSelfPermission(
+                GetStartedActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            //permission is not granted
+            if (ActivityCompat.shouldShowRequestPermissionRationale(GetStartedActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                //explain user and try again to grant permission
+                // In an educational UI, explain to the user why your app requires this
+                // permission for a specific feature to behave as expected. In this UI,
+                // include a "cancel" or "no thanks" button that allows the user to
+                // continue using your app without granting the permission.
+                //showInContextUI(...);
+                new AlertDialog.Builder(this)
+                        .setTitle("Requires location permission")
+                        .setMessage("you have to give this permission to access the feature")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(GetStartedActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION);
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create()
+                        .show();
+            }
+            else {
+                //asking for the first time
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                ActivityCompat.requestPermissions(GetStartedActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION);
+            }
+        }
+        else{
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                Double latitude=location.getLatitude();
+                                Double longitude=location.getLongitude();
+                                Toast.makeText(getApplicationContext(),"Latitude and Longitude"+latitude.toString()+" "+longitude.toString(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                //after getting this information run your code here
+            }
+        }
     }
 }
