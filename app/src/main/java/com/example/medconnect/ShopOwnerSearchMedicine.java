@@ -165,9 +165,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
             public void onItemClick(int position) {
                 Toast.makeText(ShopOwnerSearchMedicine.this, "clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ShopOwnerSearchMedicine.this, ShopOwnerAddMedicine.class);
-//                intent.putExtra("medicine", medicineList.get(position).getMedicineName());
-//                intent.putExtra("manufacturer", medicineList.get(position).getManufacturer());
-//                intent.putExtra("strength", medicineList.get(position).getWeight());
+                intent.putExtra("medicine", medicineList.get(position).getMedicineName());
+                intent.putExtra("manufacturer", medicineList.get(position).getManufacturer());
+                intent.putExtra("strength", medicineList.get(position).getWeight());
                 startActivity(intent);
             }
         });

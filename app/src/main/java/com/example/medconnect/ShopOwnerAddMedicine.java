@@ -1,5 +1,6 @@
 package com.example.medconnect;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.widget.TextView;
@@ -15,6 +16,18 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_add_medicine);
+
+        Intent intent= getIntent();
+
+
+
+        TextView medicine= findViewById(R.id.medicine);
+        TextView manufacturer= findViewById(R.id.manufacturer);
+        TextView strength= findViewById(R.id.strength);
+
+        medicine.setText(intent.getStringExtra("medicine"));
+        manufacturer.setText(intent.getStringExtra("manufacturer"));
+        strength.setText(intent.getStringExtra("strength"));
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
