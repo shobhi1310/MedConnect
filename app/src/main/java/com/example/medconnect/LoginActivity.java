@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.medconnect.ui.main.CustomerFragment;
@@ -20,6 +22,9 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     String Email;
     String Password;
+    RadioButton selectedRadioBtn;
+    RadioGroup custOrShop;
+    String CustomerOrShopOwner;
 //    boolean isLoggedOut;
 
     @Override
@@ -34,11 +39,21 @@ public class LoginActivity extends AppCompatActivity {
 //        Intent i = getIntent();
 //        isLoggedOut = i.getBooleanExtra("loggedOut", false);
 
+        custOrShop = findViewById(R.id.customerOrShopOwner);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Email = email.getText().toString();
                 Password = password.getText().toString();
+                int selectedId = custOrShop.getCheckedRadioButtonId();
+                selectedRadioBtn = findViewById(selectedId);
+                if(selectedId == -1) {
+                    Toast.makeText(LoginActivity.this,"Select either Customer or Shop Owner", Toast.LENGTH_SHORT).show();
+                } else {
+                    CustomerOrShopOwner = selectedRadioBtn.getText().toString();
+                }
+
 
 
                 // Email and Password Verification -->
