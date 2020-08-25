@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class ShopOwnerHome extends  BaseActivity1{
@@ -34,6 +36,14 @@ public class ShopOwnerHome extends  BaseActivity1{
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addInventory);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ShopOwnerHome.this,ShopOwnerSearchMedicine.class);
+                startActivity(i);
+            }
+        });
 
         createExampleList();
         buildRecyclerView();

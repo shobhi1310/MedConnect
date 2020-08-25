@@ -23,7 +23,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
-public class ShopOwnerSearchMedicine extends BaseActivity {
+public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
 
     MaterialSearchView searchView;

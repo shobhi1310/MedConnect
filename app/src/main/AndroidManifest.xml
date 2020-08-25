@@ -27,6 +27,8 @@
         <activity android:name=".CustomerHomePage" android:label="Home" />
         <activity android:name=".CustomerBookingHistory" />
         <activity android:name=".ShopOwnerBookingHistory" />
+        <activity android:name=".ShopOwnerSearchMedicine" />
+
         <activity android:name=".ShopOwnerCurrentBookings" />
         <activity android:name=".SelectShop" />
         <activity android:name=".CustomerEditProfile"/>

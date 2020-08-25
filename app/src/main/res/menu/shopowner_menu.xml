@@ -20,6 +20,10 @@
         android:icon="@drawable/current_booking"
         android:title="Current booking"/>
 
+    <item android:id="@+id/addMedicine"
+        android:icon="@drawable/baseline_add_24"
+        android:title="Add Medicine"/>
+
     <item android:id="@+id/logout"
         android:icon="@drawable/logout_icon"
         android:title="@string/Logout"/>

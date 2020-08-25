@@ -55,6 +55,9 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
                 case R.id.currentBooking:
                     intent = new Intent (this,ShopOwnerCurrentBookings.class);
                     break;
+                case R.id.addMedicine:
+                    intent = new Intent (this,ShopOwnerSearchMedicine.class);
+                    break;
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
