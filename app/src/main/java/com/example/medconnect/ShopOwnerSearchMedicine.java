@@ -192,7 +192,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     private void APICall(String s){
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
-        final ArrayList<ShopOwnerSearchMedicineCard> filteredLists=new ArrayList<>();
+
         queue.cancelAll("MedicineList");
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -237,7 +237,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // display a simple message on the screen
-                        Toast.makeText(ShopOwnerSearchMedicine.this, "Food source is not responding (USDA API)", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ShopOwnerSearchMedicine.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
         stringRequest.setTag("MedicineList");

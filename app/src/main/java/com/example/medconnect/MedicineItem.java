@@ -4,14 +4,14 @@ public class MedicineItem {
 //    private int imageR;
     private String medicineName;
     private String manufacturer;
-    private boolean status;
+//    private boolean status;
     private String weight;
 
-    public MedicineItem(String medicineName,String manufacturer,boolean status,String weight){
+    public MedicineItem(String medicineName,String manufacturer,String weight){
 //        this.imageR = imageR;
         this.medicineName = medicineName;
         this.manufacturer=manufacturer;
-        this.status=status;
+//        this.status=status;
         this.weight=weight;
     }
 
@@ -34,8 +34,8 @@ public class MedicineItem {
     }
 
 
-    public boolean getStatus(){
-        return this.status;
-    }
+//    public boolean getStatus(){
+//        return this.status;
+//    }
 
 }

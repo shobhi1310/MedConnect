@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -19,7 +20,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -31,6 +42,7 @@ public class SearchMedicineActivity extends BaseActivity {
     private medicineAdapter mRecyclerViewAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MedicineItem> medicineList;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Search Medicine");
+        queue= Volley.newRequestQueue(this);
 
         /*
 
@@ -114,44 +127,22 @@ public class SearchMedicineActivity extends BaseActivity {
 
 
     private void filter(String s){
-        ArrayList<MedicineItem> filteredList = new ArrayList<>();
-        for(MedicineItem medItem:this.medicineList){
-            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
-                filteredList.add(medItem);
-            }
-        }
+//        ArrayList<MedicineItem> filteredList = new ArrayList<>();
+//        for(MedicineItem medItem:this.medicineList){
+//            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
+//                filteredList.add(medItem);
+//            }
+//        }
+//
+//        this.mRecyclerViewAdapter.filterList(filteredList);
 
-        this.mRecyclerViewAdapter.filterList(filteredList);
+        this.APICall(s);
     }
 
 
 
     private void createList(){
         this.medicineList = new ArrayList<>();
-
-
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Chiggi","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("shubs","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("tapish","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("mir","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Rohit","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("dwlknlsk","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("rohfekrbkhe","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("hvdzhzbfd","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("jvsdnkjbkjbfv","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("lvnkjdbkdfhbv","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("vfndfjvdfv","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("fvbdkjfvbjkb","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-        this.medicineList.add(new MedicineItem("Paracetamol","XYZ",true,"150MG"));
-
-
-//
 
 
 
@@ -178,6 +169,64 @@ public class SearchMedicineActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void APICall(String s){
+        String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
+
+        queue.cancelAll("MedicineList");
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+                        // try/catch block for returned JSON data
+                        // see API's documentation for returned format
+                        ArrayList<MedicineItem> filteredList=new ArrayList<>();
+                        try {
+                            JSONArray result = new JSONObject(response).getJSONArray("medicines");
+//                                    .getJSONObject("list");
+//                            int maxItems = result.getInt("end");
+//                            JSONArray resultList = result.getJSONArray("item");
+                            //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
+
+
+
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject= result.getJSONObject(i);
+                                Log.d("JSON Result",jsonObject.getString("name"));
+                                filteredList.add(new MedicineItem(jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
+
+                            }
+
+
+
+
+
+                            // catch for the JSON parsing error
+                        } catch (JSONException e) {
+                            Toast.makeText(SearchMedicineActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        medicineList=filteredList;
+                        mRecyclerViewAdapter.filterList(filteredList);
+                    } // public void onResponse(String response)
+                }, // Response.Listener<String>()
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(SearchMedicineActivity.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("MedicineList");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+
 
     }
 
