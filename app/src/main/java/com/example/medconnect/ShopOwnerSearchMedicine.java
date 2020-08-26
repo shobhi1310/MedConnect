@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -19,18 +20,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
 
-    MaterialSearchView searchView;
+
     private RecyclerView mRecyclerView;
     private ShopOwnerSearchMedicineAdapter mRecyclerViewAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<ShopOwnerSearchMedicineCard> medicineList;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");
+        queue= Volley.newRequestQueue(this);
 
         /*
 
@@ -115,11 +128,12 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     private void filter(String s){
         ArrayList<ShopOwnerSearchMedicineCard> filteredList = new ArrayList<>();
-        for(ShopOwnerSearchMedicineCard medItem:this.medicineList){
-            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
-                filteredList.add(medItem);
-            }
-        }
+        filteredList=this.APICall(s);
+//        for(ShopOwnerSearchMedicineCard medItem:this.medicineList){
+//            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
+//                filteredList.add(medItem);
+//            }
+//        }
 
         this.mRecyclerViewAdapter.filterList(filteredList);
     }
@@ -130,13 +144,14 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         this.medicineList = new ArrayList<>();
 
 
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Crocin","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Dolo","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Shubhankar","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Tapish","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Rohit","XYZ","150MG"));
-        this.medicineList.add(new ShopOwnerSearchMedicineCard("Sameed","XYZ","150MG"));
+
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Crocin","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Dolo","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Shubhankar","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Tapish","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Rohit","XYZ","150MG"));
+//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Sameed","XYZ","150MG"));
 
 
 
@@ -172,6 +187,60 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
             }
         });
 
+    }
+
+    private ArrayList<ShopOwnerSearchMedicineCard> APICall(String s){
+        String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
+        final ArrayList<ShopOwnerSearchMedicineCard> filteredList=new ArrayList<>();
+        queue.cancelAll("MedicineList");
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+                        // try/catch block for returned JSON data
+                        // see API's documentation for returned format
+                        try {
+                            JSONArray result = new JSONObject(response).getJSONArray("medicines");
+//                                    .getJSONObject("list");
+//                            int maxItems = result.getInt("end");
+//                            JSONArray resultList = result.getJSONArray("item");
+                            //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
+
+
+
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject= result.getJSONObject(i);
+                                Log.d("JSON Result",jsonObject.getString("name"));
+                                filteredList.add(new ShopOwnerSearchMedicineCard(jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
+
+                            }
+
+
+//                            Log.d("JSON Result", result.toString());
+
+
+                            // catch for the JSON parsing error
+                        } catch (JSONException e) {
+                            Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    } // public void onResponse(String response)
+                }, // Response.Listener<String>()
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(ShopOwnerSearchMedicine.this, "Food source is not responding (USDA API)", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("MedicineList");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+        return filteredList;
     }
 
 }
