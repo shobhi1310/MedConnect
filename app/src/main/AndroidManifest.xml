@@ -5,8 +5,9 @@
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GetUserLocation"></activity>
+        <activity android:name=".GetUserLocation" />
         <activity android:name=".SetImageForCustomer" />
         <activity android:name=".ShopKeeperProfile" />
+        <activity android:name=".UploadDocument" />
         <activity android:name=".UserProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
