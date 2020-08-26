@@ -4,13 +4,15 @@ public class ShopOwnerSearchMedicineCard {
 
     private String medicineName;
     private String manufacturer;
+    private String id;
 
     private String weight;
 
-    public ShopOwnerSearchMedicineCard(String medicineName,String manufacturer,String weight){
+    public ShopOwnerSearchMedicineCard(String id,String medicineName,String manufacturer,String weight){
 //        this.imageR = imageR;
         this.medicineName = medicineName;
         this.manufacturer=manufacturer;
+        this.id=id;
 
         this.weight=weight;
     }
@@ -23,6 +25,10 @@ public class ShopOwnerSearchMedicineCard {
 
     public String getMedicineName(){
         return this.medicineName;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getManufacturer(){

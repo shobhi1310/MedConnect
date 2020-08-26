@@ -215,7 +215,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
-                                filteredList.add(new ShopOwnerSearchMedicineCard(jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
+                                filteredList.add(new ShopOwnerSearchMedicineCard(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
 
                             }
 

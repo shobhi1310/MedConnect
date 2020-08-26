@@ -166,11 +166,16 @@ public class SearchMedicineActivity extends BaseActivity {
             public void onItemClick(int position) {
                 Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SearchMedicineActivity.this, SelectShop.class);
+                intent.putExtra("id",medicineList.get(position).getId());
+//                Intent intent1= new Intent(SearchMedicineActivity.this,MedicineDetails.class);
+                intent.putExtra("Medicine",medicineList.get(position));
                 startActivity(intent);
             }
         });
 
     }
+
+
 
     private void APICall(String s){
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
@@ -197,7 +202,7 @@ public class SearchMedicineActivity extends BaseActivity {
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
-                                filteredList.add(new MedicineItem(jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
+                                filteredList.add(new MedicineItem(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
 
                             }
 

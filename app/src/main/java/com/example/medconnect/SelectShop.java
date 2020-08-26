@@ -10,11 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,6 +35,7 @@ public class SelectShop extends  AppCompatActivity{
     private SelectShopAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<SelectShopCard> shops;
+    private RequestQueue queue;
 
 
     @Override
@@ -33,21 +46,26 @@ public class SelectShop extends  AppCompatActivity{
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar_title.setText("Select Shop");
+
+
+
+        queue= Volley.newRequestQueue(this);
+
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         createExampleList();
-        buildRecyclerView();
+
     }
 
     public void createExampleList() {
         shops= new ArrayList<SelectShopCard>();
-        shops.add(new SelectShopCard("Apollo Pharmacy","Hyderabad","99999999999","1.5 km"));
-        shops.add(new SelectShopCard("Sameed Pharmacy","Hyderabad","99999999999","1.5 km"));
-        shops.add(new SelectShopCard("Tapish Pharmacy","Hyderabad","99999999999","1.5 km"));
-        shops.add(new SelectShopCard("Shubh Pharmacy","Hyderabad","99999999999","1.5 km"));
-        shops.add(new SelectShopCard("Apollo Pharmacy","Hyderabad","99999999999","1.5 km"));
-        shops.add(new SelectShopCard("Apollo Pharmacy","Hyderabad","99999999999","1.5 km"));
+        Intent intent=getIntent();
 
+
+
+
+        this.APICall(intent.getStringExtra("id"));
+        Log.d("Array ShopList",shops.toString());
 
 
 
@@ -65,12 +83,29 @@ public class SelectShop extends  AppCompatActivity{
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(SelectShop.this, MedicineDetails.class);
+//                intent.putExtra("ShopName",);
+                intent.putExtra("Shop",shops.get(position));
+                MedicineItem medicineItem=null;
+
+
+
+                if(getIntent().getExtras()!=null){
+
+
+                    medicineItem=(MedicineItem) getIntent().getSerializableExtra("Medicine");
+                }else{
+                    Log.d("Shop","Not Found");
+                }
+                intent.putExtra("Medicine",medicineItem);
                 startActivity(intent);
             }
 
 
 
         });
+
+
+
 
 
 
@@ -85,6 +120,69 @@ public class SelectShop extends  AppCompatActivity{
 //        });
 
     }
+
+    private void APICall(String id){
+        String url="https://glacial-caverns-39108.herokuapp.com/medicine/shoplist/"+id;
+
+        queue.cancelAll("ShopList");
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+                        // try/catch block for returned JSON data
+                        // see API's documentation for returned format
+                        ArrayList<SelectShopCard> filteredList=new ArrayList<>();
+                        try {
+                            Log.d("shops result",response);
+                            JSONArray result = new JSONObject(response).getJSONArray("shops");
+//                                    .getJSONObject("list");
+//                            int maxItems = result.getInt("end");
+//                            JSONArray resultList = result.getJSONArray("item");
+                            //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
+
+
+
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject= result.getJSONObject(i);
+                                Log.d("JSON Result",jsonObject.getString("name"));
+                                filteredList.add(new SelectShopCard(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("address"),jsonObject.getString("phone"),"4km"));
+
+                            }
+
+
+
+
+
+                            // catch for the JSON parsing error
+                        } catch (JSONException e) {
+                            Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        shops=filteredList;
+                        Log.d("Array Shop",shops.toString());
+                        buildRecyclerView();
+
+
+                    } // public void onResponse(String response)
+                }, // Response.Listener<String>()
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(SelectShop.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("ShopList");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+
+
+    }
+
 
 
 //    public void setButtons() {

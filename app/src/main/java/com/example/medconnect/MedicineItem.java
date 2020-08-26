@@ -1,14 +1,18 @@
 package com.example.medconnect;
 
-public class MedicineItem {
+import java.io.Serializable;
+
+public class MedicineItem implements Serializable {
 //    private int imageR;
     private String medicineName;
     private String manufacturer;
 //    private boolean status;
     private String weight;
+    private String id;
 
-    public MedicineItem(String medicineName,String manufacturer,String weight){
+    public MedicineItem(String id,String medicineName,String manufacturer,String weight){
 //        this.imageR = imageR;
+        this.id=id;
         this.medicineName = medicineName;
         this.manufacturer=manufacturer;
 //        this.status=status;
@@ -20,6 +24,11 @@ public class MedicineItem {
 //    public int getImageR(){
 //        return this.imageR;
 //    }
+
+
+    public String getId() {
+        return id;
+    }
 
     public String getMedicineName(){
         return this.medicineName;

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,6 +47,39 @@ public class MedicineDetails extends AppCompatActivity {
         arrayList.add(3);
         arrayList.add(5);
         arrayList.add(10);
+
+        //Intent
+
+        Intent intent= getIntent();
+
+        SelectShopCard shop=null;
+        MedicineItem medicineItem=null;
+
+
+        if(intent.getExtras()!=null){
+
+             shop= (SelectShopCard) intent.getSerializableExtra("Shop");
+             medicineItem=(MedicineItem) intent.getSerializableExtra("Medicine");
+        }else{
+            Log.d("Shop","Not Found");
+        }
+
+
+        TextView shopName= findViewById(R.id.shopName);
+        TextView shopMobile= findViewById(R.id.shopMobile);
+        TextView shopAddress= findViewById(R.id.shopAddress);
+        TextView shopDistance= findViewById(R.id.shopDistance);
+
+
+
+        shopName.setText(shop.getShopName());
+        shopMobile.setText(shop.getShopMobile());
+        shopAddress.setText(shop.getShopAddress());
+        shopDistance.setText(shop.getDistance());
+
+        medicine_name.setText(medicineItem.getMedicineName());
+        mfg_name.setText(medicineItem.getManufacturer());
+        medicine_weight.setText(medicineItem.getWeight());
 
 
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, arrayList);

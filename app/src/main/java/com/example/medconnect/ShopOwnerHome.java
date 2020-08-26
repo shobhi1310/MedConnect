@@ -51,18 +51,18 @@ public class ShopOwnerHome extends  BaseActivity1{
 
     public void createExampleList() {
         Medicines= new ArrayList<ShopOwnerHomeCard>();
-        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
+        Medicines.add(new ShopOwnerHomeCard("12","Paracetamol","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
+//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
+//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
+//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
+//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
     }
 
     public void buildRecyclerView() {
