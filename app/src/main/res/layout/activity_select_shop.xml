@@ -15,6 +15,7 @@
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
+        
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
@@ -80,12 +81,12 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/customer_menu" />
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigation"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        app:headerLayout="@layout/header"-->
+<!--        app:menu="@menu/customer_menu" />-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

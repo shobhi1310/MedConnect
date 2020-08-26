@@ -1,6 +1,8 @@
 package com.example.medconnect;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,16 +17,21 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MedicineDetails extends BaseActivity {
+public class MedicineDetails extends AppCompatActivity {
     
     Integer quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState,R.layout.activity_medicine_details);
-//        setContentView();
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Details");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_medicine_details);
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        TextView toolbar_title = findViewById(R.id.toolbar_title);
+//        toolbar_title.setText("Details");
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Button locate=(Button) findViewById(R.id.locateMap);
         TextView medicine_name = (TextView)findViewById(R.id.medicine_name);
         TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);
