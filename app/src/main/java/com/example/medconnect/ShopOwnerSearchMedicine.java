@@ -127,15 +127,16 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
 
     private void filter(String s){
-        ArrayList<ShopOwnerSearchMedicineCard> filteredList = new ArrayList<>();
-        filteredList=this.APICall(s);
+
+        this.APICall(s);
+//        Log.d("length of array",Integer.toString(filteredList.size()));
 //        for(ShopOwnerSearchMedicineCard medItem:this.medicineList){
 //            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
 //                filteredList.add(medItem);
 //            }
 //        }
 
-        this.mRecyclerViewAdapter.filterList(filteredList);
+//        this.mRecyclerViewAdapter.filterList(filteredList);
     }
 
 
@@ -189,9 +190,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     }
 
-    private ArrayList<ShopOwnerSearchMedicineCard> APICall(String s){
+    private void APICall(String s){
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
-        final ArrayList<ShopOwnerSearchMedicineCard> filteredList=new ArrayList<>();
+        final ArrayList<ShopOwnerSearchMedicineCard> filteredLists=new ArrayList<>();
         queue.cancelAll("MedicineList");
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -201,6 +202,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                     public void onResponse(String response) {
                         // try/catch block for returned JSON data
                         // see API's documentation for returned format
+                        ArrayList<ShopOwnerSearchMedicineCard> filteredList=new ArrayList<>();
                         try {
                             JSONArray result = new JSONObject(response).getJSONArray("medicines");
 //                                    .getJSONObject("list");
@@ -218,13 +220,15 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                             }
 
 
-//                            Log.d("JSON Result", result.toString());
+
 
 
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+                        medicineList=filteredList;
+                       mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
                 new Response.ErrorListener() {
@@ -240,7 +244,8 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
         // executing the request (adding to queue)
         queue.add(stringRequest);
-        return filteredList;
+
+
     }
 
 }
