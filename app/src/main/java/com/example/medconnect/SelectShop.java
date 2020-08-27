@@ -147,7 +147,8 @@ public class SelectShop extends  AppCompatActivity{
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
-                                filteredList.add(new SelectShopCard(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("address"),jsonObject.getString("phone"),"4km"));
+                                JSONArray coordinates= jsonObject.getJSONArray("location");
+                                filteredList.add(new SelectShopCard(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("address"),jsonObject.getString("phone"),"4km",coordinates.getDouble(0),coordinates.getDouble(1)));
 
                             }
 

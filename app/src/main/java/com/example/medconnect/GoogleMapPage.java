@@ -1,5 +1,6 @@
 package com.example.medconnect;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -42,12 +43,13 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
         map=googleMap;
+        Intent intent=getIntent();
         LatLng home= new LatLng(17.402203, 78.403849
         );
-        LatLng hyderabad=new LatLng(17.374968, 78.485250);
-        map.addMarker(new MarkerOptions().position(hyderabad).title("Hyderabad"));
+        LatLng shop=new LatLng(intent.getDoubleExtra("latitude",0), intent.getDoubleExtra("longitude",0));
+        map.addMarker(new MarkerOptions().position(shop).title(intent.getStringExtra("shopName")));
         map.addMarker(new MarkerOptions().position(home).title("Home"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(hyderabad));
+        map.moveCamera(CameraUpdateFactory.newLatLng(shop));
         map.setMinZoomPreference(10);
 
     }
