@@ -23,7 +23,9 @@ public class MedicineDetails extends AppCompatActivity {
     
     Integer quantity = 0;
     SelectShopCard shop=null;
+
     MedicineItem medicineItem=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class MedicineDetails extends AppCompatActivity {
 
         //Intent
         Intent intent= getIntent();
+
+
 
         if(intent.getExtras()!=null){
 
@@ -100,6 +104,9 @@ public class MedicineDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MedicineDetails.this,GoogleMapPage.class);
+                intent.putExtra("latitude",shop.getLatitude());
+                intent.putExtra("longitude",shop.getLongitude());
+                intent.putExtra("shopName",shop.getShopName());
                 startActivity(intent);
             }
         });
