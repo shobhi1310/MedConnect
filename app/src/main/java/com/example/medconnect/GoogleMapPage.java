@@ -1,6 +1,7 @@
 package com.example.medconnect;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 
@@ -50,5 +51,9 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
         map.moveCamera(CameraUpdateFactory.newLatLng(hyderabad));
         map.setMinZoomPreference(10);
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        finish();
+        return true;
     }
 }
