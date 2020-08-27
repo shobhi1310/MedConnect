@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class MedicineDetails extends AppCompatActivity {
     
     Integer quantity = 0;
+    SelectShopCard shop=null;
+    MedicineItem medicineItem=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,7 @@ public class MedicineDetails extends AppCompatActivity {
         arrayList.add(10);
 
         //Intent
-
         Intent intent= getIntent();
-
-        SelectShopCard shop=null;
-        MedicineItem medicineItem=null;
-
 
         if(intent.getExtras()!=null){
 
@@ -111,6 +108,9 @@ public class MedicineDetails extends AppCompatActivity {
             public void onClick(View view) {
                 if(quantity != 0) {
                     Intent intent = new Intent(MedicineDetails.this, BookMedicine.class);
+                    intent.putExtra("Shop", shop);
+                    intent.putExtra("Medicine", medicineItem);
+                    intent.putExtra("Quantity", quantity);
                     startActivity(intent);
                 }
                 else {
