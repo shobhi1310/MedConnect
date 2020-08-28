@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const customerSchema = new Schema({
     name:{type:String},
-    email_id:{type:String},
+    email_id:{type:String,unique:true},
     phone:{type:String},
     password:{type:String},
     booking_current:[{

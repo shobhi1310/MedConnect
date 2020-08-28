@@ -83,11 +83,11 @@ public class CustomerHomePage extends BaseActivity {
 
     public void createExampleList() {
         orders= new ArrayList<CustomerBookingHistoryCard>();
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999"));
-        orders.add(new CustomerBookingHistoryCard("Dolo","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999"));
-        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999"));
+        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","flnejfw"));
+        orders.add(new CustomerBookingHistoryCard("Dolo","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","wufegke"));
+        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","dwhkusd"));
+        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","doshksudu"));
+        orders.add(new CustomerBookingHistoryCard("Paracetamol","150MG","XYZ","Apollo Pharmacy","Hyderabad","99999999999","dslahksu"));
 
 
     }
