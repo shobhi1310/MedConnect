@@ -3,8 +3,11 @@ package com.example.medconnect;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -36,13 +42,19 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
         TextView medicine= findViewById(R.id.medicine);
         TextView manufacturer= findViewById(R.id.manufacturer);
         TextView strength= findViewById(R.id.strength);
-
         Button addButton =findViewById(R.id.addButton);
+
+
+        String textSelected = "In Stock";
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addMedicineAPI(intent.getStringExtra("id"));
+                RadioGroup radioGroup=findViewById(R.id.statusRadio);
+                int checkedButtonID= radioGroup.getCheckedRadioButtonId();
+                String textSelected = (String) ((RadioButton)findViewById(checkedButtonID)).getText();
+                Log.d("Text Select",textSelected);
+                addMedicineAPI(intent.getStringExtra("id"),textSelected);
 
                 Intent intent1= new Intent(ShopOwnerAddMedicine.this,ShopOwnerHome.class);
                 startActivity(intent1);
@@ -62,11 +74,12 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
         toolbar_title.setText("Add Medicine");
     }
 
-    private void addMedicineAPI(String id){
+    private void addMedicineAPI(String id, final String textButton){
 
         String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/addMedicine/"+id;
 
         queue.cancelAll("Add Medicine");
+
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     // 3rd param - method onResponse lays the code procedure of success return
@@ -75,7 +88,7 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
                     public void onResponse(String response) {
 
 
-                      
+
 
 
                     }
@@ -88,7 +101,22 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
                         // display a simple message on the screen
                         Toast.makeText(ShopOwnerAddMedicine.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
-                });
+                }){
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+
+                if(textButton.equals("In Stock")){
+                    params.put("status","true");
+                }else{
+                    params.put("status","false");
+                }
+                return params;
+            }
+
+        };
         stringRequest.setTag("Add Medicine");
 
         // executing the request (adding to queue)
