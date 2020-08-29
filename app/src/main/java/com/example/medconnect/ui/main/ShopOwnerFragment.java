@@ -57,6 +57,7 @@ public class ShopOwnerFragment extends Fragment {
 
                 Toast.makeText(getActivity(), ShopName + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                intent.putExtra("customer",false);
                 startActivity(intent);
 
             }
