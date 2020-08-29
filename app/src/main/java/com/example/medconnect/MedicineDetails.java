@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,9 @@ public class MedicineDetails extends AppCompatActivity {
     
     Integer quantity = 0;
     SelectShopCard shop=null;
+
     MedicineItem medicineItem=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class MedicineDetails extends AppCompatActivity {
 
         //Intent
         Intent intent= getIntent();
+
+
 
         if(intent.getExtras()!=null){
 
@@ -99,6 +104,9 @@ public class MedicineDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MedicineDetails.this,GoogleMapPage.class);
+                intent.putExtra("latitude",shop.getLatitude());
+                intent.putExtra("longitude",shop.getLongitude());
+                intent.putExtra("shopName",shop.getShopName());
                 startActivity(intent);
             }
         });
@@ -121,6 +129,10 @@ public class MedicineDetails extends AppCompatActivity {
 
     }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        finish();
+        return true;
+    }
 //    public ArrayList<String> getMedicineDetails(String name, ImageView img, int weight, String mfg, boolean prescription, ArrayList<String>) {
 //        medicine_name.setText(name);
 //        medicine_weight.setText(String.valueOf(weight));

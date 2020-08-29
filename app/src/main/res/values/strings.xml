@@ -34,7 +34,7 @@
         those of the individuals involved and do not necessarily represent those of
         Vanderbilt University Medical Center and its employees.
     </string>
-    <string name="time_range">Choose your booking time range.</string>
+    <string name="time_range">Choose your booking time range (in minutes).</string>
     <string name="book_now">Book Now</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="nav_open_drawer">Open navigation drawer</string>
