@@ -9,13 +9,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -24,15 +35,15 @@ public class ShopOwnerHome extends  BaseActivity1{
     private ShopOwnerHomeAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<ShopOwnerHomeCard> Medicines;
+    private RequestQueue queue;
 
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_home_page);
-//        setContentView(R.layout.activity_shopowner_home_page);
-//        getSupportActionBar().hide();
-        //sideNavbar functionality
+
+
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
@@ -45,24 +56,14 @@ public class ShopOwnerHome extends  BaseActivity1{
             }
         });
 
-        createExampleList();
-        buildRecyclerView();
+        queue= Volley.newRequestQueue(this);
+
+        createList();
+
     }
 
-    public void createExampleList() {
-        Medicines= new ArrayList<ShopOwnerHomeCard>();
-        Medicines.add(new ShopOwnerHomeCard("12","Paracetamol","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Paracetamol","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Dolo","150MG","XYZ",false));
-//        Medicines.add(new ShopOwnerHomeCard("Crocin","150MG","XYZ",true));
-//        Medicines.add(new ShopOwnerHomeCard("Wikoryl","150MG","XYZ",true));
+    public void createList() {
+        APICall();
     }
 
     public void buildRecyclerView() {
@@ -88,7 +89,10 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     public void removeItem(int position) {
+        String id=Medicines.get(position).getId();
+
         Medicines.remove(position);
+        removeMedicineAPI(id);
         mAdapter.notifyItemRemoved(position);
     }
     public void changeStatus(int position) {
@@ -100,6 +104,7 @@ public class ShopOwnerHome extends  BaseActivity1{
             Medicines.get(position).setStatus(true);
 
         }
+        updateStatusAPI(Medicines.get(position).getId());
         mAdapter.notifyItemChanged(position);
     }
 
@@ -121,16 +126,130 @@ public class ShopOwnerHome extends  BaseActivity1{
         }, 2000);
     }
 
-//    public void setButtons() {
-//
-//        buttonRemove = findViewById(R.id.button_remove);
-//        buttonRemove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int position = Integer.parseInt(editTextRemove.getText().toString());
-//                removeItem(position);
-//            }
-//        });
-//    }
+    private void APICall(){
+        String url="https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/5f47e5ea174464ed81cc5100";
+
+        queue.cancelAll("MedicineList");
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+                        ArrayList<ShopOwnerHomeCard> filteredList=new ArrayList<>();
+                        try {
+                            JSONArray result = new JSONObject(response).getJSONArray("medicines");
+
+
+
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject= result.getJSONObject(i);
+                                Log.d("JSON Result",jsonObject.toString());
+                                JSONObject medicineDetails= jsonObject.getJSONObject("medicine");
+
+                                filteredList.add(new ShopOwnerHomeCard(medicineDetails.getString("_id"),medicineDetails.getString("name"),medicineDetails.getString("strength"),medicineDetails.getString("manufacturer"),jsonObject.getBoolean("status")));
+
+                            }
+
+
+
+
+
+                            // catch for the JSON parsing error
+                        } catch (JSONException e) {
+                            Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        Medicines=filteredList;
+                        buildRecyclerView();
+
+                    } // public void onResponse(String response)
+                },
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("MedicineList");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+    }
+
+    private void updateStatusAPI(String id){
+
+        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/update/"+id;
+
+        queue.cancelAll("Update Status");
+        StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+
+
+                            Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("Update Status");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+
+    }
+
+
+    private void removeMedicineAPI(String id){
+
+        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/remove/"+id;
+        //String url="https://localhost:5000/shop/5f47e5ea174464ed81cc5100/remove/"+id;
+
+
+
+        queue.cancelAll("Remove Medicine");
+        StringRequest stringRequest= new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>() {
+                    // 3rd param - method onResponse lays the code procedure of success return
+                    // SUCCESS
+                    @Override
+                    public void onResponse(String response) {
+
+
+                        Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Log.e("API Error",error.toString());
+                        Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("Remove Medicine");
+
+        // executing the request (adding to queue)
+        queue.add(stringRequest);
+
+    }
+
+
 
 }

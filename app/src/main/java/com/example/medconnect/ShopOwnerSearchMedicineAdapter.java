@@ -27,6 +27,8 @@ public class ShopOwnerSearchMedicineAdapter extends RecyclerView.Adapter<ShopOwn
         this.copymList = new ArrayList<>(list);
     }
 
+
+
     @Override
     public Filter getFilter() {
         return smartFilter;

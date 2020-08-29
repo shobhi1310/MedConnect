@@ -49,7 +49,7 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
         );
         LatLng shop=new LatLng(intent.getDoubleExtra("latitude",0), intent.getDoubleExtra("longitude",0));
         map.addMarker(new MarkerOptions().position(shop).title(intent.getStringExtra("shopName")));
-        map.addMarker(new MarkerOptions().position(home).title("Home"));
+//        map.addMarker(new MarkerOptions().position(home).title("Home"));
         map.moveCamera(CameraUpdateFactory.newLatLng(shop));
         map.setMinZoomPreference(10);
 

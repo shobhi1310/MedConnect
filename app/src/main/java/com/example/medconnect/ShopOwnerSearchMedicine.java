@@ -52,8 +52,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         toolbar_title.setText("Add Medicine");
         queue= Volley.newRequestQueue(this);
 
-        /*
 
+
+        /*
             this searching logic is for customers
         */
 
@@ -184,6 +185,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                 intent.putExtra("medicine", medicineList.get(position).getMedicineName());
                 intent.putExtra("manufacturer", medicineList.get(position).getManufacturer());
                 intent.putExtra("strength", medicineList.get(position).getWeight());
+                intent.putExtra("id", medicineList.get(position).getId());
                 startActivity(intent);
             }
         });
