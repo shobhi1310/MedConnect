@@ -24,7 +24,7 @@
 
         <activity android:name=".ShopOwnerHome" />
         <activity android:name=".BookMedicine" android:parentActivityName=".MedicineDetails" />
-        <activity android:name=".CustomerHomePage" android:label="Home" />
+        <activity android:name=".CustomerHomePage" />
         <activity android:name=".CustomerBookingHistory" />
         <activity android:name=".ShopOwnerBookingHistory" />
         <activity android:name=".ShopOwnerSearchMedicine" />
@@ -46,7 +46,6 @@
         <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
-            android:label="Medicine Details"
             android:parentActivityName=".SelectShop"/>
         <activity android:name=".GetStartedActivity" />
         <meta-data
