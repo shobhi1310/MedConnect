@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class GetStartedActivity extends AppCompatActivity {
     TextView description;
     Button getStarted;
     private FusedLocationProviderClient fusedLocationClient;
+    public static final String Data = "StoredData";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,6 +124,7 @@ public class GetStartedActivity extends AppCompatActivity {
                                 // Logic to handle location object
                                 Double latitude=location.getLatitude();
                                 Double longitude=location.getLongitude();
+                                saveLocation(latitude, longitude);
                                 Toast.makeText(getApplicationContext(),"Latitude and Longitude"+latitude.toString()+" "+longitude.toString(),Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -132,10 +135,20 @@ public class GetStartedActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION){
+        if(requestCode==MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION) {
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 //after getting this information run your code here
             }
         }
+    }
+
+    public void saveLocation(Double latitude, Double longitude) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("Latitude", latitude.toString());
+        editor.putString("Longitude", longitude.toString());
+
+        editor.apply();
     }
 }

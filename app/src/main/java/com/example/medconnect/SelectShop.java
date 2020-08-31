@@ -48,8 +48,6 @@ public class SelectShop extends  AppCompatActivity{
         setSupportActionBar(toolbar);
         toolbar_title.setText("Select Shop");
 
-
-
         queue= Volley.newRequestQueue(this);
 
         ActionBar actionBar= getSupportActionBar();
@@ -61,8 +59,6 @@ public class SelectShop extends  AppCompatActivity{
     public void createExampleList() {
         shops= new ArrayList<SelectShopCard>();
         Intent intent=getIntent();
-
-
 
 
         this.APICall(intent.getStringExtra("id"));
@@ -87,12 +83,8 @@ public class SelectShop extends  AppCompatActivity{
 //                intent.putExtra("ShopName",);
                 intent.putExtra("Shop",shops.get(position));
                 MedicineItem medicineItem=null;
-
-
-
-                if(getIntent().getExtras()!=null){
-
-
+                
+                if(getIntent().getExtras()!=null) {
                     medicineItem=(MedicineItem) getIntent().getSerializableExtra("Medicine");
                 }else{
                     Log.d("Shop","Not Found");
@@ -106,11 +98,6 @@ public class SelectShop extends  AppCompatActivity{
         });
 
 
-
-
-
-
-//
 //        mRecyclerView.setOnItemCLickListener(new medicineAdapter.OnItemCLickListener() {
 //            @Override
 //            public void onItemClick(int position) {
@@ -143,8 +130,6 @@ public class SelectShop extends  AppCompatActivity{
 //                            JSONArray resultList = result.getJSONArray("item");
                             //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 
-
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
 //                                Log.d("JSON Result",jsonObject.getString("name"));
@@ -153,10 +138,6 @@ public class SelectShop extends  AppCompatActivity{
 
                             }
 
-
-
-
-
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -164,6 +145,7 @@ public class SelectShop extends  AppCompatActivity{
                         shops=filteredList;
 //                        Log.d("Array Shop",shops.toString());
                         buildRecyclerView();
+
 
 
                     } // public void onResponse(String response)

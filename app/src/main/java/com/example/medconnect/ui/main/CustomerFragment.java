@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerFragment extends Fragment {
-    private static final String TAG = "CustomerFragment";
     EditText name;
     EditText mob;
     EditText email;
@@ -43,22 +42,11 @@ public class CustomerFragment extends Fragment {
     RequestQueue queue ;
 
 
-//    protected void OnCreate()
-
-    //api will be called for registration purpose
-
-
     public void APIcallForRegistration(final String name, final String email,final String phone, final String password) {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/register";
 
-
-//        final TextView textView = (TextView) findViewById(R.id.text);
-// ...
-
-// Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
-// Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -73,7 +61,6 @@ public class CustomerFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-        //                textView.setText("That didn't work!");
                         Toast.makeText(getActivity(), "bye register", Toast.LENGTH_LONG).show();
                         Log.d("Error.Response", String.valueOf(error));
                     }
@@ -94,7 +81,6 @@ public class CustomerFragment extends Fragment {
             }
 
         };
-
 
         stringRequest.setTag("CustomerFragment");
 
@@ -124,8 +110,6 @@ public class CustomerFragment extends Fragment {
 
                 //now we will register user(customer and not shopOwner)
                 APIcallForRegistration(Name, Email, Mobile, Password);
-
-
 
             }
         });
