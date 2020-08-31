@@ -35,11 +35,11 @@ import java.util.ArrayList;
 public class CustomerProfile extends BaseActivity {
 
     public static final String Data = "StoredData";
-    private RequestQueue queue;
+//    private RequestQueue queue;
     String name;
     String phone;
     String email;
-    String address;
+//    public static String address;
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
@@ -52,16 +52,17 @@ public class CustomerProfile extends BaseActivity {
         TextView Phone = findViewById(R.id.phone);
         TextView Address = findViewById(R.id.address);
 
-        queue = Volley.newRequestQueue(this);
+//        queue = Volley.newRequestQueue(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        String id = sharedPreferences.getString("ID", "");
-        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
-        APICall(id);
+        name = sharedPreferences.getString("NAME", "");
+        email = sharedPreferences.getString("EMAIL", "");
+        phone = sharedPreferences.getString("PHONE", "");
+//        APICall(id);
 
         Name.setText(name);
         Phone.setText(phone);
-        Address.setText(address);
+//        Address.setText(address);
         Email.setText(email);
 
         profileEdit.setOnClickListener(new View.OnClickListener() {
@@ -73,37 +74,38 @@ public class CustomerProfile extends BaseActivity {
         });
     }
 
-    private void APICall(String id) {
-        String url = "https://glacial-caverns-39108.herokuapp.com/user/" + id;
-        queue.cancelAll("UserProfile");
-
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("json obj", response);
-                            name = jsonObject.getString("name");
-                            email = jsonObject.getString("email_id");
-                            phone = jsonObject.getString("phone");
-                            address = jsonObject.getString("address");
-                            Toast.makeText(getApplicationContext(), "name: " + name + "email " + email + "phone " + phone, Toast.LENGTH_LONG).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+//    private void APICall(String id) {
+//        String url = "https://glacial-caverns-39108.herokuapp.com/user/" + id;
+//        queue.cancelAll("UserProfile");
+//
+//        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+//                        try {
+//                            JSONArray result = new JSONObject(response).getJSONArray("data");
+//                            JSONObject jsonObject = result.getJSONObject(0);
+////                            Log.d("json obj", jsonObject.toString());
+//                            name = jsonObject.getString("name");
+//                            email = jsonObject.getString("email_id");
+//                            phone = jsonObject.getString("phone");
+//
+//                            Toast.makeText(getApplicationContext(), "name: " + name + "email " + email + "phone " + phone, Toast.LENGTH_LONG).show();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
 //                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
-                        Toast.makeText(getApplicationContext(), "Server is not responding", Toast.LENGTH_LONG).show();
-                    }
-                });
-        stringRequest.setTag("UserProfile");
-        queue.add(stringRequest);
-    }
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // display a simple message on the screen
+//                        Toast.makeText(getApplicationContext(), "Server is not responding", Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//        stringRequest.setTag("UserProfile");
+//        queue.add(stringRequest);
+//    }
 }
