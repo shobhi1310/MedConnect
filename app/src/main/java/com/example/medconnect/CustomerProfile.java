@@ -56,7 +56,7 @@ public class CustomerProfile extends BaseActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
         String id = sharedPreferences.getString("ID", "");
-        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
         APICall(id);
 
         Name.setText(name);
@@ -77,19 +77,20 @@ public class CustomerProfile extends BaseActivity {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/" + id;
         queue.cancelAll("UserProfile");
 
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                        Log.d("Response",response);
+//                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Log.d("json obj", response);
+                            Log.d("Name", jsonObject.getString("name"));
                             name = jsonObject.getString("name");
-                            email = jsonObject.getString("email_id");
-                            phone = jsonObject.getString("phone");
-                            address = jsonObject.getString("address");
-                            Toast.makeText(getApplicationContext(), "name: " + name + "email " + email + "phone " + phone, Toast.LENGTH_LONG).show();
+//                            email = jsonObject.getString("email_id");
+//                            phone = jsonObject.getString("phone");
+//                            address = jsonObject.getString("address");
+                            Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
 //                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();

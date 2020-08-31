@@ -76,6 +76,7 @@ public class GetStartedActivity extends AppCompatActivity {
             }
         });
         fetchLocation();
+//        DistanceCalculator dc = new DistanceCalculator(this);
     }
     private void fetchLocation(){
         if (ContextCompat.checkSelfPermission(
