@@ -104,8 +104,13 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             saveID(response);
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, GetStartedActivity.class);
-                            intent.putExtra("customer", isCustomer);
+                            Intent intent;
+                            if(isCustomer) {
+                                intent = new Intent(LoginActivity.this, CustomerHomePage.class);
+                            }
+                            else {
+                                intent = new Intent(LoginActivity.this, ShopOwnerHome.class);
+                            }
                             startActivity(intent);
                         }
                     }
