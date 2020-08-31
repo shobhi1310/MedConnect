@@ -146,8 +146,8 @@ public class GetStartedActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("Latitude", latitude.toString());
-        editor.putString("Longitude", longitude.toString());
+        editor.putString("LATITUDE", latitude.toString());
+        editor.putString("LONGITUDE", longitude.toString());
 
         editor.apply();
     }
