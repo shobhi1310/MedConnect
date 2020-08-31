@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">MedConnect</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <string name="tab_text_1">For Customer</string>
+    <string name="tab_text_2">For Shop Owner</string>
+    <string name="title_activity_medicine_details">MedicineDetails</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="medicine_name">Crocin Advance Tablet</string>
+    <string name="medicine_weight">500mg</string>
+    <string name="mfg_name">Glaxosmithkline Consumer Healthcare Ltd</string>
+    <string name="tablets">15 Tablets in a Strip</string>
+    <string name="profile">profile</string>
+    <string name="home">Home</string>
+    <string name="booking_history">booking history</string>
+    <string name="search_medicine">search medicine</string>
+    <string name="logout">logout</string>
+    <string name="contact_us">contact us</string>
+    <string name="current_booking">current_booking</string>
+    <string name="Profile">Profile</string>
+    <string name="Home">Home</string>
+    <string name="Logout">Logout</string>
+    <string name="Contact_us">Contact us</string>
+    <string name="search">Search...</string>
+    <string name="disclaimer_details">
+        the views, information, or opinions expressed during [the] series are solely
+        those of the individuals involved and do not necessarily represent those of
+        Vanderbilt University Medical Center and its employees.
+    </string>
+    <string name="time_range">Choose your booking time range (in minutes).</string>
+    <string name="book_now">Book Now</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
 </resources>

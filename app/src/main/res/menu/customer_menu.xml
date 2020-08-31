@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/menuProfile"
+        android:icon="@drawable/profile"
+        android:title="@string/Profile"/>
+
+
+    <item android:id="@+id/Home"
+        android:icon="@drawable/home"
+        android:title="@string/Home"/>
+
+    <item android:id="@+id/BookingHistory"
+        android:icon="@drawable/booking_history"
+        android:title="Booking history"/>
+
+    <item android:id="@+id/searchMedicine"
+        android:icon="@drawable/search_medicine"
+        android:title="Book medicine"/>
+
+    <item android:id="@+id/logout"
+        android:icon="@drawable/logout_icon"
+        android:title="@string/Logout"/>
+
+    <item android:id="@+id/contact"
+        android:icon="@drawable/contact"
+        android:title="Contact us"/>
+</menu>
