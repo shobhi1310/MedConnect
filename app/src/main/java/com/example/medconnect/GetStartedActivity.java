@@ -166,14 +166,13 @@ public class GetStartedActivity extends AppCompatActivity {
     }
 
 
-    public  void saveSortedShops(List<JSONObject> shopList){
-        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Log.d("Save Sorted Shops","Here");
-
-        editor.putString("SHOPLIST", shopList.toString());
-        editor.apply();
-    }
-
+//    public  void saveSortedShops(List<JSONObject> shopList){
+//        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        Log.d("Save Sorted Shops","Here");
+//
+//        editor.putString("SHOPLIST", shopList.toString());
+//        editor.apply();
+//    }
 
 }

@@ -151,8 +151,6 @@ public class SelectShop extends  AppCompatActivity{
                         Log.d("Array Shop",shops.toString());
                         buildRecyclerView();
 
-
-
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
                 new Response.ErrorListener() {
@@ -164,8 +162,8 @@ public class SelectShop extends  AppCompatActivity{
                         Toast.makeText(SelectShop.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
-        stringRequest.setTag("ShopList");
 
+        stringRequest.setTag("ShopList");
         // executing the request (adding to queue)
         queue.add(stringRequest);
 
