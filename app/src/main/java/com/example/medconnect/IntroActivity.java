@@ -40,6 +40,7 @@ public class IntroActivity extends AppCompatActivity {
 
         tabIndicator.setupWithViewPager(viewPager);
 
+        DistanceCalculator dc = new DistanceCalculator(this);
     }
 
     private void setupViewPager(ViewPager viewPager) {

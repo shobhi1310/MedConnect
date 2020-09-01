@@ -102,10 +102,19 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Your email or password is wrong", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            saveID(response);
-                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, GetStartedActivity.class);
-                            intent.putExtra("customer", isCustomer);
+                            try {
+                                saveData(response, isCustomer);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+//                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                            Intent intent;
+                            if(isCustomer) {
+                                intent = new Intent(LoginActivity.this, CustomerHomePage.class);
+                            }
+                            else {
+                                intent = new Intent(LoginActivity.this, ShopOwnerHome.class);
+                            }
                             startActivity(intent);
                         }
                     }
@@ -133,11 +142,26 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    public void saveID(String id) {
+    public void saveData(String response, final boolean isCustomer) throws JSONException {
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        JSONObject jsonObject = new JSONObject(response);
+        String id = jsonObject.getString("_id");
+        String name = jsonObject.getString("name");
+        String email = jsonObject.getString("email_id");
+        String phone = jsonObject.getString("phone");
+        if(isCustomer == false) {
+            String address = jsonObject.getString("address");
+            editor.putString("ADDRESS", address);
+        }
+
+//        Toast.makeText(getApplicationContext(), id + " " + name, Toast.LENGTH_LONG).show();
+
         editor.putString("ID", id);
+        editor.putString("NAME", name);
+        editor.putString("EMAIL", email);
+        editor.putString("PHONE", phone);
 
         editor.apply();
     }

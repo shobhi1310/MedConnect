@@ -83,12 +83,8 @@ public class SelectShop extends  AppCompatActivity{
 //                intent.putExtra("ShopName",);
                 intent.putExtra("Shop",shops.get(position));
                 MedicineItem medicineItem=null;
-
-
-
-                if(getIntent().getExtras()!=null){
-
-
+                
+                if(getIntent().getExtras()!=null) {
                     medicineItem=(MedicineItem) getIntent().getSerializableExtra("Medicine");
                 }else{
                     Log.d("Shop","Not Found");

@@ -7,18 +7,20 @@ public class ShopOwnerCurrentBookingsCard {
     private String customerName;
     private String customerMobile;
     private String bookingDate;
+    private String deadline;
 
 
 
 
 
-    public  ShopOwnerCurrentBookingsCard(String medicine,String strength,String manufacturer,String customerName,String customerMobile,String bookingDate){
+    public  ShopOwnerCurrentBookingsCard(String medicine,String strength,String manufacturer,String customerName,String customerMobile,String bookingDate,String deadline){
         this.medicine=medicine;
         this.strength=strength;
         this.manufacturer=manufacturer;
         this.customerName=customerName;
         this.customerMobile=customerMobile;
         this.bookingDate=bookingDate;
+        this.deadline=deadline;
 
 
 
@@ -44,5 +46,9 @@ public class ShopOwnerCurrentBookingsCard {
 
     public String getCustomerName() {
         return customerName;
+    }
+
+    public String getDeadline() {
+        return deadline;
     }
 }
