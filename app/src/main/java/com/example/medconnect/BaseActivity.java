@@ -4,21 +4,35 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 
+import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
+
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private FusedLocationProviderClient fusedLocationClient;
+    public static final String Data = "StoredData";
     protected void onCreate(Bundle savedInstanceState,int layoutId) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
@@ -55,11 +69,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 case R.id.BookingHistory:
                     intent=new Intent(this,CustomerBookingHistory.class);
                     break;
-                case R.id.detectMyLocation:
-                    //intent=new Intent(this,DetectMyLocation.class);
-                    break;
                 case R.id.searchMedicine:
                     intent = new Intent(this, SearchMedicineActivity.class);
+                    break;
+                case R.id.detectMyLocation:
+                    intent = new Intent(this,CurrentLocationActivity.class);
                     break;
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();

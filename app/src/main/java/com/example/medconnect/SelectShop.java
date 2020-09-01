@@ -125,7 +125,7 @@ public class SelectShop extends  AppCompatActivity{
                         // see API's documentation for returned format
                         ArrayList<SelectShopCard> filteredList=new ArrayList<>();
                         try {
-//                            Log.d("shops result",response);
+                            Log.d("shops result",response);
                             JSONArray result = new JSONObject(response).getJSONArray("shops");
                             JSONArray tally = extractor();
 //                                    .getJSONObject("list");
@@ -137,7 +137,7 @@ public class SelectShop extends  AppCompatActivity{
                             String comparator_id = values.getString("_id");
                             for (int j = 0; j < result.length(); j++) {
                                 JSONObject jsonObject = result.getJSONObject(j);
-                                if(comparator_id==jsonObject.getString("_id")) {
+                                if(comparator_id.equals(jsonObject.getString("_id"))) {
                                     JSONArray coordinates = jsonObject.getJSONArray("location");
                                     filteredList.add(new SelectShopCard(jsonObject.getString("_id"), jsonObject.getString("name"), jsonObject.getString("address"), jsonObject.getString("phone"), values.getString("travelDistance")+"km", coordinates.getDouble(0), coordinates.getDouble(1)));
                                 }
@@ -148,7 +148,7 @@ public class SelectShop extends  AppCompatActivity{
                             Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         shops=filteredList;
-//                        Log.d("Array Shop",shops.toString());
+                        Log.d("Array Shop",shops.toString());
                         buildRecyclerView();
 
 
@@ -175,6 +175,7 @@ public class SelectShop extends  AppCompatActivity{
     public JSONArray extractor(){
         SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
         String response = sp.getString("SHOPLIST","");
+        //Log.d("Extractor res",response);
         String converted = "{shopLists:"+response+"}";
         JSONArray result = null;
         try {
@@ -182,6 +183,7 @@ public class SelectShop extends  AppCompatActivity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //Log.d("Extractor",result.toString());
         return result;
     }
 
