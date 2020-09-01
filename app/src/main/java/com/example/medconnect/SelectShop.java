@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectShop extends  AppCompatActivity{
     private RecyclerView mRecyclerView;
@@ -37,6 +39,7 @@ public class SelectShop extends  AppCompatActivity{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<SelectShopCard> shops;
     private RequestQueue queue;
+    public static final String Data = "StoredData";
 
 
     @Override
@@ -49,7 +52,6 @@ public class SelectShop extends  AppCompatActivity{
         toolbar_title.setText("Select Shop");
 
         queue= Volley.newRequestQueue(this);
-
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         createExampleList();
@@ -125,19 +127,22 @@ public class SelectShop extends  AppCompatActivity{
                         try {
 //                            Log.d("shops result",response);
                             JSONArray result = new JSONObject(response).getJSONArray("shops");
+                            JSONArray tally = extractor();
 //                                    .getJSONObject("list");
 //                            int maxItems = result.getInt("end");
 //                            JSONArray resultList = result.getJSONArray("item");
                             //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
-
-                            for(int i=0;i<result.length();i++){
-                                JSONObject jsonObject= result.getJSONObject(i);
-//                                Log.d("JSON Result",jsonObject.getString("name"));
-                                JSONArray coordinates= jsonObject.getJSONArray("location");
-                                filteredList.add(new SelectShopCard(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("address"),jsonObject.getString("phone"),"4km",coordinates.getDouble(0),coordinates.getDouble(1)));
-
+                        for(int i=0;i<tally.length();i++) {
+                            JSONObject values = tally.getJSONObject(i);
+                            String comparator_id = values.getString("_id");
+                            for (int j = 0; j < result.length(); j++) {
+                                JSONObject jsonObject = result.getJSONObject(j);
+                                if(comparator_id==jsonObject.getString("_id")) {
+                                    JSONArray coordinates = jsonObject.getJSONArray("location");
+                                    filteredList.add(new SelectShopCard(jsonObject.getString("_id"), jsonObject.getString("name"), jsonObject.getString("address"), jsonObject.getString("phone"), values.getString("travelDistance")+"km", coordinates.getDouble(0), coordinates.getDouble(1)));
+                                }
                             }
-
+                        }
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -165,6 +170,19 @@ public class SelectShop extends  AppCompatActivity{
         queue.add(stringRequest);
 
 
+    }
+
+    public JSONArray extractor(){
+        SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
+        String response = sp.getString("SHOPLIST","");
+        String converted = "{shopLists:"+response+"}";
+        JSONArray result = null;
+        try {
+            result = new JSONObject(converted).getJSONArray("shopLists");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
