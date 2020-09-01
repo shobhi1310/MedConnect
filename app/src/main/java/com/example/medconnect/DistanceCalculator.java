@@ -36,9 +36,11 @@ public class DistanceCalculator {
         queue = Volley.newRequestQueue(c);
         origin_lat = latitude;
         origin_long = longitude;
+        Log.d("Constructor","Here");
         APIAllShopsCall();
     }
     private void APIAllShopsCall(){
+        Log.d("APIAllShopsCall","Here");
         String url = "https://glacial-caverns-39108.herokuapp.com/shop/city";
         JSONArray shopList;
         queue.cancelAll("AllShops");
@@ -48,6 +50,7 @@ public class DistanceCalculator {
                     public void onResponse(String response) {
                         try {
                             JSONArray shopList = new JSONObject(response).getJSONArray("shops");
+                            Log.d("ShopList",shopList.toString());
                             APICall(shopList);
                         }catch (JSONException e) {
                             e.printStackTrace();
@@ -69,6 +72,7 @@ public class DistanceCalculator {
     private void APICall(final JSONArray shopList){
         String destinations = "";
         queue.cancelAll("SortedShops");
+        Log.d("APICall","Here");
         for(int i=0;i<shopList.length();i++){
             try {
                 JSONObject o = shopList.getJSONObject(i);
@@ -131,6 +135,7 @@ public class DistanceCalculator {
                             });
                         sortedShopList = list;
                         Log.d("SortedShopList",sortedShopList.toString());
+                        GetStartedActivity.saveSortedShops(list);
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }

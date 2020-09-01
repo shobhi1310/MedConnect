@@ -88,7 +88,7 @@ public class GetStartedActivity extends AppCompatActivity {
         longitude = sp.getString("LONGITUDE","");
         Log.d("Coordinates",latitude+" "+longitude);
         DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
-        saveSortedShops(dc.getSortedShopList());
+        //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
         if (ContextCompat.checkSelfPermission(
@@ -165,11 +165,15 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public void saveSortedShops(List<JSONObject> shopList){
-        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("SHOPLIST", shopList.toString());
-        editor.apply();
+    public static void saveSortedShops(List<JSONObject> shopList){
+//        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Log.d("Save Sorted Shops","Here");
+
+        //editor.putString("SHOPLIST", shopList.toString());
+       // editor.apply();
     }
+
+
 }
