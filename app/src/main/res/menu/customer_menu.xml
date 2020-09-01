@@ -19,6 +19,11 @@
         android:icon="@drawable/search_medicine"
         android:title="Book medicine"/>
 
+    <item
+        android:id="@+id/detectMyLocation"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Detect My Location" />
+
     <item android:id="@+id/logout"
         android:icon="@drawable/logout_icon"
         android:title="@string/Logout"/>

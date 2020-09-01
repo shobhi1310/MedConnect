@@ -55,6 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 case R.id.BookingHistory:
                     intent=new Intent(this,CustomerBookingHistory.class);
                     break;
+                case R.id.detectMyLocation:
+                    //intent=new Intent(this,DetectMyLocation.class);
+                    break;
                 case R.id.searchMedicine:
                     intent = new Intent(this, SearchMedicineActivity.class);
                     break;
