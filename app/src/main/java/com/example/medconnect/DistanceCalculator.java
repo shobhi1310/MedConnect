@@ -21,11 +21,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class DistanceCalculator {
     private RequestQueue queue;
     String origin_lat;
     String origin_long;
+    public static final String Data = "StoredData";
     private List<JSONObject> sortedShopList;
+    private Context context;
 
     public List<JSONObject> getSortedShopList() {
         return sortedShopList;
@@ -33,9 +37,11 @@ public class DistanceCalculator {
 
     public DistanceCalculator(Context c, String latitude, String longitude){
         // initialize lat and long
+        context=c;
         queue = Volley.newRequestQueue(c);
         origin_lat = latitude;
         origin_long = longitude;
+
         Log.d("Constructor","Here");
         APIAllShopsCall();
     }
@@ -135,7 +141,12 @@ public class DistanceCalculator {
                             });
                         sortedShopList = list;
                         Log.d("SortedShopList",sortedShopList.toString());
-                        GetStartedActivity.saveSortedShops(list);
+                            SharedPreferences sharedPreferences = context.getSharedPreferences(Data, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            Log.d("Save Sorted Shops","Here");
+
+                            editor.putString("SHOPLIST", list.toString());
+                            editor.apply();
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }
