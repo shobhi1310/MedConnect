@@ -39,4 +39,5 @@
     <string name="disclaimer">Disclaimer</string>
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
+    <string name="title_activity_current_location">Map</string>
 </resources>
