@@ -2,15 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medconnect">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="Sign In" />
@@ -21,43 +24,51 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ShopOwnerHome" />
-        <activity android:name=".BookMedicine" android:parentActivityName=".MedicineDetails" />
+        <activity
+            android:name=".BookMedicine"
+            android:parentActivityName=".MedicineDetails" />
         <activity android:name=".CustomerHomePage" />
         <activity android:name=".CustomerBookingHistory" />
         <activity android:name=".ShopOwnerBookingHistory" />
         <activity android:name=".ShopOwnerSearchMedicine" />
-
         <activity android:name=".ShopOwnerCurrentBookings" />
-        <activity android:name=".CustomerEditProfile" android:parentActivityName=".CustomerProfile"/>
-        <activity android:name=".SelectShop" android:parentActivityName=".SearchMedicineActivity" />
-        <activity android:name=".ShopOwnerEditProfile" android:parentActivityName=".ShopKeeperProfile" />
-        <activity android:name=".GoogleMapPage" android:parentActivityName=".MedicineDetails"/>
+        <activity
+            android:name=".CustomerEditProfile"
+            android:parentActivityName=".CustomerProfile" />
+        <activity
+            android:name=".SelectShop"
+            android:parentActivityName=".SearchMedicineActivity" />
+        <activity
+            android:name=".ShopOwnerEditProfile"
+            android:parentActivityName=".ShopKeeperProfile" />
+        <activity
+            android:name=".GoogleMapPage"
+            android:parentActivityName=".MedicineDetails" />
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShopKeeperProfile" />
-        <activity android:name=".ShopOwnerAddMedicine" android:parentActivityName=".ShopOwnerSearchMedicine"/>
+        <activity
+            android:name=".ShopOwnerAddMedicine"
+            android:parentActivityName=".ShopOwnerSearchMedicine" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".loginAndSignup" />
         <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
-            android:parentActivityName=".SelectShop"/>
+            android:parentActivityName=".SelectShop" />
         <activity android:name=".GetStartedActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
