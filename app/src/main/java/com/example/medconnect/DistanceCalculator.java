@@ -2,6 +2,7 @@ package com.example.medconnect;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -22,13 +23,19 @@ import java.util.List;
 
 public class DistanceCalculator {
     private RequestQueue queue;
-    int origin_lat;
-    int origin_long;
+    String origin_lat;
+    String origin_long;
     private List<JSONObject> sortedShopList;
 
-    public DistanceCalculator(Context c){
+    public List<JSONObject> getSortedShopList() {
+        return sortedShopList;
+    }
+
+    public DistanceCalculator(Context c, String latitude, String longitude){
         // initialize lat and long
         queue = Volley.newRequestQueue(c);
+        origin_lat = latitude;
+        origin_long = longitude;
         APIAllShopsCall();
     }
     private void APIAllShopsCall(){
@@ -79,8 +86,10 @@ public class DistanceCalculator {
         String base_url = "https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?";
         String key = "Au9zVKAUprgIuzokDYXWlvT_4ReDptHhq5U1nK-dpEb5sSyocJV869S5aoplspkI";
         String travelMode = "walking";
-        String url = base_url + "&key=" + key + "origins=23.672884,86.156107"+"&destinations="+ destinations + "&travelMode=" + travelMode;
+        String origins = origin_lat+","+origin_long;
+        String url = base_url + "&key=" + key + "&origins=" + origins +"&destinations="+ destinations + "&travelMode=" + travelMode;
 //        queue.cancelAll("CurrentBookings");
+        Log.d("Test_url",url);
         final List<JSONObject> list = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -112,9 +121,11 @@ public class DistanceCalculator {
                                         e.printStackTrace();
                                     }
                                     if(d1<d2){
-                                        return 1;
+                                        return -1;
+                                    }else if(d1==d2){
+                                        return 0;
                                     }
-                                    return 0;
+                                    return 1;
                                 }
 
                             });

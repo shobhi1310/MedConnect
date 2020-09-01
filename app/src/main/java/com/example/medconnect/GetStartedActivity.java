@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +27,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONObject;
+
+import java.util.List;
+
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
 public class GetStartedActivity extends AppCompatActivity {
@@ -36,6 +41,8 @@ public class GetStartedActivity extends AppCompatActivity {
     Button getStarted;
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
+    String latitude;
+    String longitude;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +83,12 @@ public class GetStartedActivity extends AppCompatActivity {
             }
         });
         fetchLocation();
-//        DistanceCalculator dc = new DistanceCalculator(this);
+        SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
+        latitude = sp.getString("LATITUDE","");
+        longitude = sp.getString("LONGITUDE","");
+        Log.d("Coordinates",latitude+" "+longitude);
+        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
+        saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
         if (ContextCompat.checkSelfPermission(
@@ -150,6 +162,14 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.putString("LATITUDE", latitude.toString());
         editor.putString("LONGITUDE", longitude.toString());
 
+        editor.apply();
+    }
+
+    public void saveSortedShops(List<JSONObject> shopList){
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("SHOPLIST", shopList.toString());
         editor.apply();
     }
 }
