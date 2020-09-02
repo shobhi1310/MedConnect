@@ -105,7 +105,7 @@ public class BookMedicine extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
                 customer_id = sharedPreferences.getString("ID", "");
                 APICall(customer_id, medicine_id, shop_owner_id, time.get(timeRange));
-                Toast.makeText(BookMedicine.this, "Current value is " + time.get(timeRange), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(BookMedicine.this, "Current value is " + time.get(timeRange), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -121,8 +121,8 @@ public class BookMedicine extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent(BookMedicine.this, successLayover.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(BookMedicine.this, successLayover.class);
+                        startActivity(intent);
                     }
 
                 }, new Response.ErrorListener() {

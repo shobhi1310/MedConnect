@@ -111,7 +111,7 @@ public class CustomerHomePage extends BaseActivity {
 
     }
     private void APICall(String id){
-        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f467f770a31d232e88916e9";
+        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f4a95114a72100017272afe";
 
         queue.cancelAll("CurrentBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

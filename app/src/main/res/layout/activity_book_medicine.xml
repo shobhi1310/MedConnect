@@ -57,7 +57,7 @@
                 android:layout_width="264dp"
                 android:layout_height="28dp"
                 android:max="5"
-                android:progress="3"
+                android:progress="0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.197"
                 app:layout_constraintStart_toStartOf="parent"
