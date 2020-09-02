@@ -5,7 +5,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -39,11 +41,19 @@ public class CustomerBookingHistory extends  BaseActivity{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<CustomerBookingHistoryCard> orders;
     private RequestQueue queue;
+
     private ProgressBar spinner;
 
+    SwipeRefreshLayout swipe;
+
+
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_booking_history);
+
+        swipe = findViewById(R.id.swipeToRefresh);
+        swipe.setColorSchemeColors(R.color.background);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Booking History");
@@ -51,6 +61,19 @@ public class CustomerBookingHistory extends  BaseActivity{
         spinner=findViewById(R.id.progress_loader);
         createExampleList();
 
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
+
+    }
+
+    private void shuffle() {
+        queue= Volley.newRequestQueue(this);
+        createExampleList();
     }
 
     public void createExampleList() {
@@ -100,7 +123,20 @@ public class CustomerBookingHistory extends  BaseActivity{
                             e.printStackTrace();
                         }
                         orders = currentList;
+
                         spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.bookingHistoryPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
+
                         buildRecyclerView();
                     }
                 },

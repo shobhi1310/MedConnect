@@ -219,7 +219,20 @@ public class SearchMedicineActivity extends BaseActivity {
                             Toast.makeText(SearchMedicineActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         medicineList=filteredList;
+
                         spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(medicineList.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
+
                         mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()

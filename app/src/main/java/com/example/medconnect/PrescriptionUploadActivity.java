@@ -16,16 +16,16 @@ import android.view.View;
 import android.widget.Button;
 
 public class PrescriptionUploadActivity extends AppCompatActivity {
-    Button upload;
+    Button select;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription_upload);
-        upload = findViewById(R.id.uploadPrescription);
-        upload.setOnClickListener(new View.OnClickListener() {
+        select = findViewById(R.id.selectPrescription);
+        select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                checkStoragePermission();
             }
         });
     }

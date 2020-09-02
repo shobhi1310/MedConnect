@@ -67,13 +67,19 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     }
 
     public void buildRecyclerView() {
-        mRecyclerView=findViewById(R.id.shopOwnerCurrentBookingsRecyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayout = new LinearLayoutManager(this);
-        mAdapter = new ShopOwnerCurrentBookingsAdapter(orders);
-
-        mRecyclerView.setLayoutManager(mLayout );
-        mRecyclerView.setAdapter(mAdapter);
+        TextView t = findViewById(R.id.noBookingsPrompt);
+        if(orders.size()>0){
+            mRecyclerView=findViewById(R.id.shopOwnerCurrentBookingsRecyclerView);
+            mRecyclerView.setHasFixedSize(true);
+            mLayout = new LinearLayoutManager(this);
+            mAdapter = new ShopOwnerCurrentBookingsAdapter(orders);
+            mRecyclerView.setLayoutManager(mLayout );
+            mRecyclerView.setAdapter(mAdapter);
+            t.setVisibility(View.INVISIBLE);
+        }
+        else{
+            t.setVisibility(View.VISIBLE);
+        }
 
     }
 

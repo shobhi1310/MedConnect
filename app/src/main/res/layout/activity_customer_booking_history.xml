@@ -16,24 +16,11 @@
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
 
-        <ProgressBar
-            android:id="@+id/progress_loader"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            card_view:layout_constraintTop_toTopOf="@+id/toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             android:layout_marginTop="56dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -41,51 +28,89 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <!--        <Button-->
-            <!--            android:id="@+id/button4"-->
-            <!--            android:layout_width="59dp"-->
-            <!--            android:layout_height="43dp"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:background="?android:attr/actionModeWebSearchDrawable"-->
-            <!--            card_view:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"-->
-            <!--            card_view:layout_constraintHorizontal_bias="1.0"-->
-            <!--            card_view:layout_constraintStart_toStartOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="56dp" />-->
-
-            <!--        <EditText-->
-            <!--            android:id="@+id/editTextTextPersonName2"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:layout_marginEnd="16dp"-->
-            <!--            android:ems="13"-->
-            <!--            android:hint="SEARCH"-->
-            <!--            android:inputType="textPersonName"-->
-            <!--            android:textSize="20dp"-->
-            <!--            card_view:layout_constraintEnd_toEndOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="336dp" />-->
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/customerBookingHistoryRecyclerView"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeToRefresh"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--        <Button-->
+                <!--            android:id="@+id/button4"-->
+                <!--            android:layout_width="59dp"-->
+                <!--            android:layout_height="43dp"-->
+                <!--            android:layout_marginTop="76dp"-->
+                <!--            android:background="?android:attr/actionModeWebSearchDrawable"-->
+                <!--            card_view:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"-->
+                <!--            card_view:layout_constraintHorizontal_bias="1.0"-->
+                <!--            card_view:layout_constraintStart_toStartOf="parent"-->
+                <!--            card_view:layout_constraintTop_toTopOf="parent"-->
+                <!--            tools:layout_conversion_absoluteHeight="50dp"-->
+                <!--            tools:layout_conversion_absoluteWidth="56dp" />-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/editTextTextPersonName2"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_marginTop="76dp"-->
+                <!--            android:layout_marginEnd="16dp"-->
+                <!--            android:ems="13"-->
+                <!--            android:hint="SEARCH"-->
+                <!--            android:inputType="textPersonName"-->
+                <!--            android:textSize="20dp"-->
+                <!--            card_view:layout_constraintEnd_toEndOf="parent"-->
+                <!--            card_view:layout_constraintTop_toTopOf="parent"-->
+                <!--            tools:layout_conversion_absoluteHeight="50dp"-->
+                <!--            tools:layout_conversion_absoluteWidth="336dp" />-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/customerBookingHistoryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:scrollbars="vertical"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.439"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:layout_conversion_absoluteHeight="589dp"
+                    tools:layout_conversion_absoluteWidth="392dp" />
+
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_loader"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:scrollbars="vertical"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintHorizontal_bias="0.439"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_absoluteHeight="589dp"
-                tools:layout_conversion_absoluteWidth="392dp" />
+
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                card_view:layout_constraintTop_toTopOf="@+id/swipeToRefresh" />
+
+            <TextView
+                android:id="@+id/bookingHistoryPrompt"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@string/noCurrentBookingsPrompt"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="@+id/swipeToRefresh" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"

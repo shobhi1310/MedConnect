@@ -80,6 +80,20 @@
                 card_view:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="589dp"
                 tools:layout_conversion_absoluteWidth="392dp" />
+
+            <TextView
+                android:id="@+id/bookingHistoryPrompt"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@string/noCurrentBookingsPrompt"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

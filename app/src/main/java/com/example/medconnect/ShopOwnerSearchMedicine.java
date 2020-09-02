@@ -105,7 +105,11 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         this.buildRecycleView();
 
 
+
+
+
         EditText text = findViewById(R.id.searchBox);
+
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -123,9 +127,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
             }
         });
 
-
     }
-
 
     private void filter(String s){
 
@@ -145,8 +147,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     private void createList(){
         this.medicineList = new ArrayList<>();
 
-
-
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Crocin","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Dolo","XYZ","150MG"));
@@ -154,13 +154,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Tapish","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Rohit","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Sameed","XYZ","150MG"));
-
-
-
-
-//
-
-
 
     }
 
@@ -213,8 +206,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 //                            JSONArray resultList = result.getJSONArray("item");
                             //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 
-
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
@@ -222,16 +213,25 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
                             }
 
-
-
-
-
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+
                         medicineList=filteredList;
+
                         spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(medicineList.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                        mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
@@ -248,7 +248,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
         // executing the request (adding to queue)
         queue.add(stringRequest);
-
 
     }
 
