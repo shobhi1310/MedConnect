@@ -8,10 +8,20 @@
     tools:context=".PrescriptionUploadActivity">
 
     <Button
-        android:id="@+id/uploadPrescription"
+        android:id="@+id/selectPrescription"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:text="Upload Prescription"
+        android:text="Select Prescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/uploadPrescription"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:text="Upload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
