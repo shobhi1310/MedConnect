@@ -1,20 +1,18 @@
 package com.example.medconnect;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.os.Bundle;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,8 +39,8 @@ public class ShopOwnerHome extends  BaseActivity1{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_home_page);
-
 
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
@@ -51,62 +49,136 @@ public class ShopOwnerHome extends  BaseActivity1{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ShopOwnerHome.this,ShopOwnerSearchMedicine.class);
+                Intent i = new Intent(ShopOwnerHome.this, ShopOwnerSearchMedicine.class);
                 startActivity(i);
             }
         });
 
-        queue= Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
         createList();
+        buildRecyclerView();
 
+        EditText text = findViewById(R.id.editTextTextPersonName2);
+        text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+    }
+
+    private void filter(String s) {
+
+
+//        ArrayList<ShopOwnerHomeCard> filteredList = new ArrayList<>();
+//        Log.d("length of array",Integer.toString(filteredList.size()));
+//        for(ShopOwnerHomeCard medItem:this.Medicines){
+//            if(medItem.getMedicine().toLowerCase().contains(s.toLowerCase())){
+//                filteredList.add(medItem);
+//            }
+//        }
+//
+//        this.mAdapter.filterList(filteredList);
+        this.APICall(s);
     }
 
     public void createList() {
-        APICall();
+        this.Medicines = new ArrayList<>();
+        String emp = "";
+        APICall(emp);
     }
 
     public void buildRecyclerView() {
-        mRecyclerView=findViewById(R.id.shopOwnerHomePageRecyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayout = new LinearLayoutManager(this);
-        mAdapter = new ShopOwnerHomeAdapter(Medicines);
+//        mRecyclerView=findViewById(R.id.shopOwnerHomePageRecyclerView);
+//        mRecyclerView.setHasFixedSize(true);
+//        mLayout = new LinearLayoutManager(this);
+//        mAdapter = new ShopOwnerHomeAdapter(Medicines);
+//
+//        mRecyclerView.setLayoutManager(mLayout );
+//        mRecyclerView.setAdapter(mAdapter);
+//
+//
+//        mAdapter.setOnItemClickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
+//            @Override
+//            public void onDeleteClick(int position) {
+//                removeItem(position);
+//            }
+//            @Override
+//            public void updateStatus(int position) {
+//                changeStatus(position);
+//            }
+//        });
 
-        mRecyclerView.setLayoutManager(mLayout );
-        mRecyclerView.setAdapter(mAdapter);
+        this.mRecyclerView = findViewById(R.id.shopOwnerHomePageRecyclerView);
+        this.mRecyclerView.setHasFixedSize(true);
+        this.mLayout = new LinearLayoutManager(this);
+
+        this.mAdapter = new ShopOwnerHomeAdapter(this.Medicines);
+
+        this.mAdapter = new ShopOwnerHomeAdapter(this.Medicines);
+
+        this.mRecyclerView.setLayoutManager(this.mLayout);
+        this.mRecyclerView.setAdapter(this.mAdapter);
+
+//        this.mAdapter.setOnItemCLickListener((position)->{
+////            @Override
+////            public void onItemClick(int position) {
+
+////            }
+//        });
 
 
-        mAdapter.setOnItemClickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
+        this.mAdapter.setOnItemCLickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {
-                removeItem(position);
+                String id=Medicines.get(position).getId();
+
+                Medicines.remove(position);
+                removeMedicineAPI(id);
+                mAdapter.notifyItemRemoved(position);
             }
+
             @Override
             public void updateStatus(int position) {
-                changeStatus(position);
+                if(Medicines.get(position).getStatus()){
+                    Medicines.get(position).setStatus(false);
+
+                }else{
+                    Medicines.get(position).setStatus(true);
+
+                }
+                updateStatusAPI(Medicines.get(position).getId());
+                mAdapter.notifyItemChanged(position);
             }
-        });
+
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(ShopOwnerHome.this, "clicked", Toast.LENGTH_LONG).show();
+                //things need to be changed
+                Intent intent = new Intent(ShopOwnerHome.this, ShopOwnerAddMedicine.class);
+                intent.putExtra("medicine", Medicines.get(position).getMedicine());
+                intent.putExtra("manufacturer", Medicines.get(position).getManufacturer());
+                intent.putExtra("strength", Medicines.get(position).getStrength());
+                intent.putExtra("id", Medicines.get(position).getId());
+                startActivity(intent);
+            }
+        } );
+
     }
 
-    public void removeItem(int position) {
-        String id=Medicines.get(position).getId();
 
-        Medicines.remove(position);
-        removeMedicineAPI(id);
-        mAdapter.notifyItemRemoved(position);
-    }
-    public void changeStatus(int position) {
-
-        if(Medicines.get(position).getStatus()){
-            Medicines.get(position).setStatus(false);
-
-        }else{
-            Medicines.get(position).setStatus(true);
-
-        }
-        updateStatusAPI(Medicines.get(position).getId());
-        mAdapter.notifyItemChanged(position);
-    }
 
     @Override
     public void onBackPressed() {
@@ -126,42 +198,34 @@ public class ShopOwnerHome extends  BaseActivity1{
         }, 2000);
     }
 
-    private void APICall(){
-        String url="https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/5f47e5ea174464ed81cc5100";
+    private void APICall(final String s) {
+        String url = "https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/5f47e5ea174464ed81cc5100";
 
         queue.cancelAll("MedicineList");
-        StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     // 3rd param - method onResponse lays the code procedure of success return
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-                        ArrayList<ShopOwnerHomeCard> filteredList=new ArrayList<>();
+                        ArrayList<ShopOwnerHomeCard> filteredList = new ArrayList<>();
                         try {
                             JSONArray result = new JSONObject(response).getJSONArray("medicines");
-
-
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.toString());
-                                JSONObject medicineDetails= jsonObject.getJSONObject("medicine");
-
-                                filteredList.add(new ShopOwnerHomeCard(medicineDetails.getString("_id"),medicineDetails.getString("name"),medicineDetails.getString("strength"),medicineDetails.getString("manufacturer"),jsonObject.getBoolean("status")));
-
+                                JSONObject medicineDetails = jsonObject.getJSONObject("medicine");
+                                if(s.length()==0 || medicineDetails.getString("name").toLowerCase().contains(s.toLowerCase())){
+                                    filteredList.add(new ShopOwnerHomeCard(medicineDetails.getString("_id"), medicineDetails.getString("name"), medicineDetails.getString("strength"), medicineDetails.getString("manufacturer"), jsonObject.getBoolean("status")));
+                                }
                             }
-
-
-
-
-
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                        Medicines=filteredList;
-                        buildRecyclerView();
-
+                        Medicines = filteredList;
+//                        buildRecyclerView();
+                        mAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 },
                 new Response.ErrorListener() {

@@ -45,7 +45,7 @@ public class ShopOwnerSearchMedicineAdapter extends RecyclerView.Adapter<ShopOwn
                 String filteredString = constraint.toString().toLowerCase().trim();
 
                 for(ShopOwnerSearchMedicineCard medItem:copymList){
-                    if(medItem.getMedicineName().toString().toLowerCase().contains(filteredString)){
+                    if(medItem.getMedicineName().toLowerCase().contains(filteredString)){
                         filteredList.add(medItem);
                     }
                 }
