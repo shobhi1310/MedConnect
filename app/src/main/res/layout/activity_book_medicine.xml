@@ -39,7 +39,7 @@
 
             <!-- Seek Bar notch guidlines -->
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/disclaimerCheck"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:layout_marginStart="20dp"
@@ -68,10 +68,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/disclaimer"
-                app:layout_constraintEnd_toEndOf="@+id/checkBox"
+                app:layout_constraintEnd_toEndOf="@+id/disclaimerCheck"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/checkBox"
-                app:layout_constraintTop_toTopOf="@+id/checkBox" />
+                app:layout_constraintStart_toStartOf="@+id/disclaimerCheck"
+                app:layout_constraintTop_toTopOf="@+id/disclaimerCheck" />
 
             <TextView
                 android:id="@+id/textView17"

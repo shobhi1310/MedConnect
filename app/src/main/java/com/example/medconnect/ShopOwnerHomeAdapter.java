@@ -1,6 +1,7 @@
 package com.example.medconnect;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,8 @@ public class ShopOwnerHomeAdapter extends RecyclerView.Adapter<ShopOwnerHomeAdap
                 String filteredString = constraint.toString().toLowerCase().trim();
 
                 for (ShopOwnerHomeCard medItem : copyList) {
-                    if (medItem.getMedicine().toLowerCase().contains(filteredString)) {
+                    if (medItem.getMedicine().toLowerCase().indexOf(filteredString)==0) {
+                        Log.d("Filtering",medItem.getMedicine().toLowerCase()+medItem.getMedicine().toLowerCase().indexOf(filteredString));
                         filteredList.add(medItem);
                     }
                 }

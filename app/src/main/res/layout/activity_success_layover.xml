@@ -140,7 +140,7 @@
         android:layout_marginLeft="24dp" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/disclaimerCheck"
         android:layout_width="35dp"
         android:layout_height="29dp"
         android:layout_marginEnd="32dp"
