@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -59,11 +60,24 @@
                 android:text="@string/noCurrentBookingsPrompt"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress_loader"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                card_view:layout_constraintTop_toTopOf="@+id/customerBookingHistoryRecyclerView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/customerBookingHistoryRecyclerView"
@@ -78,7 +92,9 @@
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintVertical_bias="0.293"
                 tools:layout_conversion_absoluteHeight="589dp"
-                tools:layout_conversion_absoluteWidth="392dp" />
+                tools:layout_conversion_absoluteWidth="392dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/bookMedicine"
@@ -98,13 +114,6 @@
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
-
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

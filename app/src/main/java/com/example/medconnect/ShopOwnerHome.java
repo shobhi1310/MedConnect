@@ -191,17 +191,6 @@ public class ShopOwnerHome extends  BaseActivity1{
                 mAdapter.notifyItemChanged(position);
             }
 
-            @Override
-            public void onItemClick(int position) {
-                Toast.makeText(ShopOwnerHome.this, "clicked", Toast.LENGTH_LONG).show();
-                //things need to be changed
-                Intent intent = new Intent(ShopOwnerHome.this, ShopOwnerAddMedicine.class);
-                intent.putExtra("medicine", Medicines.get(position).getMedicine());
-                intent.putExtra("manufacturer", Medicines.get(position).getManufacturer());
-                intent.putExtra("strength", Medicines.get(position).getStrength());
-                intent.putExtra("id", Medicines.get(position).getId());
-                startActivity(intent);
-            }
         } );
 
 

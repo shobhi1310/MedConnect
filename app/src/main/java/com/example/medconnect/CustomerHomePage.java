@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class CustomerHomePage extends BaseActivity {
     private ArrayList<CustomerBookingHistoryCard> orders;
     boolean doubleBackToExitPressedOnce = false;
     private RequestQueue queue;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class CustomerHomePage extends BaseActivity {
                 startActivity(i);
             }
         });
+        spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
         buildRecyclerView();
@@ -74,7 +77,7 @@ public class CustomerHomePage extends BaseActivity {
             mRecyclerView.setLayoutManager(mLayout);
             mRecyclerView.setAdapter(mAdapter);
             TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.INVISIBLE);
+            t.setVisibility(View.GONE);
         }else{
             TextView t = findViewById(R.id.noBookingsPrompt);
             t.setVisibility(View.VISIBLE);
@@ -113,6 +116,7 @@ public class CustomerHomePage extends BaseActivity {
 
     }
     private void APICall(String id){
+        spinner.setVisibility(View.VISIBLE);
         String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f4a95114a72100017272afe";
 
         queue.cancelAll("CurrentBookings");
@@ -141,6 +145,7 @@ public class CustomerHomePage extends BaseActivity {
                             e.printStackTrace();
                         }
                         orders = currentList;
+                        spinner.setVisibility(View.GONE);
                         buildRecyclerView();
                     }
                 },
