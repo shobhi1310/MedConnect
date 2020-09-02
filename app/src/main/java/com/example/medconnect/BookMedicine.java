@@ -33,6 +33,8 @@ public class BookMedicine extends AppCompatActivity {
     RequestQueue queue;
     String customer_id;
     String shop_owner_id;
+    SelectShopCard shop = null;
+    MedicineItem medicineItem = null;
     private ArrayList<Integer> time = new ArrayList<Integer>(){
         {add(15); add(30); add(45); add(60); add(90); add(120);}
     };
@@ -50,8 +52,6 @@ public class BookMedicine extends AppCompatActivity {
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Book Medicine");
 
-        SelectShopCard shop = null;
-        MedicineItem medicineItem = null;
         int quantity = 1;
 
         if(getIntent().getExtras() != null) {
@@ -122,6 +122,9 @@ public class BookMedicine extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(BookMedicine.this, successLayover.class);
+                        intent.putExtra("medicine_name",medicineItem.getMedicineName());
+                        intent.putExtra("shop_name",shop.getShopName());
+                        intent.putExtra("shop_address",shop.getShopAddress());
                         startActivity(intent);
                     }
 
