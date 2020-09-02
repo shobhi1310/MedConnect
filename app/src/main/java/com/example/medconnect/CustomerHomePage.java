@@ -78,7 +78,14 @@ public class CustomerHomePage extends BaseActivity {
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
-        buildRecyclerView();
+        if(orders.size() > 0) {
+            buildRecyclerView();
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.INVISIBLE);
+        } else {
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.VISIBLE);
+        }
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -92,26 +99,29 @@ public class CustomerHomePage extends BaseActivity {
     private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
-        buildRecyclerView();
+        if(orders.size() > 0) {
+            buildRecyclerView();
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.INVISIBLE);
+        } else {
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.VISIBLE);
+        }
     }
 
     private void buildRecyclerView() {
+//        if(orders.size()>0) {
+            mRecyclerView = findViewById(R.id.customerBookingHistoryRecyclerView);
+            mRecyclerView.setHasFixedSize(true);
+            mLayout = new LinearLayoutManager(this);
+            mAdapter = new CustomerBookingHistoryAdapter(orders);
+            mRecyclerView.setLayoutManager(mLayout);
+            mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = findViewById(R.id.customerBookingHistoryRecyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayout = new LinearLayoutManager(this);
-        mAdapter = new CustomerBookingHistoryAdapter(orders);
-        mRecyclerView.setLayoutManager(mLayout);
-        mRecyclerView.setAdapter(mAdapter);
-
-//            TextView t = findViewById(R.id.noBookingsPrompt);
-//            t.setVisibility(View.GONE);
-//        }else{
+//        } else {
 //            TextView t = findViewById(R.id.noBookingsPrompt);
 //            t.setVisibility(View.VISIBLE);
 //        }
-//
-//    }
     }
 
     public void onSearchMedicine(View view){
