@@ -73,6 +73,8 @@ public class CustomerHomePage extends BaseActivity {
             mAdapter = new CustomerBookingHistoryAdapter(orders);
             mRecyclerView.setLayoutManager(mLayout);
             mRecyclerView.setAdapter(mAdapter);
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.INVISIBLE);
         }else{
             TextView t = findViewById(R.id.noBookingsPrompt);
             t.setVisibility(View.VISIBLE);
