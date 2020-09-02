@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<ShopOwnerCurrentBookingsCard> orders;
     private RequestQueue queue;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Current Bookings");
         queue= Volley.newRequestQueue(this);
+        spinner=findViewById(R.id.progress_loader);
         createExampleList();
 //        buildRecyclerView();
     }
@@ -75,6 +78,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     }
 
     private void APICall(String id){
+        spinner.setVisibility(View.VISIBLE);
         String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f467f770a31d232e88916e9";
 
         queue.cancelAll("CurrentBookings");
@@ -103,6 +107,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
                             e.printStackTrace();
                         }
                         orders = pastList;
+                        spinner.setVisibility(View.GONE);
                         buildRecyclerView();
                     }
                 },

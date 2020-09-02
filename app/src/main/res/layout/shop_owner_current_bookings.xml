@@ -15,10 +15,17 @@
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <ProgressBar
+            android:id="@+id/progress_loader"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,15 +72,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/shopOwnerCurrentBookingsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:scrollbars="vertical"
-                card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintHorizontal_bias="0.439"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintVertical_bias="0.293"
                 tools:layout_conversion_absoluteHeight="589dp"
                 tools:layout_conversion_absoluteWidth="392dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
