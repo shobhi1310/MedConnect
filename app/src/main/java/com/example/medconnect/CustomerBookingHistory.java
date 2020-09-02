@@ -5,7 +5,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -38,16 +40,34 @@ public class CustomerBookingHistory extends  BaseActivity{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<CustomerBookingHistoryCard> orders;
     private RequestQueue queue;
+    SwipeRefreshLayout swipe;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_booking_history);
+
+        swipe = findViewById(R.id.swipeToRefresh);
+        swipe.setColorSchemeColors(R.color.background);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Booking History");
         queue= Volley.newRequestQueue(this);
         createExampleList();
 
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
+
+    }
+
+    private void shuffle() {
+        queue= Volley.newRequestQueue(this);
+        createExampleList();
     }
 
     public void createExampleList() {

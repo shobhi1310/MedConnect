@@ -121,9 +121,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
             }
         });
 
-
     }
-
 
     private void filter(String s){
 
@@ -143,8 +141,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     private void createList(){
         this.medicineList = new ArrayList<>();
 
-
-
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Crocin","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Dolo","XYZ","150MG"));
@@ -152,13 +148,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Tapish","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Rohit","XYZ","150MG"));
 //        this.medicineList.add(new ShopOwnerSearchMedicineCard("Sameed","XYZ","150MG"));
-
-
-
-
-//
-
-
 
     }
 
@@ -210,8 +199,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 //                            JSONArray resultList = result.getJSONArray("item");
                             //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 
-
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
@@ -219,14 +206,11 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
                             }
 
-
-
-
-
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+<<<<<<< HEAD
                         medicineList=filteredList;
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
@@ -237,6 +221,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                             t.setVisibility(View.VISIBLE);
                         }
 
+=======
+                        medicineList = filteredList;
+>>>>>>> 576dddfe74c3a3b294fa704929e3f3cb5665c24a
                        mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
@@ -253,7 +240,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
         // executing the request (adding to queue)
         queue.add(stringRequest);
-
 
     }
 

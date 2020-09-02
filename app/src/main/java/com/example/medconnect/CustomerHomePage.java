@@ -9,8 +9,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -46,13 +49,20 @@ public class CustomerHomePage extends BaseActivity {
     private ArrayList<CustomerBookingHistoryCard> orders;
     boolean doubleBackToExitPressedOnce = false;
     private RequestQueue queue;
+    SwipeRefreshLayout swipe;
+    private String customerId;
+    public static final String Data = "StoredData";
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
+        swipe = findViewById(R.id.swipeToRefresh);
+        swipe.setColorSchemeColors(R.color.background);
         toolbar_title.setText("Home");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +70,20 @@ public class CustomerHomePage extends BaseActivity {
                 startActivity(i);
             }
         });
+        queue= Volley.newRequestQueue(this);
+        createExampleList();
+        buildRecyclerView();
+
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
+    }
+
+    private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
         buildRecyclerView();
@@ -73,13 +97,21 @@ public class CustomerHomePage extends BaseActivity {
             mAdapter = new CustomerBookingHistoryAdapter(orders);
             mRecyclerView.setLayoutManager(mLayout);
             mRecyclerView.setAdapter(mAdapter);
+<<<<<<< HEAD
 
+=======
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.INVISIBLE);
+        }else{
+            TextView t = findViewById(R.id.noBookingsPrompt);
+            t.setVisibility(View.VISIBLE);
+        }
+>>>>>>> 576dddfe74c3a3b294fa704929e3f3cb5665c24a
     }
 
     public void onSearchMedicine(View view){
         Intent i = new Intent(this,BookMedicine.class);
         startActivity(i);
-
     }
 
     @Override
@@ -103,12 +135,13 @@ public class CustomerHomePage extends BaseActivity {
     public void createExampleList() {
         orders= new ArrayList<CustomerBookingHistoryCard>();
         Intent intent = getIntent();
-        this.APICall("lala");
-
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        customerId = sharedPreferences.getString("ID", "");
+        this.APICall(customerId);
 
     }
-    private void APICall(String id){
-        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f4a95114a72100017272afe";
+    private void APICall(String id) {
+        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/" + id;
 
         queue.cancelAll("CurrentBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
