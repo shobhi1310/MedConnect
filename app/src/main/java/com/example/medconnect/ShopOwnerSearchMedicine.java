@@ -46,11 +46,12 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_search_medicine);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");
-        queue= Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
 
 
@@ -115,13 +116,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                 filter(s.toString());
             }
         });
-
-
-
-
-
-
-
 
 
     }
