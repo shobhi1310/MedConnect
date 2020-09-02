@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     RadioButton selectedRadioBtn;
     RadioGroup custOrShop;
     String CustomerOrShopOwner;
+    CustomSpinner customSpinner;
     private RequestQueue queue;
     public static final String Data = "StoredData";
 
@@ -58,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 //        isLoggedOut = i.getBooleanExtra("loggedOut", false);
 
         custOrShop = findViewById(R.id.customerOrShopOwner);
+
+         customSpinner= new CustomSpinner(LoginActivity.this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void APICall(final String email, final String password, final boolean isCustomer) {
+        customSpinner.startSpinner();
         String url="https://glacial-caverns-39108.herokuapp.com/user/login";
         queue.cancelAll("UserLogin");
 
@@ -97,9 +101,10 @@ public class LoginActivity extends AppCompatActivity {
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-                        Log.d("res", response);
-                        if(response.equals("{}")) {
+                        Log.d("LoginError", response);
+                        if(response.equals("null") || response.equals("{}")) {
                             Toast.makeText(getApplicationContext(), "Your email or password is wrong", Toast.LENGTH_SHORT).show();
+                            customSpinner.dismissSpinner();
                         }
                         else {
                             try {
