@@ -36,7 +36,7 @@ public class ShopOwnerHomeAdapter extends RecyclerView.Adapter<ShopOwnerHomeAdap
 
         void updateStatus(int position);
 
-        void onItemClick(int position);
+
     }
 
 
@@ -102,18 +102,18 @@ public class ShopOwnerHomeAdapter extends RecyclerView.Adapter<ShopOwnerHomeAdap
             remove = itemView.findViewById(R.id.remove);
             update = itemView.findViewById(R.id.update);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int pos = getAdapterPosition();
-                        if (pos != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(pos);
-                        }
-                    }
-                }
-            });
+//
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (listener != null) {
+//                        int pos = getAdapterPosition();
+//                        if (pos != RecyclerView.NO_POSITION) {
+//                            listener.onItemClick(pos);
+//                        }
+//                    }
+//                }
+//            });
 
 
             remove.setOnClickListener(new View.OnClickListener() {

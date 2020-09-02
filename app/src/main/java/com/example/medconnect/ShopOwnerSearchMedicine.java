@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<ShopOwnerSearchMedicineCard> medicineList;
     private RequestQueue queue;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,10 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");
         queue = Volley.newRequestQueue(this);
+
+        spinner = (ProgressBar)findViewById(R.id.progress_loader);
+
+
 
 
 
@@ -99,7 +105,11 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         this.buildRecycleView();
 
 
+
+
+
         EditText text = findViewById(R.id.searchBox);
+
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -176,6 +186,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     }
 
     private void APICall(String s){
+        spinner.setVisibility(View.VISIBLE);
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
 
         queue.cancelAll("MedicineList");
@@ -206,7 +217,21 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                        medicineList = filteredList;
+
+                        medicineList=filteredList;
+
+                        spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(medicineList.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                        mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()

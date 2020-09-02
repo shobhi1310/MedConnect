@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,9 +50,13 @@ public class CustomerHomePage extends BaseActivity {
     private ArrayList<CustomerBookingHistoryCard> orders;
     boolean doubleBackToExitPressedOnce = false;
     private RequestQueue queue;
+
+    private ProgressBar spinner;
+
     SwipeRefreshLayout swipe;
     private String customerId;
     public static final String Data = "StoredData";
+
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -70,6 +75,7 @@ public class CustomerHomePage extends BaseActivity {
                 startActivity(i);
             }
         });
+        spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
         if(orders.size() > 0) {
@@ -149,8 +155,12 @@ public class CustomerHomePage extends BaseActivity {
         this.APICall(customerId);
 
     }
+
     private void APICall(String id) {
+            spinner.setVisibility(View.VISIBLE);
+
         String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/" + id;
+
 
         queue.cancelAll("CurrentBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -178,6 +188,19 @@ public class CustomerHomePage extends BaseActivity {
                             e.printStackTrace();
                         }
                         orders = currentList;
+
+                        spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.noBookingsPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                         buildRecyclerView();
                     }
                 },

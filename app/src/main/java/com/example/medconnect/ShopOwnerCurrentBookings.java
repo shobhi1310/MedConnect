@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     private RequestQueue queue;
     String shopOwnerId;
     public static final String Data = "StoredData";
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Current Bookings");
         queue= Volley.newRequestQueue(this);
+        spinner=findViewById(R.id.progress_loader);
         createExampleList();
 //        buildRecyclerView();
     }
@@ -69,18 +72,25 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     }
 
     public void buildRecyclerView() {
-        mRecyclerView=findViewById(R.id.shopOwnerCurrentBookingsRecyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayout = new LinearLayoutManager(this);
-        mAdapter = new ShopOwnerCurrentBookingsAdapter(orders);
-
-        mRecyclerView.setLayoutManager(mLayout );
-        mRecyclerView.setAdapter(mAdapter);
+        TextView t = findViewById(R.id.noBookingsPrompt);
+        if(orders.size()>0){
+            mRecyclerView=findViewById(R.id.shopOwnerCurrentBookingsRecyclerView);
+            mRecyclerView.setHasFixedSize(true);
+            mLayout = new LinearLayoutManager(this);
+            mAdapter = new ShopOwnerCurrentBookingsAdapter(orders);
+            mRecyclerView.setLayoutManager(mLayout );
+            mRecyclerView.setAdapter(mAdapter);
+            t.setVisibility(View.INVISIBLE);
+        }
+        else{
+            t.setVisibility(View.VISIBLE);
+        }
 
     }
 
     private void APICall(String id){
         String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/" + id;
+        spinner.setVisibility(View.VISIBLE);
 
         queue.cancelAll("CurrentBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -108,6 +118,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
                             e.printStackTrace();
                         }
                         orders = pastList;
+                        spinner.setVisibility(View.GONE);
                         buildRecyclerView();
                     }
                 },

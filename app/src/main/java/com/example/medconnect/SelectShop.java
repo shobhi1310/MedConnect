@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class SelectShop extends  AppCompatActivity{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<SelectShopCard> shops;
     private RequestQueue queue;
+    private ProgressBar spinner;
     public static final String Data = "StoredData";
 
 
@@ -50,6 +52,8 @@ public class SelectShop extends  AppCompatActivity{
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar_title.setText("Select Shop");
+
+        spinner=findViewById(R.id.progress_loader);
 
         queue= Volley.newRequestQueue(this);
         ActionBar actionBar= getSupportActionBar();
@@ -112,6 +116,7 @@ public class SelectShop extends  AppCompatActivity{
     }
 
     private void APICall(String id){
+        spinner.setVisibility(View.VISIBLE);
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/shoplist/"+id;
 
         queue.cancelAll("ShopList");
@@ -149,6 +154,7 @@ public class SelectShop extends  AppCompatActivity{
                         }
                         shops=filteredList;
                         Log.d("Array Shop",shops.toString());
+                        spinner.setVisibility(View.GONE);
                         buildRecyclerView();
 
                     } // public void onResponse(String response)

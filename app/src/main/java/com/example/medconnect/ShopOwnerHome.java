@@ -113,7 +113,7 @@ public class ShopOwnerHome extends  BaseActivity1{
             mAdapter.notifyDataSetChanged();
             oldString="";
         }
-        else if(oldString.length()-s.length()==1){
+        else if(oldString.length()-s.length()>=1){
             //Here  we filter using the first array we created after API Call
             for(ShopOwnerHomeCard medItem:this.originalMedicineList){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
@@ -191,17 +191,6 @@ public class ShopOwnerHome extends  BaseActivity1{
                 mAdapter.notifyItemChanged(position);
             }
 
-            @Override
-            public void onItemClick(int position) {
-                Toast.makeText(ShopOwnerHome.this, "clicked", Toast.LENGTH_LONG).show();
-                //things need to be changed
-                Intent intent = new Intent(ShopOwnerHome.this, ShopOwnerAddMedicine.class);
-                intent.putExtra("medicine", Medicines.get(position).getMedicine());
-                intent.putExtra("manufacturer", Medicines.get(position).getManufacturer());
-                intent.putExtra("strength", Medicines.get(position).getStrength());
-                intent.putExtra("id", Medicines.get(position).getId());
-                startActivity(intent);
-            }
         } );
 
 

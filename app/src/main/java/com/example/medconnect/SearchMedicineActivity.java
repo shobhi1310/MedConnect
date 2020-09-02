@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class SearchMedicineActivity extends BaseActivity {
     private medicineAdapter mRecyclerViewAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MedicineItem> medicineList;
+    private ProgressBar spinner;
     private RequestQueue queue;
 
     @Override
@@ -51,6 +53,7 @@ public class SearchMedicineActivity extends BaseActivity {
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Search Medicine");
         queue= Volley.newRequestQueue(this);
+        spinner=findViewById(R.id.progress_loader);
 
         /*
 
@@ -178,6 +181,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
 
     private void APICall(String s){
+        spinner.setVisibility(View.VISIBLE);
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
 
         queue.cancelAll("MedicineList");
@@ -215,6 +219,20 @@ public class SearchMedicineActivity extends BaseActivity {
                             Toast.makeText(SearchMedicineActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         medicineList=filteredList;
+
+                        spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(medicineList.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
+
                         mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
