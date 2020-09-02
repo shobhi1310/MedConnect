@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,8 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     private RecyclerView.LayoutManager mLayout;
     private ArrayList<ShopOwnerCurrentBookingsCard> orders;
     private RequestQueue queue;
+    String shopOwnerId;
+    public static final String Data = "StoredData";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,9 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
 //        orders.add(new ShopOwnerCurrentBookingsCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
         //orders.add(new ShopOwnerCurrentBookingsCard("Paracetamol","150MG","XYZ","Sameed","99999999999","12/07/20"));
         Intent intent = getIntent();
-        this.APICall("lala");
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        shopOwnerId = sharedPreferences.getString("ID", "");
+        this.APICall(shopOwnerId);
 
 
 
@@ -75,7 +80,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     }
 
     private void APICall(String id){
-        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/5f467f770a31d232e88916e9";
+        String url = "https://glacial-caverns-39108.herokuapp.com/booking/current/" + id;
 
         queue.cancelAll("CurrentBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
