@@ -113,7 +113,7 @@ public class ShopOwnerHome extends  BaseActivity1{
             mAdapter.notifyDataSetChanged();
             oldString="";
         }
-        else if(oldString.length()-s.length()==1){
+        else if(oldString.length()-s.length()>=1){
             //Here  we filter using the first array we created after API Call
             for(ShopOwnerHomeCard medItem:this.originalMedicineList){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
