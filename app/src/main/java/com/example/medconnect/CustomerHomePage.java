@@ -66,17 +66,14 @@ public class CustomerHomePage extends BaseActivity {
     }
 
     private void buildRecyclerView() {
-        if(orders.size()>0) {
+
             mRecyclerView = findViewById(R.id.customerBookingHistoryRecyclerView);
             mRecyclerView.setHasFixedSize(true);
             mLayout = new LinearLayoutManager(this);
             mAdapter = new CustomerBookingHistoryAdapter(orders);
             mRecyclerView.setLayoutManager(mLayout);
             mRecyclerView.setAdapter(mAdapter);
-        }else{
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.VISIBLE);
-        }
+
     }
 
     public void onSearchMedicine(View view){
@@ -139,6 +136,15 @@ public class CustomerHomePage extends BaseActivity {
                             e.printStackTrace();
                         }
                         orders = currentList;
+
+                        TextView t = findViewById(R.id.noBookingsPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
                         buildRecyclerView();
                     }
                 },

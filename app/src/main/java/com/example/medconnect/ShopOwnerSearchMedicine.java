@@ -99,7 +99,11 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         this.buildRecycleView();
 
 
+
+
+
         EditText text = findViewById(R.id.searchBox);
+
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -224,6 +228,15 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         medicineList=filteredList;
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(medicineList.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
                        mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()

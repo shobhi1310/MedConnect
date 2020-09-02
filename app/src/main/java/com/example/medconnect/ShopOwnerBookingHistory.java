@@ -46,7 +46,7 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_booking_history);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Booking History");
-        queue= Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
         createExampleList();
 //        buildRecyclerView();
     }
@@ -97,6 +97,15 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
                             e.printStackTrace();
                         }
                         orders = pastList;
+
+                        TextView t = findViewById(R.id.bookingHistoryPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
                         buildRecyclerView();
                     }
                 },

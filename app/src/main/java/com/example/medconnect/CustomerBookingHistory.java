@@ -96,6 +96,16 @@ public class CustomerBookingHistory extends  BaseActivity{
                             e.printStackTrace();
                         }
                         orders = currentList;
+
+                        TextView t = findViewById(R.id.bookingHistoryPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                         buildRecyclerView();
                     }
                 },
