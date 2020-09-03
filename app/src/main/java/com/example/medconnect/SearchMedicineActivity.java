@@ -55,47 +55,6 @@ public class SearchMedicineActivity extends BaseActivity {
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
 
-        /*
-
-            this searching logic is for customers
-        */
-
-        //create a list instead of database(which we will be using after few days)
-
-        /*
-
-        *
-        * my logic
-        * for search bar ,which customer is going to use,for that when we will be using database ,we will keep some priority
-        * for some medicine whenever customer uses search bar to find medicine,we will be retrieving only 10 medicine items(if possible)
-        * from database based on two criteria:-
-        *
-        *   1.)Firstly,we will check whether that particular medicine item(which contains shop name,license no,location as parameters) is available or not.Then,we will try to display those shops or those
-        *       medicine items which contains stock of that particular medicine.
-        *   2.)If all or more that 10 medicine items exists in database where that particular medicine is available at that particular time,then our
-        *       search algorithm will try to find top 10 nearest shops with available tag.
-        *
-        *
-        *
-        * Applying this in our app will reduce mir sameed's work regarding map API as he just needs to fetch user's current location and shop location which he can easily fetch
-        * the medicineItem.Afterwards,google map api will try to show user shortest path from that particular location.
-        *
-        *
-        * */
-
-        //MedicineItem is a class consists of 3 member variables
-
-        /*
-        * 1.) private imageR
-        * 2.) private text1(name of medicine)
-        * 3.) private (manufacturer)
-        * few more parameters will be added,this component i am making just for demo purpose
-        * in reality ,we need to use mir sameed customer component instead of this dummy component
-        * Also,we need to change some few member variables and we may need to add more member variables
-        * That component should be clickable.
-        * */
-
-
         this.createList();
         this.buildRecycleView();
 
@@ -118,37 +77,16 @@ public class SearchMedicineActivity extends BaseActivity {
             }
         });
 
-
-
-
-
-
-
-
-
     }
 
 
     private void filter(String s){
-//        ArrayList<MedicineItem> filteredList = new ArrayList<>();
-//        for(MedicineItem medItem:this.medicineList){
-//            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
-//                filteredList.add(medItem);
-//            }
-//        }
-//
-//        this.mRecyclerViewAdapter.filterList(filteredList);
-
         this.APICall(s);
     }
 
 
-
     private void createList(){
         this.medicineList = new ArrayList<>();
-
-
-
     }
 
     private void buildRecycleView(){
@@ -206,7 +144,7 @@ public class SearchMedicineActivity extends BaseActivity {
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
-                                filteredList.add(new MedicineItem(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength")));
+                                filteredList.add(new MedicineItem(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength"),jsonObject.getBoolean("prescription")));
 
                             }
 

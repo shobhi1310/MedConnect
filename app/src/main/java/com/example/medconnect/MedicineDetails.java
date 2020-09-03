@@ -114,7 +114,7 @@ public class MedicineDetails extends AppCompatActivity {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(quantity != 0) {
+                if(!medicineItem.getPrescription()) {
                     Intent intent = new Intent(MedicineDetails.this, BookMedicine.class);
                     intent.putExtra("Shop", shop);
                     intent.putExtra("Medicine", medicineItem);
@@ -122,7 +122,11 @@ public class MedicineDetails extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Please select quantity of product", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MedicineDetails.this, PrescriptionUploadActivity.class);
+                    intent.putExtra("Shop", shop);
+                    intent.putExtra("Medicine", medicineItem);
+                    intent.putExtra("Quantity", quantity);
+                    startActivity(intent);
                 }
             }
         });

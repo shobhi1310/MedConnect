@@ -9,14 +9,16 @@ public class MedicineItem implements Serializable {
 //    private boolean status;
     private String weight;
     private String id;
+    private Boolean prescription;
 
-    public MedicineItem(String id,String medicineName,String manufacturer,String weight){
+    public MedicineItem(String id,String medicineName,String manufacturer,String weight, Boolean prescription){
 //        this.imageR = imageR;
         this.id=id;
         this.medicineName = medicineName;
         this.manufacturer=manufacturer;
 //        this.status=status;
         this.weight=weight;
+        this.prescription = prescription;
     }
 
 
@@ -42,6 +44,7 @@ public class MedicineItem implements Serializable {
         return this.weight;
     }
 
+    public Boolean getPrescription() { return this.prescription; }
 
 //    public boolean getStatus(){
 //        return this.status;
