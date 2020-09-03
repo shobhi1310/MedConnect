@@ -156,9 +156,13 @@ public class LoginActivity extends AppCompatActivity {
         String name = jsonObject.getString("name");
         String email = jsonObject.getString("email_id");
         String phone = jsonObject.getString("phone");
+
         if(isCustomer == false) {
             String address = jsonObject.getString("address");
             editor.putString("ADDRESS", address);
+            editor.putString("LOGGEDINAS", "SHOPOWNER");
+        } else {
+            editor.putString("LOGGEDINAS", "CUSTOMER");
         }
 
 //        Toast.makeText(getApplicationContext(), id + " " + name, Toast.LENGTH_LONG).show();

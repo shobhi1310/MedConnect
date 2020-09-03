@@ -1,6 +1,8 @@
 package com.example.medconnect.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +42,7 @@ public class CustomerFragment extends Fragment {
     String Email;
     String Password;
     RequestQueue queue ;
+    public static final String Data = "StoredData";
 
 
     public void APIcallForRegistration(final String name, final String email,final String phone, final String password) {
@@ -53,6 +56,12 @@ public class CustomerFragment extends Fragment {
                     public void onResponse(String response) {
 
                         Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+                        try {
+                            saveData(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         Intent intent = new Intent(getActivity(), GetStartedActivity.class);
                         intent.putExtra("customer", true);
                         startActivity(intent);
@@ -110,6 +119,7 @@ public class CustomerFragment extends Fragment {
 
                 //now we will register user(customer and not shopOwner)
                 //APIcallForRegistration(Name, Email, Mobile, Password);
+
                 Intent intent = new Intent(getActivity(), GetStartedActivity.class);
                 intent.putExtra("customer", true);
                 startActivity(intent);
@@ -119,4 +129,24 @@ public class CustomerFragment extends Fragment {
 
         return view;
     }
+
+    public void saveData(String response) throws JSONException {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(Data, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        JSONObject jsonObject = new JSONObject(response);
+        String id = jsonObject.getString("_id");
+        String name = jsonObject.getString("name");
+        String email = jsonObject.getString("email_id");
+        String phone = jsonObject.getString("phone");
+//        Toast.makeText(getApplicationContext(), id + " " + name, Toast.LENGTH_LONG).show();
+        editor.putString("LOGGEDINAS", "CUSTOMER");
+        editor.putString("ID", id);
+        editor.putString("NAME", name);
+        editor.putString("EMAIL", email);
+        editor.putString("PHONE", phone);
+
+        editor.apply();
+    }
+
 }

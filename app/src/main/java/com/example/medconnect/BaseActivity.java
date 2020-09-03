@@ -31,8 +31,10 @@ import com.google.android.material.navigation.NavigationView;
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
+
     protected void onCreate(Bundle savedInstanceState,int layoutId) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
@@ -79,6 +81,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.apply();
                     break;
                 case R.id.contact:
                     break;

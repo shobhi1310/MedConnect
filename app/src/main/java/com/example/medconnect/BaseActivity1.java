@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 public abstract class BaseActivity1 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String Data = "StoredData";
+
     protected void onCreate(Bundle savedInstanceState,int layoutId) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
@@ -62,6 +66,10 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.apply();
                     break;
                 case R.id.contact:
                     break;

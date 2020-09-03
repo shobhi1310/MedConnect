@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "MedConnect"
+rootProject.name = "splash_medconnect"
