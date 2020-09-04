@@ -112,7 +112,6 @@ public class SelectShop extends  AppCompatActivity{
 //                startActivity(intent);
 //            }
 //        });
-
     }
 
     private void APICall(String id){

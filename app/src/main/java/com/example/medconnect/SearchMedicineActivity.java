@@ -118,8 +118,6 @@ public class SearchMedicineActivity extends BaseActivity {
 
     }
 
-
-
     private void APICall(String s){
         spinner.setVisibility(View.VISIBLE);
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
@@ -141,18 +139,12 @@ public class SearchMedicineActivity extends BaseActivity {
 //                            JSONArray resultList = result.getJSONArray("item");
                             //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
 
-
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
                                 filteredList.add(new MedicineItem(jsonObject.getString("_id"),jsonObject.getString("name"),jsonObject.getString("manufacturer"),jsonObject.getString("strength"),jsonObject.getBoolean("prescription")));
 
                             }
-
-
-
-
 
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
@@ -162,17 +154,14 @@ public class SearchMedicineActivity extends BaseActivity {
 
                         spinner.setVisibility(View.GONE);
 
-
                         TextView t = findViewById(R.id.searchMedicinePrompt);
-                        if(medicineList.size()>0){
+                        if(medicineList.size() > 0){
                             utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{
                             t.setVisibility(View.VISIBLE);
                         }
-
-
 
                         mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)

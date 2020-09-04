@@ -45,8 +45,7 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
     public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
         map=googleMap;
         Intent intent=getIntent();
-        LatLng home= new LatLng(17.402203, 78.403849
-        );
+
         LatLng shop=new LatLng(intent.getDoubleExtra("latitude",0), intent.getDoubleExtra("longitude",0));
         map.addMarker(new MarkerOptions().position(shop).title(intent.getStringExtra("shopName")));
 //        map.addMarker(new MarkerOptions().position(home).title("Home"));

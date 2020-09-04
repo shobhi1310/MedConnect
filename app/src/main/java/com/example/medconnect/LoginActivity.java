@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
         custOrShop = findViewById(R.id.customerOrShopOwner);
 
-         customSpinner= new CustomSpinner(LoginActivity.this);
+        customSpinner= new CustomSpinner(LoginActivity.this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
