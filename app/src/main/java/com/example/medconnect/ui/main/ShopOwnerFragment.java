@@ -3,18 +3,29 @@ package com.example.medconnect.ui.main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.medconnect.GetStartedActivity;
 import com.example.medconnect.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +50,60 @@ public class ShopOwnerFragment extends Fragment {
     String License;
     public static final String Data = "StoredData";
 
+    public void APIcallForRegistration(final String shopName, final String email,final String phone, final String password,final String address, final String license) {
+        String url = "https://glacial-caverns-39108.herokuapp.com/user/register";
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+                        try {
+                            saveData(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                        intent.putExtra("customer", false);
+                        startActivity(intent);
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "bye register", Toast.LENGTH_LONG).show();
+                Log.d("Error.Response", String.valueOf(error));
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                String res = "false";
+                params.put("name",shopName);
+                params.put("email", email);
+                params.put("phone",phone);
+                params.put("password",password);
+                params.put("address",address);
+                params.put("license",license);
+                params.put("isCustomer",res);
+                return params;
+            }
+
+        };
+
+        stringRequest.setTag("ShopOwnerFragment");
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,17 +127,18 @@ public class ShopOwnerFragment extends Fragment {
                 Address = address.getText().toString();
                 License = license.getText().toString();
 
-                Toast.makeText(getActivity(), ShopName + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
-                intent.putExtra("customer",false);
-                startActivity(intent);
+                APIcallForRegistration(ShopName,Email,Mobile,Password,Address,License);
+
+//                Toast.makeText(getActivity(), ShopName + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+//                intent.putExtra("customer",false);
+//                startActivity(intent);
 
             }
         });
 
         return view;
     }
-
     public void saveData(String response) throws JSONException {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(Data, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
