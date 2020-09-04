@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
         public TextView shopAddress;
         public TextView shopMobile;
         public TextView bookingDate;
+        public Button  locateMap;
 
 
 
@@ -36,6 +38,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
             shopAddress = itemView.findViewById(R.id.shopAddress);
             shopMobile = itemView.findViewById(R.id.shopMobile);
             bookingDate=itemView.findViewById(R.id.bookingDate);
+            locateMap = itemView.findViewById(R.id.locateMap);
 
         }
     }
@@ -48,6 +51,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
     @Override
     public CustomerBookingHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_booking_history_card,parent,false);
+
         CustomerBookingHistoryViewHolder svh= new CustomerBookingHistoryViewHolder(v);
         return svh;
     }
