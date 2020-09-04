@@ -43,7 +43,6 @@ public class MedicineDetails extends AppCompatActivity {
         TextView medicine_weight = (TextView)findViewById(R.id.medicine_weight);
         TextView mfg_name = (TextView)findViewById(R.id.mfg_name);
         Button book = (Button)findViewById(R.id.book_button);
-//        ImageView medicine_image = (ImageView)findViewById(R.id.medicine_image);
 
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         ArrayList<Integer> arrayList = new ArrayList<>();
