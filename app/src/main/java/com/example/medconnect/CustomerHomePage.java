@@ -99,14 +99,14 @@ public class CustomerHomePage extends BaseActivity {
     private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
-        if(orders.size() > 0) {
-            buildRecyclerView();
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.INVISIBLE);
-        } else {
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.VISIBLE);
-        }
+//        if(orders.size() > 0) {
+        buildRecyclerView();
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.INVISIBLE);
+//        } else {
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.VISIBLE);
+//        }
     }
 
     private void buildRecyclerView() {
@@ -170,16 +170,23 @@ public class CustomerHomePage extends BaseActivity {
                         ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
                         try {
                             JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
-                            for(int i=0;i<result.length();i++){
-                                JSONObject jsonObject = result.getJSONObject(i);
-                                JSONObject medicine = jsonObject.getJSONObject("medicine_id");
-                                JSONObject shop = jsonObject.getJSONObject("shop_id");
-                                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                                String string1 = jsonObject.getString("createdAt");
-                                Date result1 = df1.parse(string1);
-                                String dateString = result1.toString();
-                                Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString));
+                            if(result.length()==0){
+                                TextView t = findViewById(R.id.noBookingsPrompt);
+                                t.setVisibility(View.VISIBLE);
+                            }else {
+                                TextView t = findViewById(R.id.noBookingsPrompt);
+                                t.setVisibility(View.INVISIBLE);
+                                for (int i = 0; i < result.length(); i++) {
+                                    JSONObject jsonObject = result.getJSONObject(i);
+                                    JSONObject medicine = jsonObject.getJSONObject("medicine_id");
+                                    JSONObject shop = jsonObject.getJSONObject("shop_id");
+                                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                                    String string1 = jsonObject.getString("createdAt");
+                                    Date result1 = df1.parse(string1);
+                                    String dateString = result1.toString();
+                                    Log.d("date", dateString);
+                                    currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString));
+                                }
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();

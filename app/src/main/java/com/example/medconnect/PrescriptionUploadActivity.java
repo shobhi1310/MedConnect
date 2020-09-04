@@ -92,10 +92,11 @@ public class PrescriptionUploadActivity extends AppCompatActivity {
             //pdfUri = data.getData(); // return the uri of selected file
             imagePreview.setImageURI(data.getData());
             upload.setVisibility(View.VISIBLE);
-//            file.setVisibility(View.VISIBLE);
+            file.setVisibility(View.VISIBLE);
+            path = data.getData().getPath();
 //            path = getPathFromURI(data.getData());
 //            Log.d("ImagePath",path);
-//            file.setText(path);
+            file.setText(path);
         } else {
             Toast.makeText(PrescriptionUploadActivity.this, "please select a file..", Toast.LENGTH_SHORT).show();
         }
