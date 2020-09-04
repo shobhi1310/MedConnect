@@ -116,6 +116,22 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:text="12/08/2020" />
     </LinearLayout>
 
+
+    <Button
+        android:id="@+id/locateMap"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="@dimen/appbar_padding"
+        android:background="@drawable/background"
+        android:text="Locate"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </LinearLayout>
 
 </androidx.cardview.widget.CardView>

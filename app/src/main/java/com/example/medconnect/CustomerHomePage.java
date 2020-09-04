@@ -75,6 +75,10 @@ public class CustomerHomePage extends BaseActivity {
                 startActivity(i);
             }
         });
+
+
+
+
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
@@ -151,7 +155,10 @@ public class CustomerHomePage extends BaseActivity {
         orders= new ArrayList<CustomerBookingHistoryCard>();
         Intent intent = getIntent();
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        customerId = sharedPreferences.getString("ID", "");
+        customerId = sharedPreferences.getString("ID", "5f467f770a31d232e88916e9");
+
+        Log.d("customerId",customerId);
+
         this.APICall(customerId);
 
     }
@@ -169,6 +176,7 @@ public class CustomerHomePage extends BaseActivity {
                     public void onResponse(String response) {
                         ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
                         try {
+                            Log.d("response for currentBookings",response);
                             JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
                             if(result.length()==0){
                                 TextView t = findViewById(R.id.noBookingsPrompt);

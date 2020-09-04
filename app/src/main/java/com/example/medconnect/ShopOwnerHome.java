@@ -268,10 +268,10 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     private void updateStatusAPI(String id){
-
+       // Log.d("ShopOwner",shopOwnerID);
 //        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/update/"+id;
-        String url="https://glacial-caverns-39108.herokuapp.com/shop/+"+ shopOwnerID +"/update/"+id;
-
+        String url="https://glacial-caverns-39108.herokuapp.com/shop/"+ shopOwnerID +"/update/"+id;
+        //Log.d("update",url);
         queue.cancelAll("Update Status");
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -279,7 +279,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-
+                            Log.d("update",response);
 
                             Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
 
