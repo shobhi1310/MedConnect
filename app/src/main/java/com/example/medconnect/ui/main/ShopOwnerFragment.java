@@ -18,7 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.medconnect.CustomSpinner;
 import com.example.medconnect.GetStartedActivity;
+import com.example.medconnect.LoginActivity;
 import com.example.medconnect.R;
 
 import org.json.JSONException;
@@ -48,6 +50,7 @@ public class ShopOwnerFragment extends Fragment {
     String Password;
     String Address;
     String License;
+    CustomSpinner customSpinner;
     public static final String Data = "StoredData";
 
     public void APIcallForRegistration(final String shopName, final String email,final String phone, final String password,final String address, final String license) {
@@ -116,6 +119,8 @@ public class ShopOwnerFragment extends Fragment {
         address = (EditText)view.findViewById(R.id.shopAddress);
         license = (EditText)view.findViewById(R.id.shopLicense);
         register = (Button) view.findViewById(R.id.shopRegister);
+       // customSpinner= new CustomSpinner(ShopOwnerFragment.this);
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
