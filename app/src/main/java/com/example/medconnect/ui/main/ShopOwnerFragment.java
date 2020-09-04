@@ -119,7 +119,7 @@ public class ShopOwnerFragment extends Fragment {
         address = (EditText)view.findViewById(R.id.shopAddress);
         license = (EditText)view.findViewById(R.id.shopLicense);
         register = (Button) view.findViewById(R.id.shopRegister);
-       // customSpinner= new CustomSpinner(ShopOwnerFragment.this);
+        //customSpinner= new CustomSpinner(this.getActivity());
 
 
         register.setOnClickListener(new View.OnClickListener() {
