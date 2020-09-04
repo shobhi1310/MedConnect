@@ -83,7 +83,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.clear();
+                    editor.remove("ID");
+                    editor.remove("NAME");
+                    editor.remove("LOGGEDINAS");
+                    editor.remove("PHONE");
+                    editor.remove("EMAIL");
                     editor.apply();
                     break;
                 case R.id.contact:

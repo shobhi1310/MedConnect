@@ -1,6 +1,7 @@
 package com.example.medconnect;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 public class ShopOwnerAddMedicine extends AppCompatActivity {
 
     RequestQueue queue;
+    public static final String Data = "StoredData";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,8 +77,10 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
     }
 
     private void addMedicineAPI(String id, final String textButton){
+        SharedPreferences sharedPreferences= getSharedPreferences(Data,MODE_PRIVATE);
+        String shopID=sharedPreferences.getString("ID","");
 
-        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/addMedicine/"+id;
+        String url="https://glacial-caverns-39108.herokuapp.com/shop/"+shopID+"/addMedicine/"+id;
 
         queue.cancelAll("Add Medicine");
 

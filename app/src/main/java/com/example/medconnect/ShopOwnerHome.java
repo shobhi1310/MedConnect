@@ -70,8 +70,7 @@ public class ShopOwnerHome extends  BaseActivity1{
 
         SharedPreferences sharedPreferences= getSharedPreferences(Data,MODE_PRIVATE);
         shopOwnerID=sharedPreferences.getString("ID","");
-
-
+        Log.d("URL",shopOwnerID);
 
         createList();
         buildRecyclerView();
@@ -217,10 +216,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     private void APICall() {
-
-//        String url = "https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/5f47e5ea174464ed81cc5100";
         String url = "https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/"+shopOwnerID;
-
 
 
         queue.cancelAll("MedicineList");

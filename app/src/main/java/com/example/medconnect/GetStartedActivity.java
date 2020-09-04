@@ -87,7 +87,15 @@ public class GetStartedActivity extends AppCompatActivity {
         latitude = sp.getString("LATITUDE","");
         longitude = sp.getString("LONGITUDE","");
         Log.d("Coordinates",latitude+" "+longitude);
-        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
+        Intent intent = getIntent();
+        boolean isCustomer = intent.getBooleanExtra("customer",false);
+        DistanceCalculator dc;
+        if(isCustomer){
+             dc= new DistanceCalculator(this,latitude,longitude);
+        }
+        else{
+
+        }
         //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
