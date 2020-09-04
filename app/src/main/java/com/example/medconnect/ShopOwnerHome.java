@@ -243,6 +243,18 @@ public class ShopOwnerHome extends  BaseActivity1{
                             Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         Medicines = filteredList;
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(Medicines.size()>0){
+                            Utils utils = new Utils();
+                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                         originalMedicineList.addAll(filteredList);
 //                        buildRecyclerView();
                         mAdapter.filterList(filteredList);
