@@ -109,7 +109,6 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
 
                         spinner.setVisibility(View.GONE);
 
-
                         TextView t = findViewById(R.id.bookingHistoryPrompt);
                         if(orders.size()>0){
                             t.setVisibility(View.INVISIBLE);
@@ -117,7 +116,6 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
                         else{
                             t.setVisibility(View.VISIBLE);
                         }
-
 
                         buildRecyclerView();
                     }

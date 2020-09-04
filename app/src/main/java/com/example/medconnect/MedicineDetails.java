@@ -56,8 +56,6 @@ public class MedicineDetails extends AppCompatActivity {
         //Intent
         Intent intent= getIntent();
 
-
-
         if(intent.getExtras()!=null){
 
              shop= (SelectShopCard) intent.getSerializableExtra("Shop");
