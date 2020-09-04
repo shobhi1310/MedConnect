@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -40,7 +41,7 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
     private ArrayList<ShopOwnerBookingHistoryCard> orders;
     private ProgressBar spinner;
     private RequestQueue queue;
-
+    public static final String Data = "StoredData";
 
 
     @Override
@@ -59,7 +60,9 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
     public void createExampleList() {
         orders= new ArrayList<>();
         Intent intent = getIntent();
-        this.APICall("lala");
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        String id = sharedPreferences.getString("ID", "");
+        this.APICall(id);
 
     }
 
@@ -75,7 +78,7 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
     }
     private void APICall(String id){
         spinner.setVisibility(View.VISIBLE);
-        String url = "https://glacial-caverns-39108.herokuapp.com/booking/past/5f467f770a31d232e88916e9";
+        String url = "https://glacial-caverns-39108.herokuapp.com/booking/past/" + id;
 
         queue.cancelAll("PastBookings");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
