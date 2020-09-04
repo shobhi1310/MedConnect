@@ -109,7 +109,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
                                 Date result1 = df1.parse(string1);
                                 String dateString = result1.toString();
                                 Log.d("date",dateString);
-                                pastList.add(new ShopOwnerCurrentBookingsCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),customer.getString("name"),customer.getString("phone"),dateString,"18:00"));
+                                pastList.add(new ShopOwnerCurrentBookingsCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),customer.getString("name"),customer.getString("phone"),dateString,jsonObject.getString("deadline")));
                             }
                         }catch (JSONException e) {
                             Toast.makeText(ShopOwnerCurrentBookings.this, e.getMessage(), Toast.LENGTH_LONG).show();

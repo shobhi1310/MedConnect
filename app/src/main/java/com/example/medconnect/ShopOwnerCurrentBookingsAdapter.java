@@ -32,6 +32,7 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
         public TextView customerName;
         public TextView customerMobile;
         public TextView bookingDate;
+        public TextView deadline;
 
 
 
@@ -44,6 +45,7 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
             customerName = itemView.findViewById(R.id.customerName);
             customerMobile = itemView.findViewById(R.id.customerMobile);
             bookingDate = itemView.findViewById(R.id.bookingDate);
+            deadline=itemView.findViewById(R.id.deadline);
 
         }
     }
@@ -69,6 +71,7 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
         holder.customerName.setText(card.getCustomerName());
         holder.customerMobile.setText(card.getCustomerMobile());
         holder.bookingDate.setText(card.getBookingDate());
+        holder.deadline.setText(card.getDeadline());
 
 
     }
