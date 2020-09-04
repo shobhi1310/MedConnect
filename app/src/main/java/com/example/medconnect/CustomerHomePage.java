@@ -155,7 +155,7 @@ public class CustomerHomePage extends BaseActivity {
         orders= new ArrayList<CustomerBookingHistoryCard>();
         Intent intent = getIntent();
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        customerId = sharedPreferences.getString("ID", "5f467f770a31d232e88916e9");
+        customerId = sharedPreferences.getString("ID", "");
 
         Log.d("customerId",customerId);
 
