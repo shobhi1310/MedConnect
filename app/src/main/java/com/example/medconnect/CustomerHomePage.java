@@ -77,8 +77,6 @@ public class CustomerHomePage extends BaseActivity {
         });
 
 
-
-
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
