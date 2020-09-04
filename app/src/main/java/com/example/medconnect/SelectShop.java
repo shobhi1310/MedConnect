@@ -70,8 +70,6 @@ public class SelectShop extends  AppCompatActivity{
         this.APICall(intent.getStringExtra("id"));
         Log.d("Array ShopList",shops.toString());
 
-
-
     }
 
     public void buildRecyclerView() {
@@ -179,7 +177,7 @@ public class SelectShop extends  AppCompatActivity{
         SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
         String response = sp.getString("SHOPLIST","");
         //Log.d("Extractor res",response);
-        String converted = "{shopLists:"+response+"}";
+        String converted = "{shopLists:" + response + "}";
         JSONArray result = null;
         try {
             result = new JSONObject(converted).getJSONArray("shopLists");
