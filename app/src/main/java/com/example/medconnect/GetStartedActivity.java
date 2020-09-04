@@ -23,12 +23,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
@@ -43,6 +56,7 @@ public class GetStartedActivity extends AppCompatActivity {
     public static final String Data = "StoredData";
     String latitude;
     String longitude;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +66,8 @@ public class GetStartedActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_get_started);
+
+        queue= Volley.newRequestQueue(this);
 
 //        getSupportActionBar().hide();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -87,6 +103,7 @@ public class GetStartedActivity extends AppCompatActivity {
         latitude = sp.getString("LATITUDE","");
         longitude = sp.getString("LONGITUDE","");
         Log.d("Coordinates",latitude+" "+longitude);
+        
         DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
         //saveSortedShops(dc.getSortedShopList());
     }
@@ -165,6 +182,66 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    private void APICall(String id) {
+
+        String url = "https://glacial-caverns-39108.herokuapp.com/shop/location" + id;
+
+        queue.cancelAll("CurrentBookings");
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
+                        try {
+                            Log.d("response for currentBookings",response);
+                            JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
+                            Log.d("currentList for bookings", String.valueOf(result));
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject = result.getJSONObject(i);
+                                JSONObject medicine = jsonObject.getJSONObject("medicine_id");
+                                JSONObject shop = jsonObject.getJSONObject("shop_id");
+                                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                                String string1 = jsonObject.getString("createdAt");
+                                Date result1 = df1.parse(string1);
+                                String dateString = result1.toString();
+                                Log.d("date",dateString);
+                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString));
+                            }
+                        }catch (JSONException e) {
+                            Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        orders = currentList;
+
+                        spinner.setVisibility(View.GONE);
+
+
+                        TextView t = findViewById(R.id.noBookingsPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
+                        buildRecyclerView();
+                    }
+                },
+                new Response.ErrorListener() {
+                    // 4th param - method onErrorResponse lays the code procedure of error return
+                    // ERROR
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // display a simple message on the screen
+                        Toast.makeText(CustomerHomePage.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                });
+        stringRequest.setTag("CurrentBookings");
+        queue.add(stringRequest);
+    }
 
 //    public  void saveSortedShops(List<JSONObject> shopList){
 //        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
