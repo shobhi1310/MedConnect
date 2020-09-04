@@ -45,6 +45,7 @@ public class SearchMedicineActivity extends BaseActivity {
     private ArrayList<MedicineItem> medicineList;
     private ProgressBar spinner;
     private RequestQueue queue;
+    Utils utils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class SearchMedicineActivity extends BaseActivity {
         toolbar_title.setText("Search Medicine");
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
+        utils=new Utils();
 
         this.createList();
         this.buildRecycleView();
@@ -163,6 +165,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
                         if(medicineList.size()>0){
+                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{
