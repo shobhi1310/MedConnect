@@ -70,6 +70,7 @@ public class ShopOwnerHome extends  BaseActivity1{
 
         SharedPreferences sharedPreferences= getSharedPreferences(Data,MODE_PRIVATE);
         shopOwnerID=sharedPreferences.getString("ID","");
+        Log.d("URL",shopOwnerID);
 
         createList();
         buildRecyclerView();
@@ -217,6 +218,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     private void APICall() {
         String url = "https://glacial-caverns-39108.herokuapp.com/shop/medicinelist/"+shopOwnerID;
 
+
         queue.cancelAll("MedicineList");
         final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -241,6 +243,18 @@ public class ShopOwnerHome extends  BaseActivity1{
                             Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         Medicines = filteredList;
+
+                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        if(Medicines.size()>0){
+                            Utils utils = new Utils();
+                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
+                            t.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
+
+
                         originalMedicineList.addAll(filteredList);
 //                        buildRecyclerView();
                         mAdapter.filterList(filteredList);

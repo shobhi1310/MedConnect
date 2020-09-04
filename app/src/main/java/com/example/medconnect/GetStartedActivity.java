@@ -42,7 +42,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
@@ -103,8 +105,17 @@ public class GetStartedActivity extends AppCompatActivity {
         latitude = sp.getString("LATITUDE","");
         longitude = sp.getString("LONGITUDE","");
         Log.d("Coordinates",latitude+" "+longitude);
-        
-        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
+        Intent intent = getIntent();
+        boolean isCustomer = intent.getBooleanExtra("customer",false);
+        DistanceCalculator dc;
+        if(isCustomer){
+             dc= new DistanceCalculator(this,latitude,longitude);
+        }
+        else{
+            SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+            String shopID = sharedPreferences.getString("ID", "");
+            APICallforShop(shopID);
+        }
         //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
@@ -138,9 +149,6 @@ public class GetStartedActivity extends AppCompatActivity {
                         .show();
             }
             else {
-                //asking for the first time
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
                 ActivityCompat.requestPermissions(GetStartedActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION);
             }
         }
@@ -182,74 +190,35 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void APICall(String id) {
-
+    private void APICallforShop(String id) {
         String url = "https://glacial-caverns-39108.herokuapp.com/shop/location" + id;
 
-        queue.cancelAll("CurrentBookings");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        queue.cancelAll("ShopLocation");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
-                        try {
-                            Log.d("response for currentBookings",response);
-                            JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
-                            Log.d("currentList for bookings", String.valueOf(result));
-                            for(int i=0;i<result.length();i++){
-                                JSONObject jsonObject = result.getJSONObject(i);
-                                JSONObject medicine = jsonObject.getJSONObject("medicine_id");
-                                JSONObject shop = jsonObject.getJSONObject("shop_id");
-                                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                                String string1 = jsonObject.getString("createdAt");
-                                Date result1 = df1.parse(string1);
-                                String dateString = result1.toString();
-                                Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString));
-                            }
-                        }catch (JSONException e) {
-                            Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                        catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        orders = currentList;
 
-                        spinner.setVisibility(View.GONE);
+                        Toast.makeText(GetStartedActivity.this, response, Toast.LENGTH_SHORT).show();
 
-
-                        TextView t = findViewById(R.id.noBookingsPrompt);
-                        if(orders.size()>0){
-                            t.setVisibility(View.INVISIBLE);
-                        }
-                        else{
-                            t.setVisibility(View.VISIBLE);
-                        }
-
-
-                        buildRecyclerView();
                     }
                 },
                 new Response.ErrorListener() {
-                    // 4th param - method onErrorResponse lays the code procedure of error return
-                    // ERROR
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
-                        Toast.makeText(CustomerHomePage.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                        Toast.makeText(GetStartedActivity.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
-                });
-        stringRequest.setTag("CurrentBookings");
+                }){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("latitude", latitude);
+                params.put("longitude", longitude);
+                return params;
+            }
+        };
+        stringRequest.setTag("ShopLocation");
         queue.add(stringRequest);
     }
-
-//    public  void saveSortedShops(List<JSONObject> shopList){
-//        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Log.d("Save Sorted Shops","Here");
-//
-//        editor.putString("SHOPLIST", shopList.toString());
-//        editor.apply();
-//    }
-
 }

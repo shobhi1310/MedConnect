@@ -120,9 +120,9 @@ public class CustomerFragment extends Fragment {
                 //now we will register user(customer and not shopOwner)
                 APIcallForRegistration(Name, Email, Mobile, Password);
 
-                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
-                intent.putExtra("customer", true);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+//                intent.putExtra("customer", true);
+//                startActivity(intent);
 
             }
         });
