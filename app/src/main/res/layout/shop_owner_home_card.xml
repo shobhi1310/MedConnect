@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
-    app:cardBackgroundColor="#D0C2EF"
+    app:cardBackgroundColor="#E203A9F4"
     app:cardCornerRadius="6dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
@@ -76,7 +76,7 @@
                 android:lineSpacingExtra="24sp"
                 android:text="Available"
                 android:textAlignment="viewStart"
-                android:textColor="#0A710E"
+                android:textColor="#10655D"
                 android:textSize="18sp" />
 
             <LinearLayout
