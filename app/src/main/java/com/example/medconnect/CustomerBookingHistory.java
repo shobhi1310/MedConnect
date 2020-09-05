@@ -94,6 +94,37 @@ public class CustomerBookingHistory extends  BaseActivity{
         mRecyclerView.setLayoutManager(mLayout );
         mRecyclerView.setAdapter(mAdapter);
 
+
+//        this.mAdapter.setOnItemCLickListener(new CustomerBookingHistory.OnItemClickListener() {
+////            @Override
+////            public void onDeleteClick(int position) {
+////                String id=Medicines.get(position).getId();
+////
+////                Medicines.remove(position);
+////                removeMedicineAPI(id);
+////                mAdapter.notifyItemRemoved(position);
+////            }
+////
+////            @Override
+////            public void updateStatus(int position) {
+////                if(Medicines.get(position).getStatus()){
+////                    Medicines.get(position).setStatus(false);
+////
+////                }else{
+////                    Medicines.get(position).setStatus(true);
+////
+////                }
+////                updateStatusAPI(Medicines.get(position).getId());
+////                mAdapter.notifyItemChanged(position);
+////            }
+//
+//            @Override
+//            public void OnClickToLocate(){
+//
+//            }
+//
+//        } );
+
     }
 
     private void APICall(String id){
@@ -105,6 +136,7 @@ public class CustomerBookingHistory extends  BaseActivity{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("response for booking history card",response);
                         ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
                         try {
                             JSONArray result = new JSONObject(response).getJSONArray("AllPastBookings");
@@ -112,12 +144,15 @@ public class CustomerBookingHistory extends  BaseActivity{
                                 JSONObject jsonObject = result.getJSONObject(i);
                                 JSONObject medicine = jsonObject.getJSONObject("medicine_id");
                                 JSONObject shop = jsonObject.getJSONObject("shop_id");
+                                JSONArray coordinates = shop.getJSONArray("location");
+                                double longitude = coordinates.getDouble(1);
+                                double latitude = coordinates.getDouble(0);
                                 DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                                 String string1 = jsonObject.getString("createdAt");
                                 Date result1 = df1.parse(string1);
                                 String dateString = result1.toString();
                                 Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,"",true));
+                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,"",true,latitude,longitude));
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerBookingHistory.this, e.getMessage(), Toast.LENGTH_LONG).show();
