@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,8 @@ public class CustomerHomePage extends BaseActivity {
     private ArrayList<CustomerBookingHistoryCard> orders;
     boolean doubleBackToExitPressedOnce = false;
     private RequestQueue queue;
-
+    private MenuItem item;
+    private NavigationView nav;
     private ProgressBar spinner;
 
     SwipeRefreshLayout swipe;
@@ -67,7 +69,8 @@ public class CustomerHomePage extends BaseActivity {
         swipe.setColorSchemeColors(R.color.background);
         toolbar_title.setText("Home");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
-
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +79,7 @@ public class CustomerHomePage extends BaseActivity {
             }
         });
 
-
+        item.setEnabled(false);
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
@@ -191,7 +194,7 @@ public class CustomerHomePage extends BaseActivity {
                                     Date result1 = df1.parse(string1);
                                     String dateString = result1.toString();
                                     Log.d("date", dateString);
-                                    currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString));
+                                    currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString , jsonObject.getString("deadline"), false));
                                 }
                             }
                         }catch (JSONException e) {
