@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -39,7 +40,10 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
 
         final Intent intent= getIntent();
         queue= Volley.newRequestQueue(this);
-
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         TextView medicine= findViewById(R.id.medicine);
         TextView manufacturer= findViewById(R.id.manufacturer);
@@ -125,6 +129,9 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
 
         // executing the request (adding to queue)
         queue.add(stringRequest);
-
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        finish();
+        return true;
     }
 }
