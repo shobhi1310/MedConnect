@@ -5,7 +5,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -44,10 +46,12 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
     private ProgressBar spinner;
     private RequestQueue queue;
     private MenuItem item;
+    SwipeRefreshLayout swipe;
     private NavigationView nav;
     public static final String Data = "StoredData";
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_booking_history);
@@ -57,12 +61,28 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
 
+        swipe = findViewById(R.id.swipeToRefresh);
+        swipe.setColorSchemeColors(R.color.background);
+
         nav = findViewById(R.id.navigation);
         item = nav.getMenu().getItem(2);
         item.setEnabled(false);
 
         createExampleList();
 //        buildRecyclerView();
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
+
+    }
+
+    private void shuffle() {
+        queue= Volley.newRequestQueue(this);
+        createExampleList();
     }
 
     public void createExampleList() {

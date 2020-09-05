@@ -60,7 +60,6 @@ public class CustomerHomePage extends BaseActivity {
     public static final String Data = "StoredData";
 //    Button locate;
 
-
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +85,7 @@ public class CustomerHomePage extends BaseActivity {
         queue= Volley.newRequestQueue(this);
 //        locate= (Button) findViewById(R.id.locateMap);
 
-
-
-
         createExampleList();
-
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -99,9 +94,6 @@ public class CustomerHomePage extends BaseActivity {
                 swipe.setRefreshing(false);
             }
         });
-
-
-
 
     }
 
