@@ -71,20 +71,20 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/addInventory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    app:srcCompat="@drawable/baseline_add_white_24"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintHorizontal_bias="0.954"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintVertical_bias="0.293"
-                    tools:layout_conversion_absoluteHeight="589dp"
-                    tools:layout_conversion_absoluteWidth="392dp" />
+<!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                    android:id="@+id/addInventory"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:clickable="true"-->
+<!--                    app:srcCompat="@drawable/baseline_add_white_24"-->
+<!--                    card_view:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    card_view:layout_constraintEnd_toEndOf="parent"-->
+<!--                    card_view:layout_constraintHorizontal_bias="0.954"-->
+<!--                    card_view:layout_constraintStart_toStartOf="parent"-->
+<!--                    card_view:layout_constraintTop_toTopOf="parent"-->
+<!--                    card_view:layout_constraintVertical_bias="0.293"-->
+<!--                    tools:layout_conversion_absoluteHeight="589dp"-->
+<!--                    tools:layout_conversion_absoluteWidth="392dp" />-->
 
                 <ProgressBar
                     android:id="@+id/progress_loader"
