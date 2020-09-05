@@ -55,7 +55,7 @@ public class ShopOwnerFragment extends Fragment {
 
     public void APIcallForRegistration(final String shopName, final String email,final String phone, final String password,final String address, final String license) {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/register";
-
+        customSpinner.startSpinner();
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -74,11 +74,11 @@ public class ShopOwnerFragment extends Fragment {
                         intent.putExtra("customer", false);
                         startActivity(intent);
                     }
-
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "bye register", Toast.LENGTH_LONG).show();
+                customSpinner.dismissSpinner();
                 Log.d("Error.Response", String.valueOf(error));
             }
         }){
@@ -119,7 +119,7 @@ public class ShopOwnerFragment extends Fragment {
         address = (EditText)view.findViewById(R.id.shopAddress);
         license = (EditText)view.findViewById(R.id.shopLicense);
         register = (Button) view.findViewById(R.id.shopRegister);
-        //customSpinner= new CustomSpinner(this.getActivity());
+        customSpinner= new CustomSpinner(this.getActivity());
 
 
         register.setOnClickListener(new View.OnClickListener() {
