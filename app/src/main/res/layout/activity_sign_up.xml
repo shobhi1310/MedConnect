@@ -20,29 +20,34 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
+            android:letterSpacing="0.08"
             android:minHeight="?actionBarSize"
-            android:paddingVertical="0dp"
             android:paddingHorizontal="10dp"
+
+            android:paddingVertical="0dp"
             android:text="Sign Up"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:contentDescription="Sign Up Page"
-            app:srcCompat="@drawable/baseline_person_add_black_48dp" />
+            app:srcCompat="@drawable/medicallogo" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabIndicatorColor="#E14BFB"
             app:tabTextAppearance="@style/TabTextItems"
-            app:tabTextColor="@color/black"
+            app:tabTextColor="@color/white"
             app:tabUnboundedRipple="false">
 
             <com.google.android.material.tabs.TabItem

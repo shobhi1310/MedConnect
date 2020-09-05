@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
+        <color android:color="#15294F">
         <shape>
             <corners
-                android:radius="18dp"/>
+                android:radius="0dp"/>
 
-            <gradient
-                android:angle="180"
-                android:type="linear"
-                android:startColor="#F2F2F2"
-                android:endColor="#35BEFB" />
+<!--            <gradient-->
+<!--                android:angle="180"-->
+<!--                android:type="linear"-->
+<!--                android:startColor="#15294F"-->
+<!--                android:endColor="#35BEFB" />-->
                 <!-- android:angle="45"
                 android:type="linear"
                 android:startColor="#C33764"
                 android:endColor="#1D2671" /> -->
         </shape>
+        </color>
     </item>
+
 </selector>
