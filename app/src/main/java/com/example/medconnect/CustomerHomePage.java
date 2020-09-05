@@ -64,6 +64,7 @@ public class CustomerHomePage extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
+//        overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         swipe = findViewById(R.id.swipeToRefresh);
         swipe.setColorSchemeColors(R.color.background);
