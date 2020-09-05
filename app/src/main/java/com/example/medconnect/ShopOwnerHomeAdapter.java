@@ -163,7 +163,7 @@ public class ShopOwnerHomeAdapter extends RecyclerView.Adapter<ShopOwnerHomeAdap
             holder.status.setTextColor(Color.parseColor("#0A710E"));
         } else {
             holder.status.setText("unavailable");
-            holder.status.setTextColor(Color.parseColor("#FFFF1744"));
+            holder.status.setTextColor(Color.parseColor("#B00020"));
         }
 
 
