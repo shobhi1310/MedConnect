@@ -44,12 +44,15 @@
                             android:layout_height="match_parent"
                             android:ems="13"
                             android:hint="SEARCH"
-
+                            android:background="@drawable/edittextstyle"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="12dp"
                             android:inputType="textPersonName"
-
-                            android:padding="20dp"
                             android:textSize="20dp" />
                     </LinearLayout>
+                        
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shopOwnerHomePageRecyclerView"
@@ -79,7 +82,9 @@
                     card_view:layout_constraintHorizontal_bias="0.954"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintVertical_bias="0.928" />
+                    card_view:layout_constraintVertical_bias="0.293"
+                    tools:layout_conversion_absoluteHeight="589dp"
+                    tools:layout_conversion_absoluteWidth="392dp" />
 
                 <ProgressBar
                     android:id="@+id/progress_loader"
@@ -105,6 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+                    
 
                 <FrameLayout
                     android:id="@+id/content_frame"
@@ -120,6 +126,22 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_main" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addInventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:clickable="true"
+            android:elevation="0dp"
+            app:srcCompat="@drawable/baseline_add_white_24"
+            card_view:borderWidth="0dp"
+            card_view:hoveredFocusedTranslationZ="0dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.98"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:pressedTranslationZ="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
