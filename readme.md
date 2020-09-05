@@ -1,6 +1,8 @@
-# Android Example Application
+# MedConnect
 
-This is an example Android Application README to show briefly the sections your app README should contain.
+A medicine search app for providing an ease of locating nearby medicine shops and medicine availibility.
+
+MedConnect is currently under heavy development. Note that some changes (such as database schema modifications) are not backwards compatible and may cause the app to crash. In this case, please uninstall and re-install the app.
 
 ## Installation
 Clone this repository and import into **Android Studio**
