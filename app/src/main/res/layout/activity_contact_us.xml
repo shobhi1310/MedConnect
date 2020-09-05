@@ -49,14 +49,14 @@
                     android:id="@+id/name1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="Chirag Gupta"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/email1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
+                    android:text="cs18b006@iittp.ac.in"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
@@ -84,14 +84,14 @@
                     android:id="@+id/name2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="Mir Sameed Ali"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/email2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
+                    android:text="cs18b021@iittp.ac.in"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
@@ -119,14 +119,14 @@
                     android:id="@+id/name3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="Subhankar Badhra"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/email3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
+                    android:text="cs18b034@gmail.com"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
@@ -154,14 +154,14 @@
                     android:id="@+id/name4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="Tapish Ojha"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/email4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
+                    android:text="cs18b038@iittp.ac.in"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
@@ -196,7 +196,7 @@
                     android:id="@+id/email5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="iamrohitshakya@gmail.com"
+                    android:text="cs18b029@iittp.ac.in"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>

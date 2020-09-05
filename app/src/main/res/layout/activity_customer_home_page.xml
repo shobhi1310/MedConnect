@@ -66,18 +66,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/noBookingsPrompt"
-                        android:layout_width="272dp"
-                        android:layout_height="131dp"
-                        android:text="@string/noCurrentBookingsPrompt"
-                        android:textAlignment="center"
-                        android:textSize="24sp"
-                        android:visibility="invisible"
-                        card_view:layout_constraintBottom_toBottomOf="parent"
-                        card_view:layout_constraintEnd_toEndOf="parent"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent" />
                     <ProgressBar
                         android:id="@+id/progress_loader"
                         style="@style/Widget.AppCompat.ProgressBar"
@@ -90,6 +78,19 @@
                         app:layout_constraintStart_toStartOf="parent"
 
                         card_view:layout_constraintTop_toTopOf="@+id/customerBookingHistoryRecyclerView" />
+
+                    <TextView
+                        android:id="@+id/noBookingsPrompt"
+                        android:layout_width="272dp"
+                        android:layout_height="131dp"
+                        android:text="@string/noCurrentBookingsPrompt"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:visibility="invisible"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/customerBookingHistoryRecyclerView"
@@ -106,20 +107,6 @@
                         tools:layout_conversion_absoluteHeight="589dp"
                         tools:layout_conversion_absoluteWidth="392dp" />
 
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/bookMedicine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|bottom"
-                        android:layout_margin="16dp"
-                        android:src="@drawable/baseline_add_white_24"
-                        card_view:layout_constraintBottom_toBottomOf="@+id/customerBookingHistoryRecyclerView"
-                        card_view:layout_constraintEnd_toEndOf="parent"
-                        card_view:layout_constraintHorizontal_bias="0.954"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
-                        card_view:layout_constraintVertical_bias="1.0" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -130,6 +117,16 @@
         <include
             layout="@layout/toolbar_main"
             android:id="@+id/toolbar" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bookMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:backgroundTint="#682EBA"
+            android:src="@drawable/baseline_add_white_24"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
