@@ -136,7 +136,7 @@
             android:fontFamily="@font/montserrat"
             android:letterSpacing="0.1"
             android:textColor="@color/white"
-            android:text="CONTINUE"
+            android:text="Login"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="22sp" />
     </LinearLayout>
