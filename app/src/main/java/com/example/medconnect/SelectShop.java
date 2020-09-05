@@ -134,8 +134,8 @@ public class SelectShop extends  AppCompatActivity{
 
     private void APICall(String id, final String latitude, final String longitude){
         spinner.setVisibility(View.VISIBLE);
-        //String url="https://glacial-caverns-39108.herokuapp.com/medicine/shoplist/"+id;
-        String url="http://localhost:5000/medicine/shoplist/"+id;
+        String url="https://glacial-caverns-39108.herokuapp.com/medicine/shoplist/"+id;
+//        String url="http://localhost:5000/medicine/shoplist/"+id;
         Log.d("URL",latitude);
 
         queue.cancelAll("ShopList");

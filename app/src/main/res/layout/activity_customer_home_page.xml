@@ -73,7 +73,7 @@
                         android:text="@string/noCurrentBookingsPrompt"
                         android:textAlignment="center"
                         android:textSize="24sp"
-                        android:visibility="invisible"
+                        android:visibility="gone"
                         card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintEnd_toEndOf="parent"
                         card_view:layout_constraintStart_toStartOf="parent"

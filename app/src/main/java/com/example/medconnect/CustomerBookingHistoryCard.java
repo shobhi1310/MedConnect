@@ -26,9 +26,6 @@ public class CustomerBookingHistoryCard {
         this.deadline=deadline;
         this.expired=expired;
 
-
-
-
     }
 
     public String getMedicine(){

@@ -201,7 +201,7 @@ public class CustomerHomePage extends BaseActivity {
 
                         TextView t = findViewById(R.id.noBookingsPrompt);
                         if(orders.size()>0){
-                            t.setVisibility(View.INVISIBLE);
+                            t.setVisibility(View.GONE);
                         }
                         else{
                             t.setVisibility(View.VISIBLE);
