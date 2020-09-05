@@ -63,6 +63,7 @@ public class SearchMedicineActivity extends BaseActivity {
         item = nav.getMenu().getItem(3);
         item.setEnabled(false);
         utils=new Utils();
+        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
 
         this.createList();
         this.buildRecycleView();
@@ -167,7 +168,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
                         if(medicineList.size() > 0){
-                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
+
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{
