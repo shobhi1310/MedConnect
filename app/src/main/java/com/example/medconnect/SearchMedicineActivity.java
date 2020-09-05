@@ -56,6 +56,7 @@ public class SearchMedicineActivity extends BaseActivity {
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
         utils=new Utils();
+        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
 
         this.createList();
         this.buildRecycleView();
@@ -156,7 +157,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
                         if(medicineList.size() > 0){
-                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
+
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{
