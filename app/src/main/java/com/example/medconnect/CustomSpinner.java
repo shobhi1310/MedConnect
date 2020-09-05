@@ -2,6 +2,7 @@ package com.example.medconnect;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 
 import com.example.medconnect.ui.main.ShopOwnerFragment;
@@ -29,6 +30,7 @@ public class CustomSpinner {
 
         dialog=builder.create();
         dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
     }
 
