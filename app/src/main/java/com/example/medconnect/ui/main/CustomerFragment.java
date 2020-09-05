@@ -25,6 +25,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.medconnect.CustomSpinner;
 import com.example.medconnect.GetStartedActivity;
 import com.example.medconnect.R;
+import com.example.medconnect.SearchMedicineActivity;
+import com.example.medconnect.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +47,7 @@ public class CustomerFragment extends Fragment {
     CustomSpinner customSpinner;
     RequestQueue queue ;
     public static final String Data = "StoredData";
+    Utils utils;
 
 
     public void APIcallForRegistration(final String name, final String email,final String phone, final String password) {
@@ -112,7 +115,8 @@ public class CustomerFragment extends Fragment {
         password = (EditText) view.findViewById(R.id.customerPassword);
         register = (Button)view.findViewById(R.id.customerRegister);
         customSpinner= new CustomSpinner(this.getActivity());
-
+//        utils=new Utils();
+//        utils.autoHideKeyboard(view.findViewById(android.R.id.content).getRootView(), this.getActivity());
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

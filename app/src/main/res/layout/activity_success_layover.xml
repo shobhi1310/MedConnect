@@ -46,8 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/darker_gray"
-        tools:srcCompat="@android:color/darker_gray" />
+        app:srcCompat="@android:color/holo_blue_light"
+        tools:srcCompat="@android:color/holo_blue_bright" />
 
     <TextView
         android:id="@+id/textView1"

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     CustomSpinner customSpinner;
     private RequestQueue queue;
     public static final String Data = "StoredData";
-
+    Utils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
         login = findViewById(R.id.userLogin);
-
+        utils=new Utils();
+        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),LoginActivity.this);
         queue = Volley.newRequestQueue(this);
 //        Intent i = getIntent();
 //        isLoggedOut = i.getBooleanExtra("loggedOut", false);
