@@ -23,13 +23,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
@@ -43,6 +58,7 @@ public class GetStartedActivity extends AppCompatActivity {
     public static final String Data = "StoredData";
     String latitude;
     String longitude;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +68,8 @@ public class GetStartedActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_get_started);
+
+        queue= Volley.newRequestQueue(this);
 
 //        getSupportActionBar().hide();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -94,8 +112,11 @@ public class GetStartedActivity extends AppCompatActivity {
              dc= new DistanceCalculator(this,latitude,longitude);
         }
         else{
-
+            SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+            String shopID = sharedPreferences.getString("ID", "");
+            APICallforShop(shopID, latitude, longitude);
         }
+
         //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
@@ -129,9 +150,6 @@ public class GetStartedActivity extends AppCompatActivity {
                         .show();
             }
             else {
-                //asking for the first time
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
                 ActivityCompat.requestPermissions(GetStartedActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION);
             }
         }
@@ -173,14 +191,36 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    private void APICallforShop(String id, final String latitude, final String longitude) {
+        String url = "https://glacial-caverns-39108.herokuapp.com/shop/location" + id;
 
-//    public  void saveSortedShops(List<JSONObject> shopList){
-//        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Log.d("Save Sorted Shops","Here");
-//
-//        editor.putString("SHOPLIST", shopList.toString());
-//        editor.apply();
-//    }
+        queue.cancelAll("ShopLocation");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+                        Toast.makeText(GetStartedActivity.this, response, Toast.LENGTH_SHORT).show();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(GetStartedActivity.this, "Server is not responding", Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                Log.d("LatLongitude", latitude + " " + longitude);
+                params.put("latitude", latitude);
+                params.put("longitude", longitude);
+                return params;
+            }
+        };
+        stringRequest.setTag("ShopLocation");
+        queue.add(stringRequest);
+    }
 }

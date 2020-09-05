@@ -24,6 +24,8 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
         public TextView shopAddress;
         public TextView shopMobile;
         public TextView bookingDate;
+        public TextView deadline;
+        public TextView deadlineHeading;
         public Button  locateMap;
 
 
@@ -39,7 +41,9 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
             shopMobile = itemView.findViewById(R.id.shopMobile);
             bookingDate=itemView.findViewById(R.id.bookingDate);
             locateMap = itemView.findViewById(R.id.locateMap);
-
+            deadline=itemView.findViewById(R.id.deadline);
+            deadlineHeading=itemView.findViewById(R.id.deadlineHeading);
+            locateMap=itemView.findViewById(R.id.locateMap);
         }
     }
 
@@ -66,7 +70,12 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
         holder.shopAddress.setText(card.getShopAddress());
         holder.shopMobile.setText(card.getShopMobile());
         holder.bookingDate.setText(card.getBookingDate());
-
+        holder.deadline.setText(card.getDeadline());
+        if(card.isExpired()){
+            holder.deadline.setVisibility(View.GONE);
+            holder.deadlineHeading.setVisibility(View.GONE);
+            holder.locateMap.setVisibility(View.GONE);
+        }
 
     }
 
