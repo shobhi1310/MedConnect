@@ -117,34 +117,34 @@
                     tools:layout_editor_absoluteY="433dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="26dp"
-                tools:layout_editor_absoluteY="492dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                tools:layout_editor_absoluteX="26dp"-->
+<!--                tools:layout_editor_absoluteY="492dp">-->
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Address"
-                    android:textSize="25sp"
-                    tools:layout_editor_absoluteX="26dp"
-                    tools:layout_editor_absoluteY="492dp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/textView3"-->
+<!--                    android:layout_width="23dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Address"-->
+<!--                    android:textSize="25sp"-->
+<!--                    tools:layout_editor_absoluteX="26dp"-->
+<!--                    tools:layout_editor_absoluteY="492dp" />-->
 
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="50dp"
-                    android:layout_height="136dp"
-                    android:layout_weight="2"
-                    android:text="Dabra, Gwalior, MadhayaPradesh"
-                    android:textColor="#3d3d3d"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="497dp" />
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/address"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="136dp"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:text="Dabra, Gwalior, MadhayaPradesh"-->
+<!--                    android:textColor="#3d3d3d"-->
+<!--                    android:textSize="20sp"-->
+<!--                    tools:layout_editor_absoluteX="152dp"-->
+<!--                    tools:layout_editor_absoluteY="497dp" />-->
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

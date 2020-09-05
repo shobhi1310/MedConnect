@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -27,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -37,8 +39,8 @@ import java.util.ArrayList;
 
 public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
-
-
+    private MenuItem item;
+    private NavigationView nav;
     private RecyclerView mRecyclerView;
     private ShopOwnerSearchMedicineAdapter mRecyclerViewAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -51,6 +53,10 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_search_medicine);
+
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(4);
+        item.setEnabled(false);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");

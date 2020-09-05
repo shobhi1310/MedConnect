@@ -109,6 +109,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         return true;
     }
 
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.sideNavbar);

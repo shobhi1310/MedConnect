@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +43,8 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
     private ArrayList<ShopOwnerBookingHistoryCard> orders;
     private ProgressBar spinner;
     private RequestQueue queue;
+    private MenuItem item;
+    private NavigationView nav;
     public static final String Data = "StoredData";
 
 
@@ -52,6 +56,10 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
 
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
+
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(2);
+        item.setEnabled(false);
 
         createExampleList();
 //        buildRecyclerView();
