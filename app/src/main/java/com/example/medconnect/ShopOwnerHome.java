@@ -42,9 +42,12 @@ public class ShopOwnerHome extends  BaseActivity1{
     private ProgressBar spinner;
     private String shopOwnerID;
     private String oldString="";
+    Utils utils;
+
     public static final String Data = "StoredData";
 
     boolean doubleBackToExitPressedOnce = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class ShopOwnerHome extends  BaseActivity1{
             }
         });
 
+
         queue = Volley.newRequestQueue(this);
 
         spinner = (ProgressBar)findViewById(R.id.progress_loader);
@@ -72,8 +76,14 @@ public class ShopOwnerHome extends  BaseActivity1{
         shopOwnerID=sharedPreferences.getString("ID","");
         Log.d("URL",shopOwnerID);
 
+        //utils=new Utils();
+        //utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
+
         createList();
         buildRecyclerView();
+
+
+
 
         EditText text = findViewById(R.id.editTextTextPersonName2);
         text.addTextChangedListener(new TextWatcher() {
@@ -245,9 +255,8 @@ public class ShopOwnerHome extends  BaseActivity1{
                         Medicines = filteredList;
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
+
                         if(Medicines.size()>0){
-                            Utils utils = new Utils();
-                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{

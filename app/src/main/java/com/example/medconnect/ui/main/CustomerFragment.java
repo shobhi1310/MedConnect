@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.medconnect.CustomSpinner;
 import com.example.medconnect.GetStartedActivity;
 import com.example.medconnect.R;
 
@@ -41,13 +42,14 @@ public class CustomerFragment extends Fragment {
     String Mobile;
     String Email;
     String Password;
+    CustomSpinner customSpinner;
     RequestQueue queue ;
     public static final String Data = "StoredData";
 
 
     public void APIcallForRegistration(final String name, final String email,final String phone, final String password) {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/register";
-
+        customSpinner.startSpinner();
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -70,6 +72,7 @@ public class CustomerFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        customSpinner.dismissSpinner();
                         Toast.makeText(getActivity(), "bye register", Toast.LENGTH_LONG).show();
                         Log.d("Error.Response", String.valueOf(error));
                     }
@@ -108,6 +111,7 @@ public class CustomerFragment extends Fragment {
         email = (EditText) view.findViewById(R.id.customerEmail);
         password = (EditText) view.findViewById(R.id.customerPassword);
         register = (Button)view.findViewById(R.id.customerRegister);
+        customSpinner= new CustomSpinner(this.getActivity());
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

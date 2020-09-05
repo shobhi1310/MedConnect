@@ -35,6 +35,8 @@ import java.util.ArrayList;
 public class CustomerProfile extends BaseActivity {
 
     public static final String Data = "StoredData";
+    private MenuItem item;
+    private NavigationView nav;
 //    private RequestQueue queue;
     String name;
     String phone;
@@ -51,7 +53,9 @@ public class CustomerProfile extends BaseActivity {
         TextView Email = findViewById(R.id.email);
         TextView Phone = findViewById(R.id.phone);
         TextView Address = findViewById(R.id.address);
-
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(0);
+        item.setEnabled(false);
 //        queue = Volley.newRequestQueue(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);

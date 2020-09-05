@@ -3,6 +3,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#683AB6</item>
+        <item name="android:windowActivityTransitions">true</item>
+
+<!--        <item name="android:windowEnterTransition">@anim/push_down_in</item>-->
+<!--        <item name="android:windowExitTransition">@anim/push_down_in</item>-->
         <!--        <item name="colorPrimary">@color/white</item>-->
         <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <!--        <item name="colorAccent">@color/colorAccent</item>-->

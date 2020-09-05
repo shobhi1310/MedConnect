@@ -19,7 +19,7 @@ public class CustomSpinner {
 //        this.shopOwnerFragment=shopOwnerFragment;
 //    }
 
-    void startSpinner(){
+    public void startSpinner(){
         AlertDialog.Builder builder= new AlertDialog.Builder(activity);
 
 
@@ -32,7 +32,7 @@ public class CustomSpinner {
 
     }
 
-    void dismissSpinner(){
+    public void dismissSpinner(){
         dialog.dismiss();
     }
 }

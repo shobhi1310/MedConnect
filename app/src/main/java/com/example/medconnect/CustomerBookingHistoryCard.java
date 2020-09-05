@@ -27,10 +27,13 @@ public class CustomerBookingHistoryCard {
         this.bookingDate=bookingDate;
         this.deadline=deadline;
         this.expired=expired;
+<<<<<<< HEAD
         this.latitude = latitude;
         this.longitude = longitude;
 
 
+=======
+>>>>>>> 6db2d7db87340a14ad722aa2df21ee15de51605b
 
     }
 

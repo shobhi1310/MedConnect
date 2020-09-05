@@ -28,6 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
@@ -35,12 +36,17 @@ public class CurrentLocationActivity extends BaseActivity implements OnMapReadyC
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
     private GoogleMap mMap;
+    private NavigationView nav;
+    private MenuItem item;
     Double latitude;
     Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_current_location);
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(4);
+        item.setEnabled(false);
 //        setContentView(R.layout.activity_current_location);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
