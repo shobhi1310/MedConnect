@@ -8,12 +8,14 @@ public class CustomerBookingHistoryCard {
     private String shopAddress;
     private String shopMobile;
     private String bookingDate;
+    private String deadline;
+    private boolean expired;
 
 
 
 
 
-    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile,String bookingDate){
+    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile,String bookingDate,String deadline,boolean expired){
         this.medicine=medicine;
         this.strength=strength;
         this.manufacturer=manufacturer;
@@ -21,6 +23,8 @@ public class CustomerBookingHistoryCard {
         this.shopAddress=shopAddress;
         this.shopMobile=shopMobile;
         this.bookingDate=bookingDate;
+        this.deadline=deadline;
+        this.expired=expired;
 
 
 
@@ -51,5 +55,12 @@ public class CustomerBookingHistoryCard {
 
     public String getBookingDate() {
         return bookingDate;
+    }
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public boolean isExpired() {
+        return expired;
     }
 }

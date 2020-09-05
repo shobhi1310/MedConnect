@@ -114,8 +114,9 @@ public class GetStartedActivity extends AppCompatActivity {
         else{
             SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
             String shopID = sharedPreferences.getString("ID", "");
-            APICallforShop(shopID);
+            APICallforShop(shopID, latitude, longitude);
         }
+
         //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
@@ -190,7 +191,7 @@ public class GetStartedActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void APICallforShop(String id) {
+    private void APICallforShop(String id, final String latitude, final String longitude) {
         String url = "https://glacial-caverns-39108.herokuapp.com/shop/location" + id;
 
         queue.cancelAll("ShopLocation");
@@ -213,6 +214,7 @@ public class GetStartedActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String> params = new HashMap<String, String>();
+                Log.d("LatLongitude", latitude + " " + longitude);
                 params.put("latitude", latitude);
                 params.put("longitude", longitude);
                 return params;

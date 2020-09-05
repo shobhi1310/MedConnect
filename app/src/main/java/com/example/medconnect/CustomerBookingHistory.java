@@ -117,7 +117,7 @@ public class CustomerBookingHistory extends  BaseActivity{
                                 Date result1 = df1.parse(string1);
                                 String dateString = result1.toString();
                                 Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString));
+                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,"",true));
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerBookingHistory.this, e.getMessage(), Toast.LENGTH_LONG).show();

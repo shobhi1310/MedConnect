@@ -132,7 +132,7 @@ public class DistanceCalculator {
                                     }
                                     if(d1<d2){
                                         return -1;
-                                    }else if(d1==d2){
+                                    }else if(d1 == d2){
                                         return 0;
                                     }
                                     return 1;

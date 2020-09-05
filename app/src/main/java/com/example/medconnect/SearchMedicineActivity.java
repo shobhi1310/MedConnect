@@ -2,6 +2,7 @@ package com.example.medconnect;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,7 +38,6 @@ import java.util.ArrayList;
 
 public class SearchMedicineActivity extends BaseActivity {
 
-
     MaterialSearchView searchView;
     private RecyclerView mRecyclerView;
     private medicineAdapter mRecyclerViewAdapter;
@@ -60,7 +60,11 @@ public class SearchMedicineActivity extends BaseActivity {
         this.createList();
         this.buildRecycleView();
 
-
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        String latitude = sharedPreferences.getString("LATITUDE", "");
+        String longitude = sharedPreferences.getString("LONGITUDE", "");
+        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
+        Log.d("DistanceCalc", sharedPreferences.getString("SHOPLIST", ""));
         EditText text = findViewById(R.id.searchBox);
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -120,7 +124,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
     private void APICall(String s){
         spinner.setVisibility(View.VISIBLE);
-        String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
+        String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/" + s;
 
         queue.cancelAll("MedicineList");
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url,
