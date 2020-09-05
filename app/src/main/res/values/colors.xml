@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@color/gradient_start_color</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <color name="background">#9C27B0</color>
+    <color name="background">@color/gradient_start_color</color>
 
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#10a3fe</color>

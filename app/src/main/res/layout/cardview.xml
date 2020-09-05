@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
-    app:cardBackgroundColor="#D0C2EF"
+    app:cardBackgroundColor="#009688"
     app:cardCornerRadius="6dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
@@ -29,7 +29,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Paracetamol"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#004E47"
                 android:textSize="24sp" />
 
             <TextView
@@ -41,12 +41,14 @@
                 android:paddingLeft="3dp"
                 android:text="(250MG)"
                 android:textAlignment="textStart"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/manufacturer"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Manufacturer"

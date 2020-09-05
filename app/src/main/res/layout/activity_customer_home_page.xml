@@ -124,10 +124,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:backgroundTint="#682EBA"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:src="@drawable/baseline_add_white_24"
+            card_view:backgroundTint="@color/colorPrimaryDark"
+            card_view:borderWidth="0dp"
+            card_view:elevation="0dp"
+            card_view:hoveredFocusedTranslationZ="0dp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:pressedTranslationZ="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
