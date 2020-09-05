@@ -154,6 +154,7 @@ public class BookMedicine extends AppCompatActivity {
                 params.put("shop_id",shop_owner_id);
                 params.put("booking_amount","100");
                 params.put("time_range", Integer.toString(timeRange));
+                params.put("prescription_url","");
 
                 return params;
             }

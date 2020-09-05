@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -28,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -45,6 +47,8 @@ public class SearchMedicineActivity extends BaseActivity {
     private ArrayList<MedicineItem> medicineList;
     private ProgressBar spinner;
     private RequestQueue queue;
+    private NavigationView nav;
+    private MenuItem item;
     Utils utils;
 
     @Override
@@ -55,7 +59,11 @@ public class SearchMedicineActivity extends BaseActivity {
         toolbar_title.setText("Search Medicine");
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(3);
+        item.setEnabled(false);
         utils=new Utils();
+        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
 
         this.createList();
         this.buildRecycleView();
@@ -160,7 +168,7 @@ public class SearchMedicineActivity extends BaseActivity {
 
                         TextView t = findViewById(R.id.searchMedicinePrompt);
                         if(medicineList.size() > 0){
-                            utils.hideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
+
                             t.setVisibility(View.INVISIBLE);
                         }
                         else{

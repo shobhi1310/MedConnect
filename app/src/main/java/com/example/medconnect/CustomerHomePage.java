@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,8 @@ public class CustomerHomePage extends BaseActivity {
     private ArrayList<CustomerBookingHistoryCard> orders;
     boolean doubleBackToExitPressedOnce = false;
     private RequestQueue queue;
-
+    private MenuItem item;
+    private NavigationView nav;
     private ProgressBar spinner;
 
     SwipeRefreshLayout swipe;
@@ -62,12 +64,14 @@ public class CustomerHomePage extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
+//        overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         swipe = findViewById(R.id.swipeToRefresh);
         swipe.setColorSchemeColors(R.color.background);
         toolbar_title.setText("Home");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.bookMedicine);
-
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +80,7 @@ public class CustomerHomePage extends BaseActivity {
             }
         });
 
-
+        item.setEnabled(false);
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
         createExampleList();
@@ -94,14 +98,14 @@ public class CustomerHomePage extends BaseActivity {
     private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
-        if(orders.size() > 0) {
-            buildRecyclerView();
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.INVISIBLE);
-        } else {
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.VISIBLE);
-        }
+//        if(orders.size() > 0) {
+        buildRecyclerView();
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.INVISIBLE);
+//        } else {
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.VISIBLE);
+//        }
     }
 
     private void buildRecyclerView() {
@@ -169,17 +173,23 @@ public class CustomerHomePage extends BaseActivity {
                         try {
                             Log.d("response for currentBookings",response);
                             JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
-                            Log.d("currentList for bookings", String.valueOf(result));
-                            for(int i=0;i<result.length();i++){
-                                JSONObject jsonObject = result.getJSONObject(i);
-                                JSONObject medicine = jsonObject.getJSONObject("medicine_id");
-                                JSONObject shop = jsonObject.getJSONObject("shop_id");
-                                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                                String string1 = jsonObject.getString("createdAt");
-                                Date result1 = df1.parse(string1);
-                                String dateString = result1.toString();
-                                Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,jsonObject.getString("deadline"),false));
+                            if(result.length()==0){
+                                TextView t = findViewById(R.id.noBookingsPrompt);
+                                t.setVisibility(View.VISIBLE);
+                            }else {
+                                TextView t = findViewById(R.id.noBookingsPrompt);
+                                t.setVisibility(View.INVISIBLE);
+                                for (int i = 0; i < result.length(); i++) {
+                                    JSONObject jsonObject = result.getJSONObject(i);
+                                    JSONObject medicine = jsonObject.getJSONObject("medicine_id");
+                                    JSONObject shop = jsonObject.getJSONObject("shop_id");
+                                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                                    String string1 = jsonObject.getString("createdAt");
+                                    Date result1 = df1.parse(string1);
+                                    String dateString = result1.toString();
+                                    Log.d("date", dateString);
+                                    currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString , jsonObject.getString("deadline"), false));
+                                }
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
