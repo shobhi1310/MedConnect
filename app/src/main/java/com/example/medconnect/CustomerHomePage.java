@@ -58,12 +58,14 @@ public class CustomerHomePage extends BaseActivity {
     SwipeRefreshLayout swipe;
     private String customerId;
     public static final String Data = "StoredData";
+//    Button locate;
 
 
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_customer_home_page);
+//        overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         swipe = findViewById(R.id.swipeToRefresh);
         swipe.setColorSchemeColors(R.color.background);
@@ -82,15 +84,13 @@ public class CustomerHomePage extends BaseActivity {
         item.setEnabled(false);
         spinner=findViewById(R.id.progress_loader);
         queue= Volley.newRequestQueue(this);
+//        locate= (Button) findViewById(R.id.locateMap);
+
+
+
+
         createExampleList();
-        if(orders.size() > 0) {
-            buildRecyclerView();
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.INVISIBLE);
-        } else {
-            TextView t = findViewById(R.id.noBookingsPrompt);
-            t.setVisibility(View.VISIBLE);
-        }
+
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -99,6 +99,10 @@ public class CustomerHomePage extends BaseActivity {
                 swipe.setRefreshing(false);
             }
         });
+
+
+
+
     }
 
     private void shuffle() {
@@ -127,6 +131,27 @@ public class CustomerHomePage extends BaseActivity {
 //            TextView t = findViewById(R.id.noBookingsPrompt);
 //            t.setVisibility(View.VISIBLE);
 //        }
+
+        this.mAdapter.setOnItemCLickListener(new CustomerBookingHistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onClickToLocate(final CustomerBookingHistoryCard card,Button locate) {
+                Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
+                //logic of connecting googlepage to customerHomepage
+                locate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(CustomerHomePage.this,GoogleMapPage.class);
+                        intent.putExtra("latitude",card.getLatitude());
+                        intent.putExtra("longitude",card.getLongitude());
+                        intent.putExtra("shopName",card.getShopName());
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+
+        } );
     }
 
     public void onSearchMedicine(View view){
@@ -179,6 +204,22 @@ public class CustomerHomePage extends BaseActivity {
                         try {
                             Log.d("response for currentBookings",response);
                             JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
+<<<<<<< HEAD
+                            Log.d("currentList for bookings", String.valueOf(result));
+                            for(int i=0;i<result.length();i++){
+                                JSONObject jsonObject = result.getJSONObject(i);
+                                JSONObject medicine = jsonObject.getJSONObject("medicine_id");
+                                JSONObject shop = jsonObject.getJSONObject("shop_id");
+                                JSONArray coordinates = shop.getJSONArray("location");
+                                double longitude = coordinates.getDouble(1);
+                                double latitude = coordinates.getDouble(0);
+                                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                                String string1 = jsonObject.getString("createdAt");
+                                Date result1 = df1.parse(string1);
+                                String dateString = result1.toString();
+                                Log.d("date",dateString);
+                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,jsonObject.getString("deadline"),false,latitude,longitude));
+=======
                             if(result.length()==0){
                                 TextView t = findViewById(R.id.noBookingsPrompt);
                                 t.setVisibility(View.VISIBLE);
@@ -196,6 +237,7 @@ public class CustomerHomePage extends BaseActivity {
                                     Log.d("date", dateString);
                                     currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString , jsonObject.getString("deadline"), false));
                                 }
+>>>>>>> 6db2d7db87340a14ad722aa2df21ee15de51605b
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -210,7 +252,7 @@ public class CustomerHomePage extends BaseActivity {
 
                         TextView t = findViewById(R.id.noBookingsPrompt);
                         if(orders.size()>0){
-                            t.setVisibility(View.INVISIBLE);
+                            t.setVisibility(View.GONE);
                         }
                         else{
                             t.setVisibility(View.VISIBLE);

@@ -10,12 +10,14 @@ public class CustomerBookingHistoryCard {
     private String bookingDate;
     private String deadline;
     private boolean expired;
+    private double latitude;
+    private double longitude;
 
 
 
 
-
-    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile,String bookingDate,String deadline,boolean expired){
+    //,
+    public  CustomerBookingHistoryCard(String medicine,String strength,String manufacturer,String shopName,String shopAddress, String shopMobile,String bookingDate,String deadline,boolean expired,double latitude,double longitude){
         this.medicine=medicine;
         this.strength=strength;
         this.manufacturer=manufacturer;
@@ -25,9 +27,13 @@ public class CustomerBookingHistoryCard {
         this.bookingDate=bookingDate;
         this.deadline=deadline;
         this.expired=expired;
+<<<<<<< HEAD
+        this.latitude = latitude;
+        this.longitude = longitude;
 
 
-
+=======
+>>>>>>> 6db2d7db87340a14ad722aa2df21ee15de51605b
 
     }
 
@@ -63,4 +69,10 @@ public class CustomerBookingHistoryCard {
     public boolean isExpired() {
         return expired;
     }
+
+    public double getLatitude(){return latitude;}
+
+    public double getLongitude(){return longitude;}
+
+
 }

@@ -25,35 +25,37 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
+            android:paddingVertical="0dp"
+            android:paddingHorizontal="10dp"
             android:text="Sign Up"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            app:srcCompat="@drawable/baseline_person_add_black_48dp"
-            android:contentDescription="Sign Up Page" />
+            android:layout_height="109dp"
+            android:contentDescription="Sign Up Page"
+            app:srcCompat="@drawable/baseline_person_add_black_48dp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
-            app:tabTextColor="@color/black"
+            android:layout_height="wrap_content"
             app:tabTextAppearance="@style/TabTextItems"
+            app:tabTextColor="@color/black"
             app:tabUnboundedRipple="false">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:icon="@mipmap/baseline_person_black_18dp"
+
+
                 android:text="@string/tab_text_1" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:icon="@mipmap/baseline_storefront_black_18dp"
+
                 android:text="@string/tab_text_2" />
 
         </com.google.android.material.tabs.TabLayout>
