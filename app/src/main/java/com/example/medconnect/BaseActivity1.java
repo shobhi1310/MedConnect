@@ -72,6 +72,7 @@ public abstract class BaseActivity1 extends AppCompatActivity implements Navigat
                     editor.apply();
                     break;
                 case R.id.contact:
+                    intent = new Intent(this,ContactUsShop.class);
                     break;
             }
             startActivity(intent);

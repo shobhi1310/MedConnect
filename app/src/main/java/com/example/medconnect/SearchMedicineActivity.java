@@ -98,7 +98,6 @@ public class SearchMedicineActivity extends BaseActivity {
         this.APICall(s);
     }
 
-
     private void createList(){
         this.medicineList = new ArrayList<>();
     }

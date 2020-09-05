@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +45,8 @@ public class ShopOwnerHome extends  BaseActivity1{
     private String shopOwnerID;
     private String oldString="";
     Utils utils;
-
+    private MenuItem item;
+    private NavigationView nav;
     public static final String Data = "StoredData";
 
     boolean doubleBackToExitPressedOnce = false;
@@ -54,6 +57,9 @@ public class ShopOwnerHome extends  BaseActivity1{
 //        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_home_page);
 
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(1);
+        item.setEnabled(false);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
@@ -76,8 +82,8 @@ public class ShopOwnerHome extends  BaseActivity1{
         shopOwnerID=sharedPreferences.getString("ID","");
         Log.d("URL",shopOwnerID);
 
-        //utils=new Utils();
-        //utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
+        utils=new Utils();
+        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
 
         createList();
         buildRecyclerView();

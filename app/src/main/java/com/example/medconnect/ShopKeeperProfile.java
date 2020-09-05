@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class ShopKeeperProfile extends BaseActivity1 {
 
@@ -16,6 +19,8 @@ public class ShopKeeperProfile extends BaseActivity1 {
     String phone;
     String email;
     String address;
+    private MenuItem item;
+    private NavigationView nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,10 @@ public class ShopKeeperProfile extends BaseActivity1 {
         TextView Email = findViewById(R.id.email);
         TextView Phone = findViewById(R.id.phone);
         TextView Address = findViewById(R.id.address);
+
+        nav = findViewById(R.id.navigation);
+        item = nav.getMenu().getItem(0);
+        item.setEnabled(false);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
         name = sharedPreferences.getString("NAME", "");
