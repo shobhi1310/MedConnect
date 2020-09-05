@@ -25,12 +25,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@color/white"
                 android:divider="@drawable/linear_layout_divider"
                 android:orientation="vertical"
                 android:showDividers="middle">
@@ -44,18 +46,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="24dp"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="10dp">
+                        card_view:cardCornerRadius="0dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardUseCompatPadding="true">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#E6E2E2">
+                            android:background="@color/white">
 
                             <Button
                                 android:id="@+id/book_button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="77dp"
+                                android:layout_height="32dp"
                                 android:layout_marginStart="275dp"
                                 android:layout_marginTop="120dp"
                                 android:layout_marginEnd="10dp"
@@ -72,14 +75,19 @@
                                 android:id="@+id/spinner"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginStart="150dp"
+                                android:layout_marginStart="200dp"
                                 android:layout_marginTop="115dp"
-                                android:layout_marginEnd="185dp"
+                                android:layout_marginEnd="100dp"
                                 android:layout_marginBottom="14dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:dropDownWidth="5dp"
+                                android:dropDownSelector="@color/colorPrimaryDark"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 card_view:layout_constraintEnd_toStartOf="@+id/book_button"
+                                card_view:layout_constraintHorizontal_bias="0.0"
                                 card_view:layout_constraintStart_toStartOf="parent"
-                                card_view:layout_constraintTop_toTopOf="parent" />
+                                card_view:layout_constraintTop_toTopOf="parent"
+                                card_view:layout_constraintVertical_bias="0.0" />
 
                             <TextView
                                 android:id="@+id/mfg_name"
@@ -145,9 +153,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="4dp"
-
+                        card_view:cardCornerRadius="0dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardUseCompatPadding="true"
                         >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -156,8 +164,8 @@
 
                             <Button
                                 android:id="@+id/locateMap"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
                                 android:layout_marginStart="265dp"
                                 android:layout_marginTop="100dp"
                                 android:layout_marginEnd="12dp"
@@ -242,8 +250,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        card_view:cardCornerRadius="10dp"
-                        card_view:cardElevation="10dp">
+                        card_view:cardCornerRadius="0dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardUseCompatPadding="true">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -263,7 +272,8 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 card_view:layout_constraintBottom_toBottomOf="parent"
-                                card_view:layout_constraintEnd_toEndOf="parent" />
+                                card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintVertical_bias="0.07999998" />
 
                             <TextView
                                 android:id="@+id/what_is_ans2"
