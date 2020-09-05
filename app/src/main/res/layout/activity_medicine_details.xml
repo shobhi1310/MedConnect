@@ -81,6 +81,8 @@
                                 android:layout_marginBottom="14dp"
                                 android:backgroundTint="#FFFFFF"
                                 android:dropDownWidth="5dp"
+                                android:spinnerMode="dropdown"
+                                android:theme="@style/Theme.MaterialComponents.Light"
                                 android:dropDownSelector="@color/colorPrimaryDark"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 card_view:layout_constraintEnd_toStartOf="@+id/book_button"

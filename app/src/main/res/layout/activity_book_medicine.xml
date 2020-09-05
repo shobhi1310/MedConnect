@@ -31,6 +31,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/background"
                 android:text="@string/book_now"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,18 +39,20 @@
                 app:layout_constraintVertical_bias="0.928" />
 
             <!-- Seek Bar notch guidlines -->
+
             <CheckBox
                 android:id="@+id/disclaimerCheck"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/disclaimer_details"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.83" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -58,10 +61,12 @@
                 android:layout_height="28dp"
                 android:max="5"
                 android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.197"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.58000004" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -79,10 +84,12 @@
                 android:layout_height="23dp"
                 android:layout_marginTop="28dp"
                 android:text="@string/time_range"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.147"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                app:layout_constraintVertical_bias="0.060000002" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -97,12 +104,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="407dp"
-                android:layout_height="wrap_content"
+                android:layout_height="261dp"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintBottom_toTopOf="@+id/book_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="0.01999998"
                 card_view:cardCornerRadius="10dp"
                 card_view:cardElevation="10dp">
 
