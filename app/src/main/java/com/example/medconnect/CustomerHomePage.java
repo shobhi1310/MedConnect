@@ -202,11 +202,10 @@ public class CustomerHomePage extends BaseActivity {
                     public void onResponse(String response) {
                         ArrayList<CustomerBookingHistoryCard> currentList = new ArrayList<>();
                         try {
-                            Log.d("response for currentBookings",response);
+                            Log.d("response for currentBookings", response);
                             JSONArray result = new JSONObject(response).getJSONArray("currentBooking");
-<<<<<<< HEAD
                             Log.d("currentList for bookings", String.valueOf(result));
-                            for(int i=0;i<result.length();i++){
+                            for (int i = 0; i < result.length(); i++) {
                                 JSONObject jsonObject = result.getJSONObject(i);
                                 JSONObject medicine = jsonObject.getJSONObject("medicine_id");
                                 JSONObject shop = jsonObject.getJSONObject("shop_id");
@@ -217,27 +216,26 @@ public class CustomerHomePage extends BaseActivity {
                                 String string1 = jsonObject.getString("createdAt");
                                 Date result1 = df1.parse(string1);
                                 String dateString = result1.toString();
-                                Log.d("date",dateString);
-                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"),medicine.getString("strength"),medicine.getString("manufacturer"),shop.getString("name"),shop.getString("address"),shop.getString("phone"),dateString,jsonObject.getString("deadline"),false,latitude,longitude));
-=======
-                            if(result.length()==0){
-                                TextView t = findViewById(R.id.noBookingsPrompt);
-                                t.setVisibility(View.VISIBLE);
-                            }else {
-                                TextView t = findViewById(R.id.noBookingsPrompt);
-                                t.setVisibility(View.INVISIBLE);
-                                for (int i = 0; i < result.length(); i++) {
-                                    JSONObject jsonObject = result.getJSONObject(i);
-                                    JSONObject medicine = jsonObject.getJSONObject("medicine_id");
-                                    JSONObject shop = jsonObject.getJSONObject("shop_id");
-                                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                                    String string1 = jsonObject.getString("createdAt");
-                                    Date result1 = df1.parse(string1);
-                                    String dateString = result1.toString();
-                                    Log.d("date", dateString);
-                                    currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString , jsonObject.getString("deadline"), false));
+                                Log.d("date", dateString);
+                                currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString, jsonObject.getString("deadline"), false, latitude, longitude));
+                                if (result.length() == 0) {
+                                    TextView t = findViewById(R.id.noBookingsPrompt);
+                                    t.setVisibility(View.VISIBLE);
+                                } else {
+                                    TextView t = findViewById(R.id.noBookingsPrompt);
+                                    t.setVisibility(View.INVISIBLE);
+//                                    for (int i = 0; i < result.length(); i++) {
+//                                        JSONObject jsonObject = result.getJSONObject(i);
+//                                        JSONObject medicine = jsonObject.getJSONObject("medicine_id");
+//                                        JSONObject shop = jsonObject.getJSONObject("shop_id");
+//                                        DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//                                        String string1 = jsonObject.getString("createdAt");
+//                                        Date result1 = df1.parse(string1);
+//                                        String dateString = result1.toString();
+//                                        Log.d("date", dateString);
+//                                        currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString, jsonObject.getString("deadline"), false));
+//                                    }
                                 }
->>>>>>> 6db2d7db87340a14ad722aa2df21ee15de51605b
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
