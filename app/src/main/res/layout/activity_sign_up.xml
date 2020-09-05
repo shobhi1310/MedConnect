@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:contentDescription="Sign Up Page"
-            app:srcCompat="@drawable/medicallogo" />
+            app:srcCompat="@drawable/newlogo" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
