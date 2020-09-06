@@ -87,7 +87,9 @@ public class SelectShop extends  AppCompatActivity{
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
 
-        this.fetchLocation();
+        //this.fetchLocation();
+        this.APICall(id, "17.398769",
+                "78.414919");
         //Log.d("Array ShopList",shops.toString());
 
     }

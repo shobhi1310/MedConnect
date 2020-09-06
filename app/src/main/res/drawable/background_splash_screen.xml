@@ -2,10 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@color/white" />
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/splash_medconnect" />
+    <item android:height="200dp" android:width="200dp" android:gravity="center" android:drawable="@drawable/newlogo">
+
     </item>
+
 
 </layer-list>
