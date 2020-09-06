@@ -67,12 +67,12 @@ public class SearchMedicineActivity extends BaseActivity {
 
         this.createList();
         this.buildRecycleView();
-
-        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-        String latitude = sharedPreferences.getString("LATITUDE", "");
-        String longitude = sharedPreferences.getString("LONGITUDE", "");
-        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
-        Log.d("DistanceCalc", sharedPreferences.getString("SHOPLIST", ""));
+//
+//        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+//        String latitude = sharedPreferences.getString("LATITUDE", "");
+//        String longitude = sharedPreferences.getString("LONGITUDE", "");
+//        DistanceCalculator dc = new DistanceCalculator(this,latitude,longitude);
+//        Log.d("DistanceCalc", sharedPreferences.getString("SHOPLIST", ""));
         EditText text = findViewById(R.id.searchBox);
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -92,7 +92,6 @@ public class SearchMedicineActivity extends BaseActivity {
         });
 
     }
-
 
     private void filter(String s){
         this.APICall(s);

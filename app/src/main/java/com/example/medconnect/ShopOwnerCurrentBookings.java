@@ -5,6 +5,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,7 +46,6 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     String shopOwnerId;
     private MenuItem item;
     private NavigationView nav;
-
     public static final String Data = "StoredData";
     private ProgressBar spinner;
 
@@ -57,6 +57,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
         nav = findViewById(R.id.navigation);
         item = nav.getMenu().getItem(3);
         item.setEnabled(false);
+
         queue= Volley.newRequestQueue(this);
         spinner=findViewById(R.id.progress_loader);
         createExampleList();
@@ -74,8 +75,6 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
         SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
         shopOwnerId = sharedPreferences.getString("ID", "");
         this.APICall(shopOwnerId);
-
-
 
     }
 
@@ -127,6 +126,13 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
                         }
                         orders = pastList;
                         spinner.setVisibility(View.GONE);
+                        TextView t = findViewById(R.id.noBookingsPrompt);
+                        if(orders.size()>0){
+                            t.setVisibility(View.GONE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
                         buildRecyclerView();
                     }
                 },

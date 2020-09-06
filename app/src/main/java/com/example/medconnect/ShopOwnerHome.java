@@ -1,5 +1,6 @@
 package com.example.medconnect;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,6 +46,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     private ProgressBar spinner;
     private String shopOwnerID;
     private String oldString="";
+    SwipeRefreshLayout swipe;
     Utils utils;
     private MenuItem item;
     private NavigationView nav;
@@ -52,6 +55,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     boolean doubleBackToExitPressedOnce = false;
 
 
+//    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -60,6 +64,9 @@ public class ShopOwnerHome extends  BaseActivity1{
         nav = findViewById(R.id.navigation);
         item = nav.getMenu().getItem(1);
         item.setEnabled(false);
+
+        swipe = findViewById(R.id.swipeToRefresh);
+//        swipe.setColorSchemeColors(R.color.background);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
@@ -72,7 +79,6 @@ public class ShopOwnerHome extends  BaseActivity1{
             }
         });
 
-
         queue = Volley.newRequestQueue(this);
 
         spinner = (ProgressBar)findViewById(R.id.progress_loader);
@@ -82,14 +88,19 @@ public class ShopOwnerHome extends  BaseActivity1{
         shopOwnerID=sharedPreferences.getString("ID","");
         Log.d("URL",shopOwnerID);
 
-        utils=new Utils();
-        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
+//        utils=new Utils();
+//        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
 
         createList();
         buildRecyclerView();
 
-
-
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
 
         EditText text = findViewById(R.id.editTextTextPersonName2);
         text.addTextChangedListener(new TextWatcher() {
@@ -139,6 +150,7 @@ public class ShopOwnerHome extends  BaseActivity1{
             Medicines.clear();
             Medicines.addAll(filteredList);
             mAdapter.notifyDataSetChanged();
+
         }
         else{
             //Here we filter in the current array that is being displayed.
@@ -168,7 +180,6 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     public void buildRecyclerView() {
-
 
         this.mRecyclerView = findViewById(R.id.shopOwnerHomePageRecyclerView);
         this.mRecyclerView.setHasFixedSize(true);
@@ -206,8 +217,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                 mAdapter.notifyItemChanged(position);
             }
 
-        } );
-
+        });
 
     }
 
@@ -363,6 +373,17 @@ public class ShopOwnerHome extends  BaseActivity1{
 
     }
 
-
+    private void shuffle() {
+        queue= Volley.newRequestQueue(this);
+        createList();
+//        if(orders.size() > 0) {
+        buildRecyclerView();
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.INVISIBLE);
+//        } else {
+//            TextView t = findViewById(R.id.noBookingsPrompt);
+//            t.setVisibility(View.VISIBLE);
+//        }
+    }
 
 }

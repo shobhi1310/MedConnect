@@ -31,13 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             android:layout_marginTop="56dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeToRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <!--        <Button-->
             <!--            android:id="@+id/button4"-->
@@ -68,31 +72,33 @@
             <!--            tools:layout_conversion_absoluteWidth="336dp" />-->
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shopOwnerBookingHistoryRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:scrollbars="vertical"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintHorizontal_bias="0.439"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_absoluteHeight="589dp"
-                tools:layout_conversion_absoluteWidth="392dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shopOwnerBookingHistoryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:scrollbars="vertical"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.439"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:layout_conversion_absoluteHeight="589dp"
+                    tools:layout_conversion_absoluteWidth="392dp" />
 
-            <TextView
-                android:id="@+id/bookingHistoryPrompt"
-                android:layout_width="272dp"
-                android:layout_height="wrap_content"
-                android:text="You have no Previous Bookings"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/bookingHistoryPrompt"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:text="You have no Previous Bookings"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
