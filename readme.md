@@ -17,6 +17,10 @@ As of now the app performs the following features:
 4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
 5. Booking history has been provided both for **shopkeeper** and **customer**.
 
+Screenshots
+-----------
+![Login Page](Screenshots/Screenshot_1599403746.png "Login Page")
+
 ## App info
 * target SDK 29
 * release version v 1.0.0
