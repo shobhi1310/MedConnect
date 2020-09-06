@@ -19,6 +19,7 @@ As of now the app performs the following features:
 4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
 5. Booking history has been provided both for **shopkeeper** and **customer**.
 
+*For more information, please refer to the [wiki](http://github.com/shobhi1310/MedConnect/wiki)*
 
 Screenshots
 -----------
