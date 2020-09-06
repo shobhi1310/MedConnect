@@ -278,7 +278,10 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-                            Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+                            Log.d("update",response);
+
+                            //Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -306,7 +309,10 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
+
+
+                        //Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
+
                     }
                 },
                 new Response.ErrorListener() {
