@@ -123,8 +123,6 @@ public class ShopOwnerFragment extends Fragment {
         license = (EditText)view.findViewById(R.id.shopLicense);
         register = (Button) view.findViewById(R.id.shopRegister);
         customSpinner= new CustomSpinner(this.getActivity());
-//        utils=new Utils();
-//        utils.autoHideKeyboard(view.findViewById(android.R.id.content).getRootView(), this.getActivity());
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -137,12 +135,48 @@ public class ShopOwnerFragment extends Fragment {
                 Address = address.getText().toString();
                 License = license.getText().toString();
 
-                APIcallForRegistration(ShopName,Email,Mobile,Password,Address,License);
+                shopname.setBackgroundResource(R.drawable.edittextstyle);
+                mob.setBackgroundResource(R.drawable.edittextstyle);
+                email.setBackgroundResource(R.drawable.edittextstyle);
+                password.setBackgroundResource(R.drawable.edittextstyle);
+                address.setBackgroundResource(R.drawable.edittextstyle);
+                license.setBackgroundResource(R.drawable.edittextstyle);
 
-//                Toast.makeText(getActivity(), ShopName + " " + Mobile + " " + Email + " " + Password, Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
-//                intent.putExtra("customer",false);
-//                startActivity(intent);
+                boolean error = false;
+                if(ShopName.isEmpty() || ShopName.equals("") || ShopName.equals(null) || ShopName.length() == 0) {
+                    shopname.setError("Error");
+                    error = true;
+                    shopname.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Mobile.isEmpty() || Mobile.equals("") || Mobile.equals(null) || Mobile.length() == 0) {
+                    mob.setError("Error");
+                    error = true;
+                    mob.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Email.isEmpty() || Email.equals("") || Email.equals(null) || Email.length() == 0) {
+                    email.setError("Error");
+                    error = true;
+                    email.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Password.isEmpty() || Password.equals("") || Password.equals(null) || Password.length() == 0) {
+                    password.setError("Error");
+                    error = true;
+                    password.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Address.isEmpty() || Address.equals("") || Address.equals(null) || Address.length() == 0) {
+                    address.setError("Error");
+                    error = true;
+                    address.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(License.isEmpty() || License.equals("") || License.equals(null) || License.length() == 0) {
+                    license.setError("Error");
+                    error = true;
+                    license.setBackgroundResource(R.drawable.edittext_error);
+                }
+
+                if(!error) {
+                    APIcallForRegistration(ShopName, Email, Mobile, Password, Address, License);
+                }
 
             }
         });

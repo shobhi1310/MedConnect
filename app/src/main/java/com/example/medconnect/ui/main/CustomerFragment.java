@@ -125,8 +125,36 @@ public class CustomerFragment extends Fragment {
                 Email = email.getText().toString();
                 Password = password.getText().toString();
 
+                name.setBackgroundResource(R.drawable.edittextstyle);
+                mob.setBackgroundResource(R.drawable.edittextstyle);
+                email.setBackgroundResource(R.drawable.edittextstyle);
+                password.setBackgroundResource(R.drawable.edittextstyle);
+
+                boolean error = false;
+                if(Name.isEmpty() || Name.equals("") || Name.equals(null) || Name.length() == 0) {
+                    name.setError("Error");
+                    error = true;
+                    name.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Mobile.isEmpty() || Mobile.equals("") || Mobile.equals(null) || Mobile.length() == 0) {
+                    mob.setError("Error");
+                    error = true;
+                    mob.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Email.isEmpty() || Email.equals("") || Email.equals(null) || Email.length() == 0) {
+                    email.setError("Error");
+                    error = true;
+                    email.setBackgroundResource(R.drawable.edittext_error);
+                }
+                if(Password.isEmpty() || Password.equals("") || Password.equals(null) || Password.length() == 0) {
+                    password.setError("Error");
+                    error = true;
+                    password.setBackgroundResource(R.drawable.edittext_error);
+                }
                 //now we will register user(customer and not shopOwner)
-                APIcallForRegistration(Name, Email, Mobile, Password);
+                if(!error) {
+                    APIcallForRegistration(Name, Email, Mobile, Password);
+                }
 
 //                Intent intent = new Intent(getActivity(), GetStartedActivity.class);
 //                intent.putExtra("customer", true);
