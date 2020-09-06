@@ -71,6 +71,9 @@ public class SelectShop extends  AppCompatActivity{
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("");
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);
         spinner=findViewById(R.id.progress_loader);
 
@@ -86,9 +89,9 @@ public class SelectShop extends  AppCompatActivity{
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
 
-        //this.fetchLocation();
-        this.APICall(id, "17.398769",
-                "78.414919");
+        this.fetchLocation();
+//        this.APICall(id, "17.398769",
+//                "78.414919");
         //Log.d("Array ShopList",shops.toString());
 
     }

@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ContactUsShop"></activity>
         <activity android:name=".ContactUs" />
-        <activity android:name=".PrescriptionUploadActivity" />
+        <activity android:name=".PrescriptionUploadActivity"  android:label="Upload Prescription"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

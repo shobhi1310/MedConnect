@@ -41,6 +41,8 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
         final Intent intent= getIntent();
         queue= Volley.newRequestQueue(this);
         Toolbar toolbar= findViewById(R.id.toolbar);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("");
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

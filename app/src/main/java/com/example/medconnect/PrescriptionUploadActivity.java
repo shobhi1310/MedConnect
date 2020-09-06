@@ -45,7 +45,7 @@ public class PrescriptionUploadActivity extends AppCompatActivity {
         imagePreview = findViewById(R.id.previewImage);
         Intent intent= getIntent();
         TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Upload Prescription");
+        toolbar_title.setText("");
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();

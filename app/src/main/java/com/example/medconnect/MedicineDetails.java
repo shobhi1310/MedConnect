@@ -33,6 +33,8 @@ public class MedicineDetails extends AppCompatActivity {
         setContentView(R.layout.activity_medicine_details);
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("");
 
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

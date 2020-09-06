@@ -122,7 +122,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         this.mRecyclerViewAdapter.setOnItemCLickListener(new ShopOwnerSearchMedicineAdapter.OnItemCLickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(ShopOwnerSearchMedicine.this, "clicked", Toast.LENGTH_LONG).show();
+                //Toast.makeText(ShopOwnerSearchMedicine.this, "clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ShopOwnerSearchMedicine.this, ShopOwnerAddMedicine.class);
                 intent.putExtra("medicine", medicineList.get(position).getMedicineName());
                 intent.putExtra("manufacturer", medicineList.get(position).getManufacturer());
