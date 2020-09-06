@@ -126,19 +126,21 @@ public class CustomerHomePage extends BaseActivity {
 
         this.mAdapter.setOnItemCLickListener(new CustomerBookingHistoryAdapter.OnItemClickListener() {
             @Override
-            public void onClickToLocate(final CustomerBookingHistoryCard card,Button locate) {
+            public void onClickToLocate(int position) {
                 //Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
                 //logic of connecting googlepage to customerHomepage
-                locate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent=new Intent(CustomerHomePage.this,GoogleMapPage.class);
-                        intent.putExtra("latitude",card.getLatitude());
-                        intent.putExtra("longitude",card.getLongitude());
-                        intent.putExtra("shopName",card.getShopName());
-                        startActivity(intent);
-                    }
-                });
+                Intent intent=new Intent(CustomerHomePage.this,GoogleMapPage.class);
+                CustomerBookingHistoryCard card=orders.get(position);
+                intent.putExtra("latitude",card.getLatitude());
+                intent.putExtra("longitude",card.getLongitude());
+                intent.putExtra("shopName",card.getShopName());
+                startActivity(intent);
+//                locate.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                    }
+//                });
 
             }
 
