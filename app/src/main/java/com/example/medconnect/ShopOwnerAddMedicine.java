@@ -91,10 +91,6 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {

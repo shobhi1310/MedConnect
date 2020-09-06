@@ -314,7 +314,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
                             Log.d("update",response);
 
-                            Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
 
                     }
                 },
@@ -352,7 +352,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
 
 
-                        Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
 
                     }
                 },
