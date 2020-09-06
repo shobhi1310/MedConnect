@@ -28,7 +28,7 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
 
 
     public interface OnItemClickListener {
-        void onClickToLocate(CustomerBookingHistoryCard card,Button locate);
+        void onClickToLocate(int position);
     }
 
 
@@ -67,16 +67,25 @@ public class CustomerBookingHistoryAdapter extends RecyclerView.Adapter<Customer
             deadlineHeading=itemView.findViewById(R.id.deadlineHeading);
 
 
+//            locate.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (listener != null) {
+//                        listener.onClickToLocate(specialCard,(Button)locate);
+//                    }
+//                }
+//            });
             locate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
-                        listener.onClickToLocate(specialCard,(Button)locate);
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onClickToLocate(position);
+                        }
                     }
                 }
             });
-
-
         }
 
 
