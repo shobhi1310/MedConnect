@@ -9,7 +9,7 @@ Clone this repository and import into **Android Studio**
 ```bash
 git clone https://github.com/shobhi1310/MedConnect.git
 ```
-__The App is communicating with a custom made [API](http://glacial-caverns-39108.herokuapp.com/)__
+The App is communicating with a custom made [*API*](http://glacial-caverns-39108.herokuapp.com/), the documentation of which is available [*here*](https://github.com/shobhi1310/medcon_server)
 
 ## App features
 As of now the app performs the following features:
@@ -18,6 +18,7 @@ As of now the app performs the following features:
 3. A shopkeeper can update the respective shop inventory by searching those medicines.
 4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
 5. Booking history has been provided both for **shopkeeper** and **customer**.
+
 
 Screenshots
 -----------
