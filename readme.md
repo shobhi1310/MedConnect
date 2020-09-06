@@ -33,6 +33,7 @@ Screenshots
 ## App info
 * target SDK 29
 * release version v 1.0.0
+
 Libraries Used
 --------------
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
