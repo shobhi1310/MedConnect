@@ -9,6 +9,8 @@ Clone this repository and import into **Android Studio**
 ```bash
 git clone https://github.com/shobhi1310/MedConnect.git
 ```
+__The App is communicating with a custom made [API](http://glacial-caverns-39108.herokuapp.com/)__
+
 ## App features
 As of now the app performs the following features:
 1. A customer can search for the medicine and get the corresponding nearby medicine stores in his city.
@@ -20,7 +22,10 @@ As of now the app performs the following features:
 Screenshots
 -----------
 ![Sign Up Page](Screenshots/sign_up.png "Sign Up Page")
+![Current Booking](Screenshots/current_booking.png "Current Booking Page")
 ![Inventory](Screenshots/inventory.png "Shop inventory Page")
+![Search](Screenshots/search_medicine.png "Search Medicine")
+![Shop](Screenshots/shop.png "Shop page")
 ![Map](Screenshots/map.png "Map Page")
 
 ## App info
@@ -32,6 +37,8 @@ This project is mantained by:
 * [Shubhankar Bhadra](http://github.com/shobhi1310)
 * [Tapish Ojha](http://github.com/tapish2000)
 * [Mir Sameed Ali](http://github.com/mir-sam-ali)
+* [Rohit Shakya](http://github.com/rohit-cs18b029)
+* [Chirag Gupta](http://github.com/chirag2706)
 
 ## Contributing
 
