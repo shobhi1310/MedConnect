@@ -65,6 +65,7 @@ These features are supposed to be released in the next update.
 * Advanced Payment of Booking. 
 * Cancellation of Booking.
 * Rating of Medical Shops.
+* Medical shop license verification.
 * Feedback Forum
 * Complaint Forum
 
