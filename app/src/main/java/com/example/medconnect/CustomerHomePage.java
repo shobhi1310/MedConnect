@@ -60,7 +60,6 @@ public class CustomerHomePage extends BaseActivity {
     public static final String Data = "StoredData";
 //    Button locate;
 
-
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +85,7 @@ public class CustomerHomePage extends BaseActivity {
         queue= Volley.newRequestQueue(this);
 //        locate= (Button) findViewById(R.id.locateMap);
 
-
-
-
         createExampleList();
-
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -100,22 +95,12 @@ public class CustomerHomePage extends BaseActivity {
             }
         });
 
-
-
-
     }
 
     private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
-//        if(orders.size() > 0) {
         buildRecyclerView();
-//            TextView t = findViewById(R.id.noBookingsPrompt);
-//            t.setVisibility(View.INVISIBLE);
-//        } else {
-//            TextView t = findViewById(R.id.noBookingsPrompt);
-//            t.setVisibility(View.VISIBLE);
-//        }
     }
 
     private void buildRecyclerView() {
@@ -134,19 +119,21 @@ public class CustomerHomePage extends BaseActivity {
 
         this.mAdapter.setOnItemCLickListener(new CustomerBookingHistoryAdapter.OnItemClickListener() {
             @Override
-            public void onClickToLocate(final CustomerBookingHistoryCard card,Button locate) {
-                Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
+            public void onClickToLocate(int position) {
+                //Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
                 //logic of connecting googlepage to customerHomepage
-                locate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent=new Intent(CustomerHomePage.this,GoogleMapPage.class);
-                        intent.putExtra("latitude",card.getLatitude());
-                        intent.putExtra("longitude",card.getLongitude());
-                        intent.putExtra("shopName",card.getShopName());
-                        startActivity(intent);
-                    }
-                });
+                Intent intent=new Intent(CustomerHomePage.this,GoogleMapPage.class);
+                CustomerBookingHistoryCard card=orders.get(position);
+                intent.putExtra("latitude",card.getLatitude());
+                intent.putExtra("longitude",card.getLongitude());
+                intent.putExtra("shopName",card.getShopName());
+                startActivity(intent);
+//                locate.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                    }
+//                });
 
             }
 

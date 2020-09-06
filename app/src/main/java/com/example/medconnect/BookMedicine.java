@@ -47,12 +47,11 @@ public class BookMedicine extends AppCompatActivity {
         setContentView(R.layout.activity_book_medicine);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText("");
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Book Medicine");
 
         int quantity = 1;
 
@@ -128,7 +127,7 @@ public class BookMedicine extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(BookMedicine.this, successLayover.class);
                         intent.putExtra("medicine_name",medicineItem.getMedicineName());
                         intent.putExtra("shop_name",shop.getShopName());

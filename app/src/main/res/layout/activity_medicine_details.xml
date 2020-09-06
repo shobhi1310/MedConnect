@@ -71,25 +71,27 @@
                                 card_view:layout_constraintStart_toStartOf="parent"
                                 card_view:layout_constraintTop_toTopOf="parent" />
 
-                            <Spinner
-                                android:id="@+id/spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="200dp"
-                                android:layout_marginTop="115dp"
-                                android:layout_marginEnd="100dp"
-                                android:layout_marginBottom="14dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:dropDownWidth="5dp"
-                                android:spinnerMode="dropdown"
-                                android:theme="@style/Theme.MaterialComponents.Light"
-                                android:dropDownSelector="@color/colorPrimaryDark"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                card_view:layout_constraintEnd_toStartOf="@+id/book_button"
-                                card_view:layout_constraintHorizontal_bias="0.0"
-                                card_view:layout_constraintStart_toStartOf="parent"
-                                card_view:layout_constraintTop_toTopOf="parent"
-                                card_view:layout_constraintVertical_bias="0.0" />
+<!--                            <Spinner-->
+<!--                                android:id="@+id/spinner"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_marginStart="200dp"-->
+<!--                                android:layout_marginTop="115dp"-->
+<!--                                android:layout_marginEnd="110dp"-->
+<!--                                android:layout_marginBottom="14dp"-->
+<!--                                android:background="#D75F4DFF"-->
+<!--                                android:backgroundTint="#FFFFFF"-->
+<!--                                android:dropDownWidth="5dp"-->
+<!--                                android:dropDownSelector="@color/colorPrimaryDark"-->
+<!--                                android:spinnerMode="dropdown"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                card_view:layout_constraintEnd_toStartOf="@+id/book_button"-->
+<!--                                card_view:layout_constraintHorizontal_bias="0.0"-->
+<!--                                card_view:layout_constraintStart_toStartOf="parent"-->
+<!--                                card_view:layout_constraintTop_toTopOf="parent"-->
+<!--                                card_view:layout_constraintVertical_bias="0.0" />-->
+
+
 
                             <TextView
                                 android:id="@+id/mfg_name"
@@ -141,6 +143,19 @@
                                 app:layout_constraintTop_toBottomOf="@+id/medicine_name"
                                 card_view:layout_constraintBottom_toBottomOf="parent"
                                 card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent" />
+
+                            <Spinner
+                                android:id="@+id/spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="200dp"
+                                android:layout_marginTop="115dp"
+                                android:layout_marginEnd="110dp"
+                                android:layout_marginBottom="14dp"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintEnd_toStartOf="@+id/book_button"
+                                card_view:layout_constraintStart_toStartOf="parent"
                                 card_view:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -286,7 +301,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/montserrat"
-                                android:text="The contents of this website are for informational purposes only and not intended to be a substitute for professional medical advice, diagnosis, or treatment. Please seek the advice of a physician or other qualified health provider with any questions you may have regarding a medical condition. Do not disregard professional medical advice or delay in seeking it because of something you have read on this website."
+                                android:text="The contents of this website are for informational purposes only and not intended to be a substitute for professional medical advice, diagnosis, or treatment. Please seek the advice of a physician or other qualified health provider with any questions you may have regarding a medical condition."
                                 android:textAlignment="inherit"
                                 android:textColor="#1E1C1C"
                                 android:textSize="12dp"

@@ -4,14 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label=""
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/newlogo"
+        android:label="MedConnect"
+        android:roundIcon="@drawable/newlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ContactUsShop"></activity>
         <activity android:name=".ContactUs" />
-        <activity android:name=".PrescriptionUploadActivity" />
+        <activity android:name=".PrescriptionUploadActivity"  android:label="Upload Prescription"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -22,7 +22,7 @@
         -->
         <activity
             android:name=".CurrentLocationActivity"
-            android:label="@string/title_activity_current_location" />
+            android:label="Current Location" />
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".LoginActivity"
@@ -46,6 +46,7 @@
         <activity android:name=".ShopOwnerHome" />
         <activity
             android:name=".BookMedicine"
+            android:label="Confirm Details"
             android:parentActivityName=".MedicineDetails" />
         <activity android:name=".CustomerHomePage" />
         <activity android:name=".CustomerBookingHistory" />
@@ -54,15 +55,19 @@
         <activity android:name=".ShopOwnerCurrentBookings" />
         <activity
             android:name=".CustomerEditProfile"
+            android:label="Edit Profile"
             android:parentActivityName=".CustomerProfile" />
         <activity
             android:name=".SelectShop"
+            android:label="Select Shop"
             android:parentActivityName=".SearchMedicineActivity" />
         <activity
             android:name=".ShopOwnerEditProfile"
+            android:label="Edit Profile"
             android:parentActivityName=".ShopKeeperProfile" />
         <activity
             android:name=".GoogleMapPage"
+            android:label="Locate"
             android:parentActivityName=".MedicineDetails" />
         <activity
             android:name=".SignUp"
@@ -71,12 +76,14 @@
         <activity android:name=".ShopKeeperProfile" />
         <activity
             android:name=".ShopOwnerAddMedicine"
+            android:label="Add Medicine"
             android:parentActivityName=".ShopOwnerSearchMedicine" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
+            android:label="Medicine Details"
             android:parentActivityName=".SelectShop" />
         <activity android:name=".GetStartedActivity" />
 

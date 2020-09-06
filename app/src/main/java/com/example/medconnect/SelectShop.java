@@ -68,10 +68,12 @@ public class SelectShop extends  AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_shop);
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
+
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar_title.setText("Select Shop");
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("");
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);
         spinner=findViewById(R.id.progress_loader);
 
@@ -88,6 +90,8 @@ public class SelectShop extends  AppCompatActivity{
         id=intent.getStringExtra("id");
 
         this.fetchLocation();
+//        this.APICall(id, "17.398769",
+//                "78.414919");
         //Log.d("Array ShopList",shops.toString());
 
     }
@@ -258,7 +262,7 @@ public class SelectShop extends  AppCompatActivity{
                             Double longitude = location.getLongitude();
                             APICall(id,latitude.toString(),longitude.toString());
 
-                            Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -293,7 +297,7 @@ public class SelectShop extends  AppCompatActivity{
                                     Double longitude = location.getLongitude();
                                     APICall(id,latitude.toString(),longitude.toString());
 
-                                    Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
 
                                 }
                             }

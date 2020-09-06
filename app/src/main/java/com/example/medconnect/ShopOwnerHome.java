@@ -1,5 +1,6 @@
 package com.example.medconnect;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,22 +46,22 @@ public class ShopOwnerHome extends  BaseActivity1{
     private ProgressBar spinner;
     private String shopOwnerID;
     private String oldString="";
+    SwipeRefreshLayout swipe;
     Utils utils;
     private MenuItem item;
     private NavigationView nav;
     public static final String Data = "StoredData";
-
     boolean doubleBackToExitPressedOnce = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_home_page);
 
         nav = findViewById(R.id.navigation);
         item = nav.getMenu().getItem(1);
         item.setEnabled(false);
+
+        swipe = findViewById(R.id.swipeToRefresh);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
@@ -72,7 +74,6 @@ public class ShopOwnerHome extends  BaseActivity1{
             }
         });
 
-
         queue = Volley.newRequestQueue(this);
 
         spinner = (ProgressBar)findViewById(R.id.progress_loader);
@@ -82,14 +83,16 @@ public class ShopOwnerHome extends  BaseActivity1{
         shopOwnerID=sharedPreferences.getString("ID","");
         Log.d("URL",shopOwnerID);
 
-        utils=new Utils();
-        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerHome.this);
-
         createList();
         buildRecyclerView();
 
-
-
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                shuffle();
+                swipe.setRefreshing(false);
+            }
+        });
 
         EditText text = findViewById(R.id.editTextTextPersonName2);
         text.addTextChangedListener(new TextWatcher() {
@@ -101,7 +104,6 @@ public class ShopOwnerHome extends  BaseActivity1{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length()==0){
-                    // Handles empty string case
                     Medicines.clear();
                     Medicines.addAll(originalMedicineList);
                     mAdapter.notifyDataSetChanged();
@@ -129,7 +131,6 @@ public class ShopOwnerHome extends  BaseActivity1{
             oldString="";
         }
         else if(oldString.length()-s.length()>=1){
-            //Here  we filter using the first array we created after API Call
             for(ShopOwnerHomeCard medItem:this.originalMedicineList){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
                     filteredList.add(medItem);
@@ -139,9 +140,9 @@ public class ShopOwnerHome extends  BaseActivity1{
             Medicines.clear();
             Medicines.addAll(filteredList);
             mAdapter.notifyDataSetChanged();
+
         }
         else{
-            //Here we filter in the current array that is being displayed.
             for(ShopOwnerHomeCard medItem:this.Medicines){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
                     filteredList.add(medItem);
@@ -154,11 +155,6 @@ public class ShopOwnerHome extends  BaseActivity1{
             mAdapter.notifyDataSetChanged();
         }
 
-//
-//        this.mAdapter.filterList(filteredList);
-//        this.APICall(s);
-
-
     }
 
     public void createList() {
@@ -169,25 +165,18 @@ public class ShopOwnerHome extends  BaseActivity1{
 
     public void buildRecyclerView() {
 
-
         this.mRecyclerView = findViewById(R.id.shopOwnerHomePageRecyclerView);
         this.mRecyclerView.setHasFixedSize(true);
         this.mLayout = new LinearLayoutManager(this);
-
         this.mAdapter = new ShopOwnerHomeAdapter(this.Medicines);
-
         this.mAdapter = new ShopOwnerHomeAdapter(this.Medicines);
-
         this.mRecyclerView.setLayoutManager(this.mLayout);
         this.mRecyclerView.setAdapter(this.mAdapter);
-
-
 
         this.mAdapter.setOnItemCLickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {
                 String id=Medicines.get(position).getId();
-
                 Medicines.remove(position);
                 removeMedicineAPI(id);
                 mAdapter.notifyItemRemoved(position);
@@ -197,21 +186,15 @@ public class ShopOwnerHome extends  BaseActivity1{
             public void updateStatus(int position) {
                 if(Medicines.get(position).getStatus()){
                     Medicines.get(position).setStatus(false);
-
                 }else{
                     Medicines.get(position).setStatus(true);
-
                 }
                 updateStatusAPI(Medicines.get(position).getId());
                 mAdapter.notifyItemChanged(position);
             }
-
-        } );
-
+        });
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -254,7 +237,6 @@ public class ShopOwnerHome extends  BaseActivity1{
 
                             }
                             spinner.setVisibility(View.GONE);
-                            // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -269,9 +251,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                             t.setVisibility(View.VISIBLE);
                         }
 
-
                         originalMedicineList.addAll(filteredList);
-//                        buildRecyclerView();
                         mAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
                 },
@@ -280,7 +260,6 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // ERROR
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
                         Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -291,10 +270,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     private void updateStatusAPI(String id){
-       // Log.d("ShopOwner",shopOwnerID);
-//        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/update/"+id;
         String url="https://glacial-caverns-39108.herokuapp.com/shop/"+ shopOwnerID +"/update/"+id;
-        //Log.d("update",url);
         queue.cancelAll("Update Status");
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -304,7 +280,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
                             Log.d("update",response);
 
-                            Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
 
                     }
                 },
@@ -313,25 +289,18 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // ERROR
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
                         Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
         stringRequest.setTag("Update Status");
 
-        // executing the request (adding to queue)
         queue.add(stringRequest);
 
     }
 
 
     private void removeMedicineAPI(String id){
-
-//        String url="https://glacial-caverns-39108.herokuapp.com/shop/5f47e5ea174464ed81cc5100/remove/"+id;
         String url="https://glacial-caverns-39108.herokuapp.com/shop/"+shopOwnerID+"/remove/"+id;
-
-
-
 
         queue.cancelAll("Remove Medicine");
         StringRequest stringRequest= new StringRequest(Request.Method.DELETE, url,
@@ -342,7 +311,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
 
 
-                        Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
 
                     }
                 },
@@ -351,18 +320,20 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // ERROR
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
                         Log.e("API Error",error.toString());
                         Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
         stringRequest.setTag("Remove Medicine");
 
-        // executing the request (adding to queue)
         queue.add(stringRequest);
 
     }
 
-
+    private void shuffle() {
+        queue= Volley.newRequestQueue(this);
+        createList();
+        buildRecyclerView();
+    }
 
 }

@@ -104,19 +104,14 @@ public class GetStartedActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
         latitude = sp.getString("LATITUDE","");
         longitude = sp.getString("LONGITUDE","");
-        Log.d("Coordinates",latitude+" "+longitude);
+        Log.d("Coordinates",latitude + " " + longitude);
         Intent intent = getIntent();
         boolean isCustomer = intent.getBooleanExtra("customer",false);
-        DistanceCalculator dc;
-        if(isCustomer){
-             dc= new DistanceCalculator(this,latitude,longitude);
-        }
-        else{
+        if(!isCustomer) {
             SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
             String shopID = sharedPreferences.getString("ID", "");
             APICallforShop(shopID, latitude, longitude);
         }
-
         //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){

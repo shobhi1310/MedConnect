@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#683AB6</item>
         <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowDisablePreview">true</item>
+<!--        <item name="android:windowDisablePreview">true</item>-->
 
 <!--        <item name="android:windowEnterTransition">@anim/push_down_in</item>-->
 <!--        <item name="android:windowExitTransition">@anim/push_down_in</item>-->
