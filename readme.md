@@ -13,7 +13,7 @@ The App is communicating with a custom made [*API*](http://glacial-caverns-39108
 
 ## App features
 As of now the app performs the following features:
-1. A customer can search for the medicine and get the corresponding nearby medicine stores in his/her city, see the location in map and also book it.
+1. A customer can search for the medicine and get the corresponding nearby medicine stores in his/her city, see the location in map and also book it for a specified period of time.
 2. The customer can look into his/her current bookings and also locate the shops on map.
 3. A shopkeeper can update the respective shop inventory by searching those medicines.
 4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
