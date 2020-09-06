@@ -19,7 +19,9 @@ As of now the app performs the following features:
 
 Screenshots
 -----------
-![Login Page](Screenshots/login.png "Login Page")
+![Sign Up Page](Screenshots/sign_up.png "Sign Up Page")
+![Inventory](Screenshots/inventory.png "Shop inventory Page")
+![Map](Screenshots/map.png "Map Page")
 
 ## App info
 * target SDK 29
