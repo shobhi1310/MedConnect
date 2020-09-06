@@ -41,7 +41,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -81,10 +83,10 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
 
 
     public void APIcallForUpdate(final String address, final String mobile,final String name,final String id) {
-        String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update"+id;
+        String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update/"+id;
         customSpinner.startSpinner();
         RequestQueue queue = Volley.newRequestQueue(this);
-
+        queue.cancelAll("Editrofile");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -97,7 +99,7 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Intent intent = new Intent(ShopOwnerEditProfile.this, GetStartedActivity.class);
+                        Intent intent = new Intent(ShopOwnerEditProfile.this, ShopKeeperProfile.class);
                         intent.putExtra("shopOwner", true);
                         startActivity(intent);
                     }
@@ -127,7 +129,7 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
 
         };
 
-        stringRequest.setTag("updateFragmentForShopOwner");
+        stringRequest.setTag("EditProfile");
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
@@ -136,7 +138,6 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
 
 
 
-    @Nullable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +150,12 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
 //        utils=new Utils();
 //        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),LoginActivity.this);
         queue = Volley.newRequestQueue(this);
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("");
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 //        Intent i = getIntent();
 //        isLoggedOut = i.getBooleanExtra("loggedOut", false);
 
@@ -184,9 +191,6 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
 //                }
 
                 APIcallForUpdate(Address, Mobile,Name,ShopOwnerId);
-
-                Intent intent=new Intent(ShopOwnerEditProfile.this,ShopKeeperProfile.class);
-                startActivity(intent);
 
             }
         });
