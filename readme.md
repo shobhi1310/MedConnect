@@ -60,10 +60,15 @@ Libraries Used
 
 Upcoming features
 -----------------
-Updates will include incorporating additional Jetpack components and updating existing components
-as the component libraries evolve.
+These features are supposed to be released in the next update.
 
-Interested in seeing a particular feature of the Android Framework or Jetpack implemented in this
+* Advanced Payment of Booking. 
+* Cancellation of Booking.
+* Rating of Medical Shops.
+* Feedback Forum
+* Complaint Forum
+
+Interested in seeing a particular feature of the Android Framework in this
 app? Please open a new [issue](https://github.com/shobhi1310/MedConnect/issues).
 
 ## Maintainers
