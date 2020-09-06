@@ -46,6 +46,7 @@
         <activity android:name=".ShopOwnerHome" />
         <activity
             android:name=".BookMedicine"
+            android:label="Confirm Details"
             android:parentActivityName=".MedicineDetails" />
         <activity android:name=".CustomerHomePage" />
         <activity android:name=".CustomerBookingHistory" />
@@ -54,6 +55,7 @@
         <activity android:name=".ShopOwnerCurrentBookings" />
         <activity
             android:name=".CustomerEditProfile"
+            android:label="Edit Profile"
             android:parentActivityName=".CustomerProfile" />
         <activity
             android:name=".SelectShop"
@@ -61,9 +63,11 @@
             android:parentActivityName=".SearchMedicineActivity" />
         <activity
             android:name=".ShopOwnerEditProfile"
+            android:label="Edit Profile"
             android:parentActivityName=".ShopKeeperProfile" />
         <activity
             android:name=".GoogleMapPage"
+            android:label="Locate"
             android:parentActivityName=".MedicineDetails" />
         <activity
             android:name=".SignUp"
@@ -72,12 +76,14 @@
         <activity android:name=".ShopKeeperProfile" />
         <activity
             android:name=".ShopOwnerAddMedicine"
+            android:label="Add Medicine"
             android:parentActivityName=".ShopOwnerSearchMedicine" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".successLayover" />
         <activity android:name=".SearchMedicineActivity" />
         <activity
             android:name=".MedicineDetails"
+            android:label="Medicine Details"
             android:parentActivityName=".SelectShop" />
         <activity android:name=".GetStartedActivity" />
 
