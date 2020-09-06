@@ -82,9 +82,9 @@ public class CustomerEditProfile extends AppCompatActivity {
 
     public void APIcallForUpdate(final String mobile,final String name,final String id) {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update"+id;
-        customSpinner.startSpinner();
+//        customSpinner.startSpinner();
         RequestQueue queue = Volley.newRequestQueue(this);
-
+//        queue.cancelAll();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
