@@ -71,10 +71,10 @@ public class ShopOwnerAddMedicine extends AppCompatActivity {
         manufacturer.setText(intent.getStringExtra("manufacturer"));
         strength.setText(intent.getStringExtra("strength"));
 
-        Toolbar toolbar= findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar= getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar= findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar= getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Add Medicine");
