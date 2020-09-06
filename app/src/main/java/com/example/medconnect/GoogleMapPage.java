@@ -35,10 +35,6 @@ public class GoogleMapPage extends AppCompatActivity implements OnMapReadyCallba
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Map");
-
-
     }
 
     @Override

@@ -51,9 +51,6 @@ public class BookMedicine extends AppCompatActivity {
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Book Medicine");
-
         int quantity = 1;
 
         if(getIntent().getExtras() != null) {

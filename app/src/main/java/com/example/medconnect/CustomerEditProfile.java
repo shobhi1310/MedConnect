@@ -18,8 +18,5 @@ public class CustomerEditProfile extends AppCompatActivity {
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Edit Profile");
-
     }
 }

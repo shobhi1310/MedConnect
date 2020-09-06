@@ -68,7 +68,7 @@ public class SelectShop extends  AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_shop);
-        TextView toolbar_title = findViewById(R.id.toolbar_title);
+
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);

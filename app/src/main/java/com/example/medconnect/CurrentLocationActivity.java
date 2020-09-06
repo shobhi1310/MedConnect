@@ -55,7 +55,6 @@ public class CurrentLocationActivity extends BaseActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Current Location");
     }
 
     @Override
