@@ -41,7 +41,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -81,9 +83,10 @@ public class CustomerEditProfile extends AppCompatActivity {
 
 
     public void APIcallForUpdate(final String mobile,final String name,final String id) {
-        String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update"+id;
+        String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update/"+id;
         customSpinner.startSpinner();
-        RequestQueue queue = Volley.newRequestQueue(this);
+
+        queue.cancelAll("EditProfile");
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -97,8 +100,7 @@ public class CustomerEditProfile extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Intent intent = new Intent(CustomerEditProfile.this, GetStartedActivity.class);
-                        intent.putExtra("customer", true);
+                        Intent intent = new Intent(CustomerEditProfile.this, CustomerProfile.class);
                         startActivity(intent);
                     }
 
@@ -127,7 +129,7 @@ public class CustomerEditProfile extends AppCompatActivity {
 
         };
 
-        stringRequest.setTag("updateFragment");
+        stringRequest.setTag("EditProfile");
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
@@ -135,8 +137,6 @@ public class CustomerEditProfile extends AppCompatActivity {
     }
 
 
-
-    @Nullable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,8 +151,13 @@ public class CustomerEditProfile extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 //        Intent i = getIntent();
 //        isLoggedOut = i.getBooleanExtra("loggedOut", false);
-
 //        custOrShop = findViewById(R.id.customerOrShopOwner);
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("");
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         customSpinner= new CustomSpinner(CustomerEditProfile.this);
         SharedPreferences data = this.getSharedPreferences(Data,MODE_PRIVATE);
@@ -165,28 +170,8 @@ public class CustomerEditProfile extends AppCompatActivity {
 //                Email = email.getText().toString();
                 Mobile = mob.getText().toString();
                 Name = name.getText().toString();
-
-////                int selectedId = custOrShop.getCheckedRadioButtonId();
-////                selectedRadioBtn = findViewById(selectedId);
-//                if(selectedId == -1) {
-//                    Toast.makeText(LoginActivity.this,"Select either Customer or Shop Owner", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                CustomerOrShopOwner = selectedRadioBtn.getText().toString();
-////                    Toast.makeText(LoginActivity.this, CustomerOrShopOwner, Toast.LENGTH_SHORT).show();
-////                }
-//
-//                boolean isCustomer = false;
-//
-//                if(CustomerOrShopOwner.equals("CUSTOMER")) {
-//                    isCustomer = true;
-//                    Log.d("test", "True");
-//                }
-
-                APIcallForUpdate(Mobile,Name,customerId);
-
-                Intent intent=new Intent(CustomerEditProfile.this,CustomerProfile.class);
-                startActivity(intent);
+                Log.d("profile-details", Mobile + " " + Name + " " + customerId);
+                APIcallForUpdate(Mobile, Name, customerId);
 
             }
         });
