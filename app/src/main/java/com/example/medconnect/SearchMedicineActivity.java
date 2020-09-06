@@ -117,7 +117,7 @@ public class SearchMedicineActivity extends BaseActivity {
         this.mRecyclerViewAdapter.setOnItemCLickListener(new medicineAdapter.OnItemCLickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
+                //Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SearchMedicineActivity.this, SelectShop.class);
                 intent.putExtra("id",medicineList.get(position).getId());
 //                Intent intent1= new Intent(SearchMedicineActivity.this,MedicineDetails.class);

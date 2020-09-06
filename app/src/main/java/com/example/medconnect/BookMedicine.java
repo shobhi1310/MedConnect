@@ -128,7 +128,7 @@ public class BookMedicine extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(BookMedicine.this, successLayover.class);
                         intent.putExtra("medicine_name",medicineItem.getMedicineName());
                         intent.putExtra("shop_name",shop.getShopName());

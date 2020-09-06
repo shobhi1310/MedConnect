@@ -120,7 +120,7 @@ public class CustomerHomePage extends BaseActivity {
         this.mAdapter.setOnItemCLickListener(new CustomerBookingHistoryAdapter.OnItemClickListener() {
             @Override
             public void onClickToLocate(final CustomerBookingHistoryCard card,Button locate) {
-                Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
+                //Toast.makeText(CustomerHomePage.this, "clicked locate button", Toast.LENGTH_LONG).show();
                 //logic of connecting googlepage to customerHomepage
                 locate.setOnClickListener(new View.OnClickListener() {
                     @Override

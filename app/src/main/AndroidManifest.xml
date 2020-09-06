@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/newlogo"
         android:label="MedConnect"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/newlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ContactUsShop"></activity>

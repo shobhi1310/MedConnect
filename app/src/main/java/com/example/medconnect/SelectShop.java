@@ -257,7 +257,7 @@ public class SelectShop extends  AppCompatActivity{
                             Double longitude = location.getLongitude();
                             APICall(id,latitude.toString(),longitude.toString());
 
-                            Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -292,7 +292,7 @@ public class SelectShop extends  AppCompatActivity{
                                     Double longitude = location.getLongitude();
                                     APICall(id,latitude.toString(),longitude.toString());
 
-                                    Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
 
                                 }
                             }

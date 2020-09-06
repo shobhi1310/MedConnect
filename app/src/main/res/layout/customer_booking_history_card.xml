@@ -9,7 +9,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    app:cardBackgroundColor="#B07D96F3"
+    app:cardBackgroundColor="#009688"
     app:cardCornerRadius="6dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
@@ -20,6 +20,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +46,11 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:fontFamily="sans-serif-medium"
             android:paddingLeft="3dp"
             android:text="(250MG)"
+            android:textColor="@color/black"
             android:textAlignment="textStart"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/manufacturer"
@@ -68,6 +68,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <TextView
             android:id="@+id/deadlineHeading"
+            android:textColor="#EDD1C71D"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deadline:"
@@ -79,6 +80,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="18:00"
             android:textSize="16sp" />
     </LinearLayout>
@@ -88,7 +90,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginVertical="10dp"
-        android:background="#605F5F" />
+        android:background="#015A52" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,6 +102,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="Apollo Pharmacy" />
     </LinearLayout>
 
@@ -113,6 +116,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="Aziz Bagh, Hyderabad" />
     </LinearLayout>
 
@@ -126,6 +130,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="9923489873" />
     </LinearLayout>
 
@@ -138,6 +143,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/bookingDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="12/08/2020" />
     </LinearLayout>
 
