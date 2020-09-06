@@ -102,8 +102,8 @@ public class CurrentLocationActivity extends BaseActivity implements OnMapReadyC
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                             saveLocation(latitude, longitude);
-                            Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
-                            DistanceCalculator dc = new DistanceCalculator(CurrentLocationActivity.this, latitude.toString(), longitude.toString());
+                           // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                           // DistanceCalculator dc = new DistanceCalculator(CurrentLocationActivity.this, latitude.toString(), longitude.toString());
                             LatLng current = new LatLng(latitude, longitude);
                             mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
@@ -140,8 +140,8 @@ public class CurrentLocationActivity extends BaseActivity implements OnMapReadyC
                                     latitude = location.getLatitude();
                                     longitude = location.getLongitude();
                                     saveLocation(latitude, longitude);
-                                    Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
-                                    DistanceCalculator dc = new DistanceCalculator(CurrentLocationActivity.this, latitude.toString(), longitude.toString());
+                                   // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
+                                    //DistanceCalculator dc = new DistanceCalculator(CurrentLocationActivity.this, latitude.toString(), longitude.toString());
                                     LatLng current = new LatLng(latitude, longitude);
                                     mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
                                     mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
