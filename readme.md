@@ -19,7 +19,7 @@ As of now the app performs the following features:
 
 Screenshots
 -----------
-![Login Page](Screenshots/Screenshot_1599403746.png "Login Page")
+![Login Page](Screenshots/login.png "Login Page")
 
 ## App info
 * target SDK 29
