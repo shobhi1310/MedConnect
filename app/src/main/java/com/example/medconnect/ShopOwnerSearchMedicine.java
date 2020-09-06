@@ -51,7 +51,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState, R.layout.activity_shopowner_search_medicine);
 
         nav = findViewById(R.id.navigation);
@@ -63,48 +62,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
         queue = Volley.newRequestQueue(this);
         spinner = (ProgressBar)findViewById(R.id.progress_loader);
 
-
-
-
-
-        /*
-            this searching logic is for customers
-        */
-
-        //create a list instead of database(which we will be using after few days)
-
-        /*
-
-         *
-         * my logic
-         * for search bar ,which customer is going to use,for that when we will be using database ,we will keep some priority
-         * for some medicine whenever customer uses search bar to find medicine,we will be retrieving only 10 medicine items(if possible)
-         * from database based on two criteria:-
-         *
-         *   1.)Firstly,we will check whether that particular medicine item(which contains shop name,license no,location as parameters) is available or not.Then,we will try to display those shops or those
-         *       medicine items which contains stock of that particular medicine.
-         *   2.)If all or more that 10 medicine items exists in database where that particular medicine is available at that particular time,then our
-         *       search algorithm will try to find top 10 nearest shops with available tag.
-         *
-         *
-         *
-         * Applying this in our app will reduce mir sameed's work regarding map API as he just needs to fetch user's current location and shop location which he can easily fetch
-         * the medicineItem.Afterwards,google map api will try to show user shortest path from that particular location.
-         *
-         *
-         * */
-
-        //MedicineItem is a class consists of 3 member variables
-
-        /*
-         * 1.) private imageR
-         * 2.) private text1(name of medicine)
-         * 3.) private (manufacturer)
-         * few more parameters will be added,this component i am making just for demo purpose
-         * in reality ,we need to use mir sameed customer component instead of this dummy component
-         * Also,we need to change some few member variables and we may need to add more member variables
-         * That component should be clickable.
-         * */
 
         utils=new Utils();
         utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),ShopOwnerSearchMedicine.this);
@@ -141,29 +98,12 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     private void filter(String s){
 
         this.APICall(s);
-//        Log.d("length of array",Integer.toString(filteredList.size()));
-//        for(ShopOwnerSearchMedicineCard medItem:this.medicineList){
-//            if(medItem.getMedicineName().toLowerCase().contains(s.toLowerCase())){
-//                filteredList.add(medItem);
-//            }
-//        }
-
-//        this.mRecyclerViewAdapter.filterList(filteredList);
     }
 
 
 
     private void createList(){
         this.medicineList = new ArrayList<>();
-
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Crocin","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Dolo","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Shubhankar","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Tapish","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Rohit","XYZ","150MG"));
-//        this.medicineList.add(new ShopOwnerSearchMedicineCard("Sameed","XYZ","150MG"));
-
     }
 
     private void buildRecycleView(){
@@ -205,16 +145,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-                        // try/catch block for returned JSON data
-                        // see API's documentation for returned format
                         ArrayList<ShopOwnerSearchMedicineCard> filteredList=new ArrayList<>();
                         try {
                             JSONArray result = new JSONObject(response).getJSONArray("medicines");
-//                                    .getJSONObject("list");
-//                            int maxItems = result.getInt("end");
-//                            JSONArray resultList = result.getJSONArray("item");
-                            //this.medicineList.add(new ShopOwnerSearchMedicineCard("Paracetamol","XYZ","150MG"));
-
                             for(int i=0;i<result.length();i++){
                                 JSONObject jsonObject= result.getJSONObject(i);
                                 Log.d("JSON Result",jsonObject.getString("name"));
@@ -222,7 +155,6 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
                             }
 
-                            // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -243,19 +175,17 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
 
                        mRecyclerViewAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
-                }, // Response.Listener<String>()
+                },
                 new Response.ErrorListener() {
                     // 4th param - method onErrorResponse lays the code procedure of error return
                     // ERROR
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // display a simple message on the screen
                         Toast.makeText(ShopOwnerSearchMedicine.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
         stringRequest.setTag("MedicineList");
 
-        // executing the request (adding to queue)
         queue.add(stringRequest);
 
     }
