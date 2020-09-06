@@ -71,7 +71,6 @@ public class SelectShop extends  AppCompatActivity{
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar_title.setText("Select Shop");
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);
         spinner=findViewById(R.id.progress_loader);
 

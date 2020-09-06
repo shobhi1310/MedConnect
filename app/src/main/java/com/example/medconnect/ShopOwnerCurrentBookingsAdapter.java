@@ -16,15 +16,6 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
     private ArrayList<ShopOwnerCurrentBookingsCard> ordersList;
 
 
-
-
-
-
-
-
-
-
-
     public static class ShopOwnerCurrentBookingsViewHolder extends RecyclerView.ViewHolder{
         public TextView medicine;
         public TextView strength;
@@ -33,7 +24,6 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
         public TextView customerMobile;
         public TextView bookingDate;
         public TextView deadline;
-
 
 
         public ShopOwnerCurrentBookingsViewHolder(@NonNull View itemView) {
@@ -73,15 +63,11 @@ public class ShopOwnerCurrentBookingsAdapter extends RecyclerView.Adapter<ShopOw
         holder.bookingDate.setText(card.getBookingDate());
         holder.deadline.setText(card.getDeadline());
 
-
     }
 
     @Override
     public int getItemCount() {
         return ordersList.size();
     }
-
-
-
 
 }

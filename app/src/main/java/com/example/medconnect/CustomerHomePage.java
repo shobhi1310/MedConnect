@@ -100,14 +100,7 @@ public class CustomerHomePage extends BaseActivity {
     private void shuffle() {
         queue= Volley.newRequestQueue(this);
         createExampleList();
-//        if(orders.size() > 0) {
         buildRecyclerView();
-//            TextView t = findViewById(R.id.noBookingsPrompt);
-//            t.setVisibility(View.INVISIBLE);
-//        } else {
-//            TextView t = findViewById(R.id.noBookingsPrompt);
-//            t.setVisibility(View.VISIBLE);
-//        }
     }
 
     private void buildRecyclerView() {

@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:icon="@drawable/newlogo"
+        android:label="MedConnect"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -57,6 +57,7 @@
             android:parentActivityName=".CustomerProfile" />
         <activity
             android:name=".SelectShop"
+            android:label="Select Shop"
             android:parentActivityName=".SearchMedicineActivity" />
         <activity
             android:name=".ShopOwnerEditProfile"
