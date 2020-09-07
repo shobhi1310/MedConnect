@@ -31,8 +31,8 @@ Screenshots
 ![Map](Screenshots/map.png "Map Page")
 
 ## App info
-* target SDK 29
-* release version v 1.0.0
+* Target SDK 29
+* Release version v 1.0.0
 
 Libraries Used
 --------------
@@ -83,7 +83,10 @@ This project is mantained by:
 ## Contributing
 
 1. Fork it
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -m 'Add some feature')
-4. Push your branch (git push origin my-new-feature)
-5. Create a new Pull Request
+2. Run the following on terminal
+```bash
+git checkout -b my-new-feature
+git commit -m 'Add some feature'
+git push origin my-new-feature
+```
+3. Create a new Pull Request
