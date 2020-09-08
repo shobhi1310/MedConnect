@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sideNavbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerProfile"
-    android:id="@+id/sideNavbar">
+    tools:context=".CustomerProfile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:elevation="10dp">
 
-        <include
-            layout="@layout/toolbar_main"
-            android:id="@+id/toolbar" />
-
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/customer_profile_edit"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginTop="220dp"
+            android:background="@drawable/round_button"
+            android:bufferType="normal"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.868"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -33,20 +38,16 @@
             app:srcCompat="@drawable/default_user"
             tools:srcCompat="@drawable/default_user" />
 
-        <Button
-            android:id="@+id/customer_profile_edit"
-            android:layout_width="60sp"
-            android:layout_height="60sp"
-            android:layout_marginTop="220dp"
-            android:background="@drawable/round_button"
-            android:bufferType="normal"
-            android:foreground="@drawable/ic_baseline_edit_24"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="#fff"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.868"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="39dp"
+            android:layout_height="33dp"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/customer_profile_edit"
+            app:layout_constraintEnd_toEndOf="@+id/customer_profile_edit"
+            app:layout_constraintStart_toStartOf="@+id/customer_profile_edit"
+            app:layout_constraintTop_toTopOf="@+id/customer_profile_edit"
+            app:srcCompat="@drawable/baseline_create_black_18" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -117,34 +118,34 @@
                     tools:layout_editor_absoluteY="433dp" />
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                tools:layout_editor_absoluteX="26dp"-->
-<!--                tools:layout_editor_absoluteY="492dp">-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                tools:layout_editor_absoluteX="26dp"-->
+            <!--                tools:layout_editor_absoluteY="492dp">-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView3"-->
-<!--                    android:layout_width="23dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Address"-->
-<!--                    android:textSize="25sp"-->
-<!--                    tools:layout_editor_absoluteX="26dp"-->
-<!--                    tools:layout_editor_absoluteY="492dp" />-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/textView3"-->
+            <!--                    android:layout_width="23dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:text="Address"-->
+            <!--                    android:textSize="25sp"-->
+            <!--                    tools:layout_editor_absoluteX="26dp"-->
+            <!--                    tools:layout_editor_absoluteY="492dp" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/address"-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="136dp"-->
-<!--                    android:layout_weight="2"-->
-<!--                    android:text="Dabra, Gwalior, MadhayaPradesh"-->
-<!--                    android:textColor="#3d3d3d"-->
-<!--                    android:textSize="20sp"-->
-<!--                    tools:layout_editor_absoluteX="152dp"-->
-<!--                    tools:layout_editor_absoluteY="497dp" />-->
-<!--            </LinearLayout>-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/address"-->
+            <!--                    android:layout_width="50dp"-->
+            <!--                    android:layout_height="136dp"-->
+            <!--                    android:layout_weight="2"-->
+            <!--                    android:text="Dabra, Gwalior, MadhayaPradesh"-->
+            <!--                    android:textColor="#3d3d3d"-->
+            <!--                    android:textSize="20sp"-->
+            <!--                    tools:layout_editor_absoluteX="152dp"-->
+            <!--                    tools:layout_editor_absoluteY="497dp" />-->
+            <!--            </LinearLayout>-->
 
         </LinearLayout>
 
@@ -160,7 +161,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"

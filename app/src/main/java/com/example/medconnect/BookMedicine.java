@@ -34,6 +34,7 @@ public class BookMedicine extends AppCompatActivity {
     RequestQueue queue;
     String customer_id;
     String shop_owner_id;
+    CustomSpinner customSpinner;
     SelectShopCard shop = null;
     MedicineItem medicineItem = null;
     CheckBox disclaimer;
@@ -52,6 +53,7 @@ public class BookMedicine extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        customSpinner= new CustomSpinner(BookMedicine.this);
 
         int quantity = 1;
 
@@ -118,6 +120,7 @@ public class BookMedicine extends AppCompatActivity {
     }
 
     public void APICall(final String customer_id, final String medicine_id, final String shop_owner_id, final int timeRange) {
+        customSpinner.startSpinner();
         String url = "https://glacial-caverns-39108.herokuapp.com/booking/book";
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -133,12 +136,14 @@ public class BookMedicine extends AppCompatActivity {
                         intent.putExtra("shop_name",shop.getShopName());
                         intent.putExtra("shop_address",shop.getShopAddress());
                         startActivity(intent);
+                        customSpinner.dismissSpinner();
                     }
 
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "bye register", Toast.LENGTH_LONG).show();
+                customSpinner.dismissSpinner();
+                Toast.makeText(getApplicationContext(), "Booking not completed. Try again later!", Toast.LENGTH_LONG).show();
                 Log.d("Error.Response", String.valueOf(error));
             }
         }){
