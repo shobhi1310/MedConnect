@@ -1,6 +1,7 @@
 package com.example.medconnect;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,7 +139,8 @@ public class ShopOwnerBookingHistory extends  BaseActivity1{
 
                         spinner.setVisibility(View.GONE);
 
-                        TextView t = findViewById(R.id.bookingHistoryPrompt);
+                        LinearLayout t = findViewById(R.id.bookingHistoryPrompt);
+
                         if(orders.size()>0){
                             t.setVisibility(View.INVISIBLE);
                         }
