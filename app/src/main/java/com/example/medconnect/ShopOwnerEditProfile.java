@@ -79,9 +79,6 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
     public static final String Data = "StoredData";
 
 
-
-
-
     public void APIcallForUpdate(final String address, final String mobile,final String name,final String id) {
         String url = "https://glacial-caverns-39108.herokuapp.com/user/profile/update/"+id;
         customSpinner.startSpinner();
@@ -91,8 +88,7 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        Toast.makeText(ShopOwnerEditProfile.this, response, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ShopOwnerEditProfile.this, response, Toast.LENGTH_LONG).show();
                         try {
                             saveData(response);
                         } catch (JSONException e) {
@@ -108,7 +104,7 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 customSpinner.dismissSpinner();
-                Toast.makeText(ShopOwnerEditProfile.this, "bye update", Toast.LENGTH_LONG).show();
+                Toast.makeText(ShopOwnerEditProfile.this, "Server is not responding...", Toast.LENGTH_LONG).show();
                 Log.d("Error.Response", String.valueOf(error));
             }
         }){
@@ -135,7 +131,6 @@ public class ShopOwnerEditProfile extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
-
 
 
     @Override

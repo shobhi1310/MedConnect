@@ -1,9 +1,5 @@
 package com.example.medconnect;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +15,11 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SendEmail extends AppCompatActivity {
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+public class SendEmailShop extends AppCompatActivity {
 
     private MenuItem item;
     private NavigationView nav;
@@ -27,8 +27,8 @@ public class SendEmail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_email);
 
+        setContentView(R.layout.activity_send_email_shop);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("");
         Toolbar toolbar= findViewById(R.id.toolbar);
@@ -66,8 +66,8 @@ public class SendEmail extends AppCompatActivity {
                     onError = true;
                     your_email.setError("Invalid Email");
                     return;
-                }*/
-
+                }
+*/
                 if (TextUtils.isEmpty(subject)){
                     your_subject.setError("Enter Your Subject");
                     your_subject.requestFocus();
@@ -89,6 +89,7 @@ public class SendEmail extends AppCompatActivity {
                         "name:"+name+'\n'+"Email ID:"+email+'\n'+"Message:"+'\n'+message);
                 startActivity(Intent.createChooser(sendEmail, "Send mail..."));
                 */
+
 
                 Intent send = new Intent(Intent.ACTION_SENDTO);
                 String uriText = "mailto:" + Uri.encode(em) +

@@ -87,7 +87,7 @@ android:id="@+id/sideNavbar">
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_gravity="center"
-            android:background="@drawable/register_button"
+            android:background="@color/colorPrimary"
             android:paddingLeft="15dp"
             android:paddingTop="1dp"
             android:paddingRight="15dp"
@@ -99,6 +99,5 @@ android:id="@+id/sideNavbar">
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

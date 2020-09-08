@@ -66,7 +66,7 @@ public class ShopOwnerFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
                         try {
                             saveData(response);
                         } catch (JSONException e) {
