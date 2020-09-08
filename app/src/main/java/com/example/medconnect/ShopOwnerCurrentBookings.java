@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,19 +80,16 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
     }
 
     public void buildRecyclerView() {
-        TextView t = findViewById(R.id.noBookingsPrompt);
-        if(orders.size()>0){
+
             mRecyclerView=findViewById(R.id.shopOwnerCurrentBookingsRecyclerView);
             mRecyclerView.setHasFixedSize(true);
             mLayout = new LinearLayoutManager(this);
             mAdapter = new ShopOwnerCurrentBookingsAdapter(orders);
             mRecyclerView.setLayoutManager(mLayout );
             mRecyclerView.setAdapter(mAdapter);
-            t.setVisibility(View.INVISIBLE);
-        }
-        else{
-            t.setVisibility(View.VISIBLE);
-        }
+
+
+
 
     }
 
@@ -126,7 +124,7 @@ public class ShopOwnerCurrentBookings extends  BaseActivity1{
                         }
                         orders = pastList;
                         spinner.setVisibility(View.GONE);
-                        TextView t = findViewById(R.id.noBookingsPrompt);
+                        LinearLayout t=findViewById(R.id.currentBookingPrompt);
                         if(orders.size()>0){
                             t.setVisibility(View.GONE);
                         }

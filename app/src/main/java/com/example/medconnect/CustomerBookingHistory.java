@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,6 +92,7 @@ public class CustomerBookingHistory extends  BaseActivity{
         String id = sharedPreferences.getString("ID", "");
         this.APICall(id);
     }
+
 
     public void buildRecyclerView() {
         mRecyclerView=findViewById(R.id.customerBookingHistoryRecyclerView);
@@ -172,7 +174,7 @@ public class CustomerBookingHistory extends  BaseActivity{
                         spinner.setVisibility(View.GONE);
 
 
-                        TextView t = findViewById(R.id.bookingHistoryPrompt);
+                        LinearLayout t = findViewById(R.id.bookingHistoryPrompt);
                         if(orders.size()>0){
                             t.setVisibility(View.INVISIBLE);
                         }
