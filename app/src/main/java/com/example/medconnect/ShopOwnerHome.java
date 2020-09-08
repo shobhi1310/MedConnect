@@ -223,19 +223,12 @@ public class ShopOwnerHome extends  BaseActivity1{
                 }
 
 
-                for(int i=0;i<originalMedicineList.size();i++){
-                    if(originalMedicineList.get(i).getId().equals(id)){
-                        if(originalMedicineList.get(i).getStatus()){
-                            originalMedicineList.get(i).setStatus(false);
-                        }else{
-                            originalMedicineList.get(i).setStatus(true);
-                        }
-                        break;
-                    }
-                }
+
 
                 mAdapter.notifyItemChanged(position);
                 updateStatusAPI(id);
+
+
             }
         });
 
@@ -312,7 +305,7 @@ public class ShopOwnerHome extends  BaseActivity1{
         queue.add(stringRequest);
     }
 
-    private void updateStatusAPI(String id){
+    private void updateStatusAPI(final String id){
         String url="https://glacial-caverns-39108.herokuapp.com/shop/"+ shopOwnerID +"/update/"+id;
         queue.cancelAll("Update Status");
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
@@ -323,7 +316,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
                             Log.d("update",response);
 
-                            Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
 
                     }
                 },
@@ -335,6 +328,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                         Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
+
         stringRequest.setTag("Update Status");
 
         queue.add(stringRequest);
