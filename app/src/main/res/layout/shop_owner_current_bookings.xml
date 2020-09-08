@@ -28,6 +28,50 @@
             app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 
+        <LinearLayout
+            android:id="@+id/currentBookingPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="411dp"
+            android:layout_marginTop="731dp"
+            android:layout_marginEnd="411dp"
+            android:layout_marginBottom="675dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/bookingicon"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/montserrat"
+                android:text="No Current Bookings"
+                android:textAlignment="center"
+
+
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,33 +83,6 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <!--        <Button-->
-            <!--            android:id="@+id/button4"-->
-            <!--            android:layout_width="59dp"-->
-            <!--            android:layout_height="43dp"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:background="?android:attr/actionModeWebSearchDrawable"-->
-            <!--            card_view:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"-->
-            <!--            card_view:layout_constraintHorizontal_bias="1.0"-->
-            <!--            card_view:layout_constraintStart_toStartOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="56dp" />-->
-
-            <!--        <EditText-->
-            <!--            android:id="@+id/editTextTextPersonName2"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginTop="76dp"-->
-            <!--            android:layout_marginEnd="16dp"-->
-            <!--            android:ems="13"-->
-            <!--            android:hint="SEARCH"-->
-            <!--            android:inputType="textPersonName"-->
-            <!--            android:textSize="20dp"-->
-            <!--            card_view:layout_constraintEnd_toEndOf="parent"-->
-            <!--            card_view:layout_constraintTop_toTopOf="parent"-->
-            <!--            tools:layout_conversion_absoluteHeight="50dp"-->
-            <!--            tools:layout_conversion_absoluteWidth="336dp" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/shopOwnerCurrentBookingsRecyclerView"
@@ -80,18 +97,7 @@
                 tools:layout_conversion_absoluteHeight="589dp"
                 tools:layout_conversion_absoluteWidth="392dp" />
 
-            <TextView
-                android:id="@+id/noBookingsPrompt"
-                android:layout_width="272dp"
-                android:layout_height="wrap_content"
-                android:text="You have no Previous Bookings"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
