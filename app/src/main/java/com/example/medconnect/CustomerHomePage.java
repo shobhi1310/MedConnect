@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -206,11 +207,11 @@ public class CustomerHomePage extends BaseActivity {
                                 Log.d("date", dateString);
                                 currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString, jsonObject.getString("deadline"), false, latitude, longitude));
                                 if (result.length() == 0) {
-                                    TextView t = findViewById(R.id.noBookingsPrompt);
+                                    LinearLayout t = findViewById(R.id.currentBookingPrompt);
                                     t.setVisibility(View.VISIBLE);
                                 } else {
-                                    TextView t = findViewById(R.id.noBookingsPrompt);
-                                    t.setVisibility(View.INVISIBLE);
+                                    LinearLayout t = findViewById(R.id.currentBookingPrompt);
+                                    t.setVisibility(View.GONE);
 //                                    for (int i = 0; i < result.length(); i++) {
 //                                        JSONObject jsonObject = result.getJSONObject(i);
 //                                        JSONObject medicine = jsonObject.getJSONObject("medicine_id");
@@ -233,17 +234,6 @@ public class CustomerHomePage extends BaseActivity {
                         orders = currentList;
 
                         spinner.setVisibility(View.GONE);
-
-
-                        TextView t = findViewById(R.id.noBookingsPrompt);
-                        if(orders.size()>0){
-                            t.setVisibility(View.GONE);
-                        }
-                        else{
-                            t.setVisibility(View.VISIBLE);
-                        }
-
-
                         buildRecyclerView();
                     }
                 },
