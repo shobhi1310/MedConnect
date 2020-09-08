@@ -49,25 +49,6 @@ android:id="@+id/sideNavbar">
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="3dp"
-            android:text="@string/contact_form_email"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp" />
-
-        <EditText
-            android:id="@+id/your_email"
-            android:layout_width="fill_parent"
-            android:layout_height="38dp"
-            android:layout_marginBottom="20dp"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"
-            android:textSize="14sp" />
-
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
             android:text="@string/contact_form_subject"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimary"

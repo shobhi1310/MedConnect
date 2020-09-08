@@ -40,7 +40,7 @@ public class SendEmail extends AppCompatActivity {
         final String em = fetch.getString("email");
 
         final EditText your_name        = (EditText) findViewById(R.id.your_name);
-        final EditText your_email       = (EditText) findViewById(R.id.your_email);
+        //final EditText your_email       = (EditText) findViewById(R.id.your_email);
         final EditText your_subject     = (EditText) findViewById(R.id.your_subject);
         final EditText your_message     = (EditText) findViewById(R.id.your_message);
 
@@ -52,7 +52,7 @@ public class SendEmail extends AppCompatActivity {
             public void onClick(View v) {
 
                 String name      = your_name.getText().toString();
-                String email     = your_email.getText().toString();
+                //String email     = your_email.getText().toString();
                 String subject   = your_subject.getText().toString();
                 String message   = your_message.getText().toString();
                 if (TextUtils.isEmpty(name)){
@@ -61,12 +61,12 @@ public class SendEmail extends AppCompatActivity {
                     return;
                 }
 
-                Boolean onError = false;
+                /*Boolean onError = false;
                 if (!isValidEmail(email)) {
                     onError = true;
                     your_email.setError("Invalid Email");
                     return;
-                }
+                }*/
 
                 if (TextUtils.isEmpty(subject)){
                     your_subject.setError("Enter Your Subject");
