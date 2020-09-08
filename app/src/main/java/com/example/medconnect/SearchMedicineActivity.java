@@ -62,8 +62,8 @@ public class SearchMedicineActivity extends BaseActivity {
         nav = findViewById(R.id.navigation);
         item = nav.getMenu().getItem(3);
         item.setEnabled(false);
-        utils=new Utils();
-        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
+//        utils=new Utils();
+//        utils.autoHideKeyboard(findViewById(android.R.id.content).getRootView(),SearchMedicineActivity.this);
 
         this.createList();
         this.buildRecycleView();

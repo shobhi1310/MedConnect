@@ -67,19 +67,12 @@ import java.util.Map;
 public class CustomerEditProfile extends AppCompatActivity {
     EditText name;
     EditText mob;
-//    EditText email;
-//    EditText password;
     Button Edit;
     String Name;
     String Mobile;
-//    String Email;
-//    String Password;
     CustomSpinner customSpinner;
     private RequestQueue queue;
     public static final String Data = "StoredData";
-
-
-
 
 
     public void APIcallForUpdate(final String mobile,final String name,final String id) {
@@ -93,7 +86,7 @@ public class CustomerEditProfile extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(CustomerEditProfile.this, response, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(CustomerEditProfile.this, response, Toast.LENGTH_LONG).show();
                         try {
                             saveData(response);
                         } catch (JSONException e) {
@@ -108,7 +101,7 @@ public class CustomerEditProfile extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 customSpinner.dismissSpinner();
-                Toast.makeText(CustomerEditProfile.this, "bye update", Toast.LENGTH_LONG).show();
+                Toast.makeText(CustomerEditProfile.this, "Server is not responding...", Toast.LENGTH_LONG).show();
                 Log.d("Error.Response", String.valueOf(error));
             }
         }){
@@ -130,7 +123,6 @@ public class CustomerEditProfile extends AppCompatActivity {
         };
 
         stringRequest.setTag("EditProfile");
-
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
 
