@@ -26,7 +26,7 @@ public class ContactUs extends BaseActivity {
         toolbar_title.setText("Contact Us");
 
         nav = findViewById(R.id.navigation);
-        item = nav.getMenu().getItem(6);
+        item = nav.getMenu().getItem(5);
         item.setEnabled(false);
 
         final String[] names={"Chirag Gupta","Mir Sameed Ali","Subhankar Badhra","Tapish Ojha","Rohit Shakya"};

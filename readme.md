@@ -18,6 +18,7 @@ As of now the app performs the following features:
 3. A shopkeeper can update the respective shop inventory by searching those medicines.
 4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
 5. Booking history has been provided both for **shopkeeper** and **customer**.
+6. Complaint Forum
 
 *For more information, please refer to the [wiki](http://github.com/shobhi1310/MedConnect/wiki)*
 
@@ -67,7 +68,6 @@ These features are supposed to be released in the next update.
 * Rating of Medical Shops.
 * Medical shop license verification.
 * Feedback Forum
-* Complaint Forum
 
 Interested in seeing a particular feature of the Android Framework in this
 app? Please open a new [issue](https://github.com/shobhi1310/MedConnect/issues).
