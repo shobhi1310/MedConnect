@@ -58,6 +58,7 @@ public class GetStartedActivity extends AppCompatActivity {
     public static final String Data = "StoredData";
     String latitude;
     String longitude;
+    boolean isCustomer;
     private RequestQueue queue;
 
     @Override
@@ -71,7 +72,6 @@ public class GetStartedActivity extends AppCompatActivity {
 
         queue= Volley.newRequestQueue(this);
 
-//        getSupportActionBar().hide();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         introImage = findViewById(R.id.intro_img4);
         title = findViewById(R.id.intro_title4);
@@ -81,51 +81,37 @@ public class GetStartedActivity extends AppCompatActivity {
         title.setText("Let's Start!");
         description.setText("Continuing you are agreeing to the terms of use and privacy policy.");
         introImage.setImageResource(R.drawable.img4);
-
+        Intent intent = getIntent();
+        isCustomer = intent.getBooleanExtra("customer",false);
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-//                boolean isExistingMember = intent.getBooleanExtra("Login", false);
-                boolean isCustomer = intent.getBooleanExtra("customer",false);
+
                 if(isCustomer == true) {
-                    Toast.makeText(getApplicationContext(), "Welcome Back to splash_medconnect!", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Welcome Back to MedConnect!", Toast.LENGTH_LONG);
                     Intent intent_1 = new Intent(GetStartedActivity.this, CustomerHomePage.class);
                     startActivity(intent_1);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Welcome to splash_medconnect!", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Welcome to MedConnect!", Toast.LENGTH_LONG);
                     Intent intent_1 = new Intent(GetStartedActivity.this, ShopOwnerHome.class);
                     startActivity(intent_1);
                 }
             }
         });
-        fetchLocation();
-        SharedPreferences sp = getSharedPreferences(Data,MODE_PRIVATE);
-        latitude = sp.getString("LATITUDE","");
-        longitude = sp.getString("LONGITUDE","");
-        Log.d("Coordinates",latitude + " " + longitude);
-        Intent intent = getIntent();
-        boolean isCustomer = intent.getBooleanExtra("customer",false);
+
+
         if(!isCustomer) {
-            SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
-            String shopID = sharedPreferences.getString("ID", "");
-            APICallforShop(shopID, latitude, longitude);
+            fetchLocation();
         }
-        //saveSortedShops(dc.getSortedShopList());
     }
     private void fetchLocation(){
         if (ContextCompat.checkSelfPermission(
                 GetStartedActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED) {
-            //permission is not granted
+
             if (ActivityCompat.shouldShowRequestPermissionRationale(GetStartedActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                //explain user and try again to grant permission
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                //showInContextUI(...);
+
                 new AlertDialog.Builder(this)
                         .setTitle("Requires location permission")
                         .setMessage("you have to give this permission to access the feature")
@@ -159,7 +145,10 @@ public class GetStartedActivity extends AppCompatActivity {
                                 Double latitude=location.getLatitude();
                                 Double longitude=location.getLongitude();
                                 saveLocation(latitude, longitude);
-                                Toast.makeText(getApplicationContext(),"Latitude and Longitude"+latitude.toString()+" "+longitude.toString(),Toast.LENGTH_SHORT).show();
+                                SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+                                String shopID = sharedPreferences.getString("ID", "");
+                                APICallforShop(shopID, latitude.toString(), longitude.toString());
+//                                Toast.makeText(getApplicationContext(),"Latitude and Longitude"+latitude.toString()+" "+longitude.toString(),Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -187,15 +176,16 @@ public class GetStartedActivity extends AppCompatActivity {
     }
 
     private void APICallforShop(String id, final String latitude, final String longitude) {
-        String url = "https://glacial-caverns-39108.herokuapp.com/shop/location" + id;
-
+        String url = "https://glacial-caverns-39108.herokuapp.com/shop/location/" + id;
+        Log.d("ID_SHOP",id+" "+latitude+" "+longitude);
+//        Log.d("ABC",latitude);
         queue.cancelAll("ShopLocation");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(GetStartedActivity.this, response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GetStartedActivity.this, "Registered succesfully", Toast.LENGTH_SHORT).show();
 
                     }
                 },
