@@ -31,13 +31,23 @@
                 android:layout_marginTop="150dp"
                 android:background="@drawable/round_button"
                 android:bufferType="normal"
-                android:foreground="@drawable/ic_baseline_edit_24"
                 android:gravity="center_vertical|center_horizontal"
                 android:textColor="#fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.869"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="39dp"
+                android:layout_height="33dp"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_profile"
+                app:layout_constraintEnd_toEndOf="@+id/edit_profile"
+                app:layout_constraintStart_toStartOf="@+id/edit_profile"
+                app:layout_constraintTop_toTopOf="@+id/edit_profile"
+                app:srcCompat="@drawable/baseline_create_black_18" />
 
             <ImageView
                 android:id="@+id/imageView"
