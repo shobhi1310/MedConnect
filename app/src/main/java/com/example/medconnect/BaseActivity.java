@@ -64,23 +64,23 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             switch (id) {
                 case R.id.menuProfile:
                     intent = new Intent(this, CustomerProfile.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
                 case R.id.Home:
                     intent = new Intent(this, CustomerHomePage.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
                 case R.id.BookingHistory:
                     intent=new Intent(this,CustomerBookingHistory.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
                 case R.id.searchMedicine:
                     intent = new Intent(this, SearchMedicineActivity.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
                 case R.id.detectMyLocation:
                     intent = new Intent(this,CurrentLocationActivity.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
                 case R.id.logout:
                     Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
@@ -97,7 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     break;
                 case R.id.contact:
                     intent = new Intent(this,ContactUs.class);
-                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
+//                    overridePendingTransition(R.anim.push_down_in,R.anim.push_down_in);
                     break;
             }
             startActivity(intent);
