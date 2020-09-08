@@ -346,10 +346,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-
-
                         //Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
-
                     }
                 },
                 new Response.ErrorListener() {
