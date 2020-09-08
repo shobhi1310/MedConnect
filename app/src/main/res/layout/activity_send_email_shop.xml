@@ -63,7 +63,6 @@ android:id="@+id/sideNavbar">
             android:singleLine="true"
             android:textSize="14sp" />
 
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -118,6 +117,5 @@ android:id="@+id/sideNavbar">
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -23,11 +23,12 @@
         android:icon="@drawable/search_medicine"
         android:title="Add Medicine"/>
 
+    <item android:id="@+id/contact"
+        android:icon="@drawable/contact"
+        android:title="Contact us"/>
+
     <item android:id="@+id/logout"
         android:icon="@drawable/logout_icon"
         android:title="@string/Logout"/>
 
-    <item android:id="@+id/contact"
-        android:icon="@drawable/contact"
-        android:title="Contact us"/>
 </menu>

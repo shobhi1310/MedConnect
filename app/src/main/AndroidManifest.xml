@@ -14,7 +14,12 @@
         android:roundIcon="@drawable/newlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SendEmail"></activity>
+        <activity android:name=".SendEmail"
+            android:label="Send Email"
+            android:parentActivityName=".ContactUs"></activity>
+        <activity android:name=".SendEmailShop"
+            android:label="Send Email"
+            android:parentActivityName=".ContactUs"></activity>
         <activity android:name=".ContactUsShop" />
         <activity android:name=".ContactUs" />
         <activity
