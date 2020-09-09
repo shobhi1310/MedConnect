@@ -28,9 +28,6 @@ public class LoginSigninFragment extends Fragment {
     Button signup;
 
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
