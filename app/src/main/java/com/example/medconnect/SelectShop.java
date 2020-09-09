@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,7 +55,7 @@ import java.util.Map;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
-public class SelectShop extends  AppCompatActivity{
+public class SelectShop extends  AppCompatActivity {
     private RecyclerView mRecyclerView;
     private SelectShopAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
@@ -63,7 +65,7 @@ public class SelectShop extends  AppCompatActivity{
     private String id;
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
-
+    boolean locationFetched;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +77,21 @@ public class SelectShop extends  AppCompatActivity{
         TextView toolbarTitle=findViewById(R.id.toolbar_title);
         toolbarTitle.setText("");
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        String latitude = sharedPreferences.getString("LATITUDE", "");
+        if(latitude.equals("")) {
+            Toast.makeText(this, "Location not received!!!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SelectShop.this, PopUpActivity.class);
+            startActivity(intent);
+        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);
         spinner=findViewById(R.id.progress_loader);
 
         queue= Volley.newRequestQueue(this);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        locationFetched = false;
         createExampleList();
 
     }
@@ -91,6 +102,12 @@ public class SelectShop extends  AppCompatActivity{
         id=intent.getStringExtra("id");
 
         this.fetchLocation();
+//
+//        if(!locationFetched) {
+//            Toast.makeText(this, "Location not received!!!", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(SelectShop.this, PopUpActivity.class);
+//            startActivity(i);
+//        }
     }
 
     public void buildRecyclerView() {
@@ -252,10 +269,9 @@ public class SelectShop extends  AppCompatActivity{
                             // Logic to handle location object
                             Double latitude = location.getLatitude();
                             Double longitude = location.getLongitude();
+
                             APICall(id,latitude.toString(),longitude.toString());
-
-                           // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
-
+                            locationFetched = true;
                         }
                     }
                 });
@@ -280,6 +296,7 @@ public class SelectShop extends  AppCompatActivity{
                                     // Logic to handle location object
                                     Double latitude = location.getLatitude();
                                     Double longitude = location.getLongitude();
+
                                     APICall(id,latitude.toString(),longitude.toString());
                                 }
                             }

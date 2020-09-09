@@ -148,15 +148,26 @@
                             <Spinner
                                 android:id="@+id/spinner"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="200dp"
-                                android:layout_marginTop="115dp"
-                                android:layout_marginEnd="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="100dp"
+                                android:layout_marginEnd="100dp"
                                 android:layout_marginBottom="14dp"
                                 card_view:layout_constraintBottom_toBottomOf="parent"
                                 card_view:layout_constraintEnd_toStartOf="@+id/book_button"
+                                card_view:layout_constraintStart_toEndOf="@+id/textView9"
+                                card_view:layout_constraintTop_toTopOf="@+id/book_button" />
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:layout_marginBottom="14dp"
+                                android:text="Quantity: "
+                                android:textSize="18sp"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
                                 card_view:layout_constraintStart_toStartOf="parent"
-                                card_view:layout_constraintTop_toTopOf="parent" />
+                                card_view:layout_constraintTop_toTopOf="@+id/spinner" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
