@@ -36,7 +36,6 @@ Screenshots for Customer
 
 Screenshots for Shop Owners
 ---------------------------
-![Splash](Screenshots/splash.png "Splash")
 ![Sign Up Page](Screenshots/signup_shop.png "Sign Up Page")
 ![Inventory](Screenshots/inventory.png "Inventory page")
 ![Search](Screenshots/search_medicine.png "Search Medicine")
