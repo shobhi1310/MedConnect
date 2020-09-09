@@ -22,14 +22,19 @@ As of now the app performs the following features:
 
 *For more information, please refer to the [wiki](http://github.com/shobhi1310/MedConnect/wiki)*
 
-Screenshots
------------
+Screenshots for Customer
+------------------------
 ![Sign Up Page](Screenshots/sign_up.png "Sign Up Page")
-![Current Booking](Screenshots/current_booking.png "Current Booking Page")
-![Inventory](Screenshots/inventory.png "Shop inventory Page")
 ![Search](Screenshots/search_medicine.png "Search Medicine")
-![Shop](Screenshots/shop.png "Shop page")
+![Shop List](Screenshots/shop.png "Shop list")
+![Upload](Screenshots/prescription.png "Prescription")
+![Booking timer](Screenshots/booking_intern.png "Booking intermediate")
 ![Map](Screenshots/map.png "Map Page")
+![Booking Success](Screenshots/booking_success.png "Booking Succesful")
+![Current Booking](Screenshots/current_booking.png "Current Booking Page")
+
+Screenshots for Shop Owners
+---------------------------
 
 ## App info
 * Target SDK 29
