@@ -206,24 +206,6 @@ public class CustomerHomePage extends BaseActivity {
                                 String dateString = result1.toString();
                                 Log.d("date", dateString);
                                 currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString, jsonObject.getString("deadline"), false, latitude, longitude));
-                                if (result.length() == 0) {
-                                    LinearLayout t = findViewById(R.id.currentBookingPrompt);
-                                    t.setVisibility(View.VISIBLE);
-                                } else {
-                                    LinearLayout t = findViewById(R.id.currentBookingPrompt);
-                                    t.setVisibility(View.GONE);
-//                                    for (int i = 0; i < result.length(); i++) {
-//                                        JSONObject jsonObject = result.getJSONObject(i);
-//                                        JSONObject medicine = jsonObject.getJSONObject("medicine_id");
-//                                        JSONObject shop = jsonObject.getJSONObject("shop_id");
-//                                        DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//                                        String string1 = jsonObject.getString("createdAt");
-//                                        Date result1 = df1.parse(string1);
-//                                        String dateString = result1.toString();
-//                                        Log.d("date", dateString);
-//                                        currentList.add(new CustomerBookingHistoryCard(medicine.getString("name"), medicine.getString("strength"), medicine.getString("manufacturer"), shop.getString("name"), shop.getString("address"), shop.getString("phone"), dateString, jsonObject.getString("deadline"), false));
-//                                    }
-                                }
                             }
                         }catch (JSONException e) {
                             Toast.makeText(CustomerHomePage.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -232,6 +214,13 @@ public class CustomerHomePage extends BaseActivity {
                             e.printStackTrace();
                         }
                         orders = currentList;
+                        if (orders.size() == 0) {
+                            LinearLayout t = findViewById(R.id.currentBookingPrompt);
+                            t.setVisibility(View.VISIBLE);
+                        } else {
+                            LinearLayout t = findViewById(R.id.currentBookingPrompt);
+                            t.setVisibility(View.GONE);
+                        }
 
                         spinner.setVisibility(View.GONE);
                         buildRecyclerView();

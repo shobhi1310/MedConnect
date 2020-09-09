@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class ShopOwnerHome extends  BaseActivity1{
     private ProgressBar spinner;
     private String shopOwnerID;
     private String oldString="";
-    SwipeRefreshLayout swipe;
+
     Utils utils;
     private MenuItem item;
     private NavigationView nav;
@@ -61,7 +62,6 @@ public class ShopOwnerHome extends  BaseActivity1{
         item = nav.getMenu().getItem(1);
         item.setEnabled(false);
 
-        swipe = findViewById(R.id.swipeToRefresh);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText("Home");
@@ -86,13 +86,13 @@ public class ShopOwnerHome extends  BaseActivity1{
         createList();
         buildRecyclerView();
 
-        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                shuffle();
-                swipe.setRefreshing(false);
-            }
-        });
+//        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                shuffle();
+//                swipe.setRefreshing(false);
+//            }
+//        });
 
         EditText text = findViewById(R.id.editTextTextPersonName2);
         text.addTextChangedListener(new TextWatcher() {
@@ -104,8 +104,15 @@ public class ShopOwnerHome extends  BaseActivity1{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length()==0){
+                    Log.d("Search","Zero Length");
                     Medicines.clear();
                     Medicines.addAll(originalMedicineList);
+                    LinearLayout linearLayout=findViewById(R.id.tabletprompt);
+                    if(Medicines.size()==0){
+                        linearLayout.setVisibility(View.VISIBLE);
+                    }else{
+                        linearLayout.setVisibility(View.GONE);
+                    }
                     mAdapter.notifyDataSetChanged();
                     oldString="";
                 }
@@ -119,18 +126,16 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     private void filter(String s) {
-
+        Log.d("Search","Filter Length");
 
         ArrayList<ShopOwnerHomeCard> filteredList = new ArrayList<>();
 
         if(s.length()==0){
-
-            Medicines.clear();
-            Medicines.addAll(originalMedicineList);
-            mAdapter.notifyDataSetChanged();
-            oldString="";
+            Log.d("Search","Zero Length");
+            return;
         }
-        else if(oldString.length()-s.length()>=1){
+         if(oldString.length()-s.length()>=1){
+            Log.d("Search","Negative Length");
             for(ShopOwnerHomeCard medItem:this.originalMedicineList){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
                     filteredList.add(medItem);
@@ -139,10 +144,17 @@ public class ShopOwnerHome extends  BaseActivity1{
             oldString=s;
             Medicines.clear();
             Medicines.addAll(filteredList);
+            LinearLayout linearLayout=findViewById(R.id.tabletprompt);
+            if(Medicines.size()==0){
+                linearLayout.setVisibility(View.VISIBLE);
+            }else{
+                linearLayout.setVisibility(View.GONE);
+            }
             mAdapter.notifyDataSetChanged();
 
         }
         else{
+            Log.d("Search","Pos Length");
             for(ShopOwnerHomeCard medItem:this.Medicines){
                 if(medItem.getMedicine().toLowerCase().indexOf(s.toLowerCase())==0){
                     filteredList.add(medItem);
@@ -152,6 +164,12 @@ public class ShopOwnerHome extends  BaseActivity1{
             oldString=s;
             Medicines.clear();
             Medicines.addAll(filteredList);
+            LinearLayout linearLayout=findViewById(R.id.tabletprompt);
+            if(Medicines.size()==0){
+                linearLayout.setVisibility(View.VISIBLE);
+            }else{
+                linearLayout.setVisibility(View.GONE);
+            }
             mAdapter.notifyDataSetChanged();
         }
 
@@ -164,6 +182,8 @@ public class ShopOwnerHome extends  BaseActivity1{
     }
 
     public void buildRecyclerView() {
+        LinearLayout linearLayout=findViewById(R.id.tabletprompt);
+
 
         this.mRecyclerView = findViewById(R.id.shopOwnerHomePageRecyclerView);
         this.mRecyclerView.setHasFixedSize(true);
@@ -173,24 +193,42 @@ public class ShopOwnerHome extends  BaseActivity1{
         this.mRecyclerView.setLayoutManager(this.mLayout);
         this.mRecyclerView.setAdapter(this.mAdapter);
 
+
+
+
         this.mAdapter.setOnItemCLickListener(new ShopOwnerHomeAdapter.OnItemClickListener() {
             @Override
             public void onDeleteClick(int position) {
                 String id=Medicines.get(position).getId();
                 Medicines.remove(position);
+                for(int i=0;i<originalMedicineList.size();i++){
+                    if(originalMedicineList.get(i).getId().equals(id)){
+                        originalMedicineList.remove(i);
+                        break;
+                    }
+                }
                 removeMedicineAPI(id);
                 mAdapter.notifyItemRemoved(position);
             }
 
             @Override
             public void updateStatus(int position) {
+
+                String id=Medicines.get(position).getId();
+                Log.d("Update", Medicines.get(position).getMedicine());
                 if(Medicines.get(position).getStatus()){
                     Medicines.get(position).setStatus(false);
                 }else{
                     Medicines.get(position).setStatus(true);
                 }
-                updateStatusAPI(Medicines.get(position).getId());
+
+
+
+
                 mAdapter.notifyItemChanged(position);
+                updateStatusAPI(id);
+
+
             }
         });
 
@@ -241,16 +279,14 @@ public class ShopOwnerHome extends  BaseActivity1{
                             Toast.makeText(ShopOwnerHome.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         Medicines = filteredList;
-
-                        TextView t = findViewById(R.id.searchMedicinePrompt);
-
-                        if(Medicines.size()>0){
-                            t.setVisibility(View.INVISIBLE);
-                        }
-                        else{
-                            t.setVisibility(View.VISIBLE);
+                        LinearLayout linearLayout=findViewById(R.id.tabletprompt);
+                        if(Medicines.size()==0){
+                            linearLayout.setVisibility(View.VISIBLE);
+                        }else{
+                            linearLayout.setVisibility(View.GONE);
                         }
 
+                        originalMedicineList.clear();
                         originalMedicineList.addAll(filteredList);
                         mAdapter.filterList(filteredList);
                     } // public void onResponse(String response)
@@ -269,7 +305,7 @@ public class ShopOwnerHome extends  BaseActivity1{
         queue.add(stringRequest);
     }
 
-    private void updateStatusAPI(String id){
+    private void updateStatusAPI(final String id){
         String url="https://glacial-caverns-39108.herokuapp.com/shop/"+ shopOwnerID +"/update/"+id;
         queue.cancelAll("Update Status");
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url,
@@ -280,7 +316,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     public void onResponse(String response) {
                             Log.d("update",response);
 
-                            //Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(ShopOwnerHome.this, "Updated", Toast.LENGTH_LONG).show();
 
                     }
                 },
@@ -292,6 +328,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                         Toast.makeText(ShopOwnerHome.this, "Server is not responding", Toast.LENGTH_LONG).show();
                     }
                 });
+
         stringRequest.setTag("Update Status");
 
         queue.add(stringRequest);
@@ -309,10 +346,7 @@ public class ShopOwnerHome extends  BaseActivity1{
                     // SUCCESS
                     @Override
                     public void onResponse(String response) {
-
-
                         //Toast.makeText(ShopOwnerHome.this, "Removed", Toast.LENGTH_LONG).show();
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -330,10 +364,11 @@ public class ShopOwnerHome extends  BaseActivity1{
 
     }
 
-    private void shuffle() {
-        queue= Volley.newRequestQueue(this);
-        createList();
-        buildRecyclerView();
-    }
+//    private void shuffle() {
+//        queue= Volley.newRequestQueue(this);
+//        createList();
+//        buildRecyclerView();
+//        oldString="";
+//    }
 
 }

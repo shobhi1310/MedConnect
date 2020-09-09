@@ -34,10 +34,51 @@
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeToRefresh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/tabletprompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="411dp"
+                android:layout_marginTop="675dp"
+                android:layout_marginEnd="411dp"
+                android:layout_marginBottom="675dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/tablets"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="32dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="No Medicines Added"
+                    android:textAlignment="center"
+
+
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,7 +105,7 @@
                             android:inputType="textPersonName"
                             android:textSize="20dp" />
                     </LinearLayout>
-                        
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shopOwnerHomePageRecyclerView"
@@ -98,19 +139,7 @@
 <!--                    tools:layout_conversion_absoluteHeight="589dp"-->
 <!--                    tools:layout_conversion_absoluteWidth="392dp" />-->
 
-                <TextView
-                    android:id="@+id/searchMedicinePrompt"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    android:text="Write above to search medicine"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-                    
+
 
                 <FrameLayout
                     android:id="@+id/content_frame"
@@ -119,7 +148,7 @@
 
                 </FrameLayout>
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

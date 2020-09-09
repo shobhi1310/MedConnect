@@ -26,7 +26,7 @@ public class ContactUsShop extends BaseActivity1 {
         toolbar_title.setText("Contact Us");
 
         nav = findViewById(R.id.navigation);
-        item = nav.getMenu().getItem(6);
+        item = nav.getMenu().getItem(5);
         item.setEnabled(false);
 
         final String[] names={"Chirag Gupta","Mir Sameed Ali","Subhankar Badhra","Tapish Ojha","Rohit Shakya"};
@@ -42,7 +42,7 @@ public class ContactUsShop extends BaseActivity1 {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         //String fruit = String.valueOf(adapterView.getItemAtPosition(i));
                         //Toast.makeText(AboutUs.this,names[i],Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ContactUsShop.this,SendEmail.class);
+                        Intent intent = new Intent(ContactUsShop.this,SendEmailShop.class);
                         intent.putExtra("email",emails[i]);
                         startActivity(intent);
 

@@ -19,11 +19,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -52,7 +55,7 @@ import java.util.Map;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
-public class SelectShop extends  AppCompatActivity{
+public class SelectShop extends  AppCompatActivity {
     private RecyclerView mRecyclerView;
     private SelectShopAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
@@ -62,7 +65,7 @@ public class SelectShop extends  AppCompatActivity{
     private String id;
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
-
+    boolean locationFetched;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +77,21 @@ public class SelectShop extends  AppCompatActivity{
         TextView toolbarTitle=findViewById(R.id.toolbar_title);
         toolbarTitle.setText("");
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Data, MODE_PRIVATE);
+        String latitude = sharedPreferences.getString("LATITUDE", "");
+        if(latitude.equals("")) {
+            Toast.makeText(this, "Location not received!!!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SelectShop.this, PopUpActivity.class);
+            startActivity(intent);
+        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(SelectShop.this);
         spinner=findViewById(R.id.progress_loader);
 
         queue= Volley.newRequestQueue(this);
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        locationFetched = false;
         createExampleList();
 
     }
@@ -90,10 +102,12 @@ public class SelectShop extends  AppCompatActivity{
         id=intent.getStringExtra("id");
 
         this.fetchLocation();
-//        this.APICall(id, "17.398769",
-//                "78.414919");
-        //Log.d("Array ShopList",shops.toString());
-
+//
+//        if(!locationFetched) {
+//            Toast.makeText(this, "Location not received!!!", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(SelectShop.this, PopUpActivity.class);
+//            startActivity(i);
+//        }
     }
 
     public void buildRecyclerView() {
@@ -125,15 +139,6 @@ public class SelectShop extends  AppCompatActivity{
 
         });
 
-
-//        mRecyclerView.setOnItemCLickListener(new medicineAdapter.OnItemCLickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(SearchMedicineActivity.this, SelectShop.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void APICall(String id, final String latitude, final String longitude){
@@ -166,16 +171,20 @@ public class SelectShop extends  AppCompatActivity{
 
                                 JSONArray coordinates = jsonObject.getJSONArray("location");
                                 filteredList.add(new SelectShopCard(jsonObject.getString("_id"), jsonObject.getString("name"), jsonObject.getString("address"), jsonObject.getString("phone"), jsonObject.getString("travelDistance")+"km", coordinates.getDouble(0), coordinates.getDouble(1)));
-
                             }
-
-                            // catch for the JSON parsing error
                         } catch (JSONException e) {
                             Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         shops=filteredList;
                         Log.d("Array Shop",shops.toString());
                         spinner.setVisibility(View.GONE);
+                        LinearLayout t=findViewById(R.id.selectShopPrompt);
+                        if(shops.size()>0){
+                            t.setVisibility(View.GONE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
                         buildRecyclerView();
 
                     } // public void onResponse(String response)
@@ -260,10 +269,9 @@ public class SelectShop extends  AppCompatActivity{
                             // Logic to handle location object
                             Double latitude = location.getLatitude();
                             Double longitude = location.getLongitude();
+
                             APICall(id,latitude.toString(),longitude.toString());
-
-                           // Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
-
+                            locationFetched = true;
                         }
                     }
                 });
@@ -277,13 +285,6 @@ public class SelectShop extends  AppCompatActivity{
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //after getting this information run your code here
                 if (ActivityCompat.checkSelfPermission(SelectShop.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
                 fusedLocationClient.getLastLocation()
@@ -295,10 +296,8 @@ public class SelectShop extends  AppCompatActivity{
                                     // Logic to handle location object
                                     Double latitude = location.getLatitude();
                                     Double longitude = location.getLongitude();
+
                                     APICall(id,latitude.toString(),longitude.toString());
-
-                                    //Toast.makeText(getApplicationContext(), "Latitude and Longitude" + latitude.toString() + " " + longitude.toString(), Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });

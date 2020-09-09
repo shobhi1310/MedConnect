@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -96,6 +97,13 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     }
 
     private void filter(String s){
+        if(s.length()==0){
+            LinearLayout t = findViewById(R.id.tabletprompt);
+            t.setVisibility(View.GONE);
+            medicineList.clear();
+            mRecyclerViewAdapter.notifyDataSetChanged();
+            return;
+        }
 
         this.APICall(s);
     }
@@ -135,6 +143,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
     }
 
     private void APICall(String s){
+        //Avoid overlap with spinner
+        LinearLayout t = findViewById(R.id.tabletprompt);
+        t.setVisibility(View.GONE);
         spinner.setVisibility(View.VISIBLE);
         String url="https://glacial-caverns-39108.herokuapp.com/medicine/fetch/"+s;
 
@@ -156,7 +167,7 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                             }
 
                         } catch (JSONException e) {
-                            Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(ShopOwnerSearchMedicine.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
                         medicineList=filteredList;
@@ -164,9 +175,9 @@ public class ShopOwnerSearchMedicine extends BaseActivity1 {
                         spinner.setVisibility(View.GONE);
 
 
-                        TextView t = findViewById(R.id.searchMedicinePrompt);
+                        LinearLayout t = findViewById(R.id.tabletprompt);
                         if(medicineList.size()>0){
-                            t.setVisibility(View.INVISIBLE);
+                            t.setVisibility(View.GONE);
                         }
                         else{
                             t.setVisibility(View.VISIBLE);
