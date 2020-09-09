@@ -14,18 +14,19 @@ The App is communicating with a custom made [*API*](http://glacial-caverns-39108
 ## App features
 As of now the app performs the following features:
 1. A customer can search for the medicine and get the corresponding nearby medicine stores in his/her city, see the location in map and also book it for a specified period of time.
-2. The customer can look into his/her current bookings and also locate the shops on map.
-3. A shopkeeper can update the respective shop inventory by searching those medicines.
-4. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
-5. Booking history has been provided both for **shopkeeper** and **customer**.
-6. Complaint Forum
+2. For the medicines which require prescription, the app has feature for uploading prescriptions as well.
+3. The customer can look into his/her current bookings and also locate the shops on map.
+4. A shopkeeper can update the respective shop inventory by searching those medicines.
+5. The shopkeeper can also look into the current bookings within a given deadline with the necessary details of medicine and customer. 
+6. Booking history has been provided both for **shopkeeper** and **customer**.
+7. Complaint Forum
 
 *For more information, please refer to the [wiki](http://github.com/shobhi1310/MedConnect/wiki)*
 
 Screenshots for Customer
 ------------------------
 ![Sign Up Page](Screenshots/sign_up.png "Sign Up Page")
-![Search](Screenshots/search_medicine.png "Search Medicine")
+![Search](Screenshots/search_medicine_customer.png "Search Medicine")
 ![Shop List](Screenshots/shop.png "Shop list")
 ![Upload](Screenshots/prescription.png "Prescription")
 ![Booking timer](Screenshots/booking_inter.png "Booking intermediate")
@@ -35,6 +36,12 @@ Screenshots for Customer
 
 Screenshots for Shop Owners
 ---------------------------
+![Splash](Screenshots/splash.png "Splash")
+![Sign Up Page](Screenshots/signup_shop.png "Sign Up Page")
+![Inventory](Screenshots/inventory.png "Inventory page")
+![Search](Screenshots/search_medicine.png "Search Medicine")
+![Inventory Update](Screenshots/shop_medicine_add.png "Shop list")
+![Booking History](Screenshots/booking_history.png "Booking History Shop")
 
 ## App info
 * Target SDK 29
