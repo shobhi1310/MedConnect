@@ -28,10 +28,10 @@ Screenshots for Customer
 ![Search](Screenshots/search_medicine.png "Search Medicine")
 ![Shop List](Screenshots/shop.png "Shop list")
 ![Upload](Screenshots/prescription.png "Prescription")
-![Booking timer](Screenshots/booking_intern.png "Booking intermediate")
+![Booking timer](Screenshots/booking_inter.png "Booking intermediate")
 ![Map](Screenshots/map.png "Map Page")
 ![Booking Success](Screenshots/booking_success.png "Booking Succesful")
-![Current Booking](Screenshots/current_booking.png "Current Booking Page")
+![Current Booking](Screenshots/current_booking_succesful.png "Current Booking Page")
 
 Screenshots for Shop Owners
 ---------------------------
