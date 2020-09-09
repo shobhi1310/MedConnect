@@ -20,13 +20,16 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+
 import android.location.LocationListener;
+
 import android.location.LocationManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +41,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
+
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -55,7 +59,9 @@ import java.util.Map;
 
 import static com.example.medconnect.GetUserLocation.MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION;
 
+
 public class SelectShop extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private SelectShopAdapter mAdapter;
     private RecyclerView.LayoutManager mLayout;
@@ -65,6 +71,7 @@ public class SelectShop extends AppCompatActivity {
     private String id;
     private FusedLocationProviderClient fusedLocationClient;
     public static final String Data = "StoredData";
+
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
@@ -73,6 +80,7 @@ public class SelectShop extends AppCompatActivity {
     String provider;
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
+
 
 
     @Override
@@ -87,6 +95,7 @@ public class SelectShop extends AppCompatActivity {
         TextView toolbarTitle = findViewById(R.id.toolbar_title);
         toolbarTitle.setText("");
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
 
         spinner = findViewById(R.id.progress_loader);
         spinner.setVisibility(View.VISIBLE);
@@ -159,6 +168,7 @@ public class SelectShop extends AppCompatActivity {
                 ActivityCompat.requestPermissions(SelectShop.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 10);
             }
 
+
 }
 
 
@@ -173,7 +183,7 @@ public class SelectShop extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        //createExampleList();
+
 
     }
 
@@ -181,14 +191,6 @@ public class SelectShop extends AppCompatActivity {
         shops = new ArrayList<SelectShopCard>();
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-
-
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            buildAlertMessageNoGps();
-        } else {
-            this.fetchLocation();
-        }
-
     }
 
     public void buildRecyclerView() {
@@ -217,15 +219,6 @@ public class SelectShop extends AppCompatActivity {
             }
         });
 
-
-//        mRecyclerView.setOnItemCLickListener(new medicineAdapter.OnItemCLickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                Toast.makeText(SearchMedicineActivity.this, "clicked", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(SearchMedicineActivity.this, SelectShop.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
 
@@ -260,17 +253,24 @@ public class SelectShop extends AppCompatActivity {
                                 JSONObject jsonObject = result.getJSONObject(j);
 
                                 JSONArray coordinates = jsonObject.getJSONArray("location");
+
                                 filteredList.add(new SelectShopCard(jsonObject.getString("_id"), jsonObject.getString("name"), jsonObject.getString("address"), jsonObject.getString("phone"), jsonObject.getString("travelDistance") + "km", coordinates.getDouble(0), coordinates.getDouble(1)));
 
-                            }
 
-                            // catch for the JSON parsing error
+                            }
                         } catch (JSONException e) {
                             Toast.makeText(SelectShop.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         shops = filteredList;
                         Log.d("Array Shop", shops.toString());
                         spinner.setVisibility(View.GONE);
+                        LinearLayout t=findViewById(R.id.selectShopPrompt);
+                        if(shops.size()>0){
+                            t.setVisibility(View.GONE);
+                        }
+                        else{
+                            t.setVisibility(View.VISIBLE);
+                        }
                         buildRecyclerView();
 
                     } // public void onResponse(String response)
@@ -365,7 +365,7 @@ public class SelectShop extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
 //        if (requestCode == MY_PERMISSION_REQUEST_ACCESS_COARSE_LOCATION  || requestCode==) {
 //            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 //                //after getting this information run your code here
@@ -417,6 +417,7 @@ public class SelectShop extends AppCompatActivity {
 
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
+
         }
     }
 
