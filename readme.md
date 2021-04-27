@@ -46,8 +46,8 @@ Screenshots for Shop Owners
 * Target SDK 29
 * Release version v 1.0.0
 
-Libraries Used
---------------
+## Libraries Used
+
 * [AppCompat][0] - Degrade gracefully on older versions of Android.
 * [ConstraintLayout][1] - Position and size widgets in a flexible way with relative positioning.
 * [Material][2] - migrate your codebase from the Design Support Library to Material Components for Android.
@@ -70,8 +70,8 @@ Libraries Used
 [8]: https://developers.google.com/maps/documentation/android-sdk/overview
 [9]: https://developer.android.com/training/volley
 
-Upcoming features
------------------
+## Upcoming features
+
 These features are supposed to be released in the next update.
 
 * Advanced Payment of Booking. 
